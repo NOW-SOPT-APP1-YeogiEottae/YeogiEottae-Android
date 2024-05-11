@@ -1,0 +1,70 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinx.serialization)
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+android {
+    namespace 'com.sopt.yeogieottae'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.sopt.yeogieottae"
+        minSdk 28
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "AUTH_BASE_URL", properties["base.url"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding = true
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    implementation libs.androidx.navigation.fragment
+    implementation libs.androidx.navigation.ui
+
+    implementation libs.androidx.lifecycle.viewmodel
+    implementation libs.androidx.lifecycle.livedata
+
+    implementation libs.com.squareup.retrofit2
+    implementation libs.org.jetbrains.kotlinx
+    implementation libs.com.jakewharton.retrofit
+
+    implementation libs.com.squareup.okhttp3
+    implementation libs.squareup.okhttp3
+
+    implementation(platform(libs.okhttp3))
+}

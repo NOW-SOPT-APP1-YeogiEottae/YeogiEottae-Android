@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand -->
+    <color name="brand_dark">#E14040</color>
+    <color name="brand">#F45858</color>
+    <color name="brand_light">#F98383</color>
+    <color name="brand_lightest">#FFEDED</color>
+
+    <!--Secondary -->
+    <color name="secondary_700">#243B52</color>
+    <color name="secondary_600">#1273E4</color>
+    <color name="secondary_500">#1F7AE5</color>
+    <color name="secondary_400">#479AF6</color>
+    <color name="secondary_300">#B7D5F6</color>
+    <color name="secondary_200">#ECF4FD</color>
+    <color name="secondary_100">#ECF4FD</color>
+
+    <!--Gray -->
+    <color name="gray_950">#000000</color>
+    <color name="gray_900">#333333</color>
+    <color name="gray_850">#707070</color>
+    <color name="gray_800">#858585</color>
+    <color name="gray_700">#999999</color>
+    <color name="gray_600">#ADADAD</color>
+    <color name="gray_500">#C2C2C2</color>
+    <color name="gray_400">#EBEBEB</color>
+    <color name="gray_300">#F4F4F4</color>
+    <color name="gray_200">#F5F5F5</color>
+    <color name="gray_100">#FAFAFA</color>
+    <color name="gray_0">#FFFFFF</color>
+
+    <!--System-->
+    <color name="star_dark1">#FFAD0A</color>
+    <color name="star_dark2">#FFAC09</color>
+    <color name="cuation">#CA0101</color>
+</resources>
