@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home">
+    </fragment>
+    <!--예시 아래 처럼 쓰면됩니다!-->
+<!--    <fragment -->
+<!--        android:id="@+id/fragment_search"-->
+<!--        android:name="com.sopt.now.feature.search.SearchFragment"-->
+<!--        android:label="SearchFragment"-->
+<!--        tools:layout="@layout/fragment_search" />-->
+
+</navigation>
