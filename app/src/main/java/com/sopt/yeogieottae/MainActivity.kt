@@ -17,5 +17,6 @@ class MainActivity : AppCompatActivity() {
             (supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment)
                 .findNavController()
         binding.mainBnv.setupWithNavController(navController)
+        setContentView(binding.root)
     }
 }
