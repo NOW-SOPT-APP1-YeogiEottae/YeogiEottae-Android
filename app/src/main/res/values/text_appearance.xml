@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.Yeogieotte" parent="">
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- Pretend Head -->
+    <style name="TextAppearance.Yeogieotte.Pretendard_h1" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textFontWeight">750</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_h2" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textFontWeight">750</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_h3" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_h4" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_h5" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_h6" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <!--Pretend Body-->
+    <style name="TextAppearance.Yeogieotte.Pretendard_b1" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_b2" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_b3" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_b4" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_b5" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_b6" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_b7" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <!--Pretend Line-->
+    <style name="TextAppearance.Yeogieotte.Pretendard_L1" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L2" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L3" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L4" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L5" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L6" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L7" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+    <style name="TextAppearance.Yeogieotte.Pretendard_L8" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
+</resources>
