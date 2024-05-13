@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val navController =
-            (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+            (supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment)
                 .findNavController()
-        binding.bnvHome.setupWithNavController(navController)
+        binding.mainBnv.setupWithNavController(navController)
     }
 }
