@@ -14,11 +14,11 @@
         android:icon="@drawable/ic_map"
         android:title="@string/menu_title_map" />
     <item
-        android:id="@+id/fragment_favorite"
+        android:id="@+id/fragment_like"
         android:icon="@drawable/ic_favorite"
         android:title="@string/menu_title_favorite" />
     <item
-        android:id="@+id/fragment_my_info"
+        android:id="@+id/fragment_profile"
         android:icon="@drawable/ic_info"
         android:title="@string/menu_title_info" />
 </menu>
