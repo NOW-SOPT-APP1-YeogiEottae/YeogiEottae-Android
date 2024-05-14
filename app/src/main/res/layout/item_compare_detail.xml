@@ -1,34 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_coin"
+        android:id="@+id/tv_money_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="400000만원"
+        android:layout_marginEnd="4dp"
+        android:text="10%"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b7"
+        android:textColor="@color/brand"
+        app:layout_constraintBottom_toBottomOf="@id/tv_money_basic"
+        app:layout_constraintEnd_toStartOf="@id/tv_money_basic" />
+
+    <TextView
+        android:id="@+id/tv_money_basic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30,000"
+        android:textColor="@color/gray_700"
+        app:layout_constraintBottom_toTopOf="@id/tv_money"
+        app:layout_constraintEnd_toEndOf="@id/tv_money" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="400,000만원"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+        android:textColor="@color/gray_900"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="3dp"
+        android:src="@drawable/ic_star_rate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_money"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:text="별점 4.6"
-        app:layout_constraintStart_toEndOf="@id/tv_coin"
+        android:text="4.6"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+        android:textColor="@color/gray_900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_star"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_facilities"
+        android:id="@+id/tv_review_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:text="부대시설 이런거 저런 거 있음"
+        android:layout_marginStart="3dp"
+        android:text="(1004)"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b4"
+        android:textColor="@color/gray_850"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_star"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선착순"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
+        android:textColor="@color/gray_800"
+        app:layout_constraintBottom_toTopOf="@id/tv_discount_money"
+        app:layout_constraintEnd_toEndOf="@id/tv_discount_money" />
+
+    <TextView
+        android:id="@+id/tv_discount_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="-5000원"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+        android:textColor="@color/gray_900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_discount"
+        app:layout_constraintStart_toEndOf="@id/tv_review_count"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_facility1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="자쿠지 무료 이용"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
+        android:textColor="@color/gray_800"
+        app:layout_constraintBottom_toTopOf="@id/tv_facility2"
+        app:layout_constraintStart_toEndOf="@id/tv_discount_money" />
+
+    <TextView
+        android:id="@+id/tv_facility2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:text="수영장"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
+        android:textColor="@color/gray_800"
+        app:layout_constraintBottom_toTopOf="@id/tv_facility3"
+        app:layout_constraintEnd_toEndOf="@id/tv_facility1" />
+
+    <TextView
+        android:id="@+id/tv_facility3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:text="조식 제공"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
+        android:textColor="@color/gray_800"
+        app:layout_constraintBottom_toTopOf="@id/tv_facility4"
+        app:layout_constraintEnd_toEndOf="@id/tv_facility1" />
+
+    <TextView
+        android:id="@+id/tv_facility4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="12dp"
+        android:text="더보기..."
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
+        android:textColor="@color/secondary_600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_facility1"
+        app:layout_constraintTop_toBottomOf="@id/tv_facility3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
