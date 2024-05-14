@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">YeogiEottae</string>
+
+    <!--menu-->
+    <string name="menu_title_home">홈</string>
+    <string name="menu_title_search">검색</string>
+    <string name="menu_title_map">주변</string>
+    <string name="menu_title_favorite">찜</string>
+    <string name="menu_title_info">내 정보</string>
+
+
+    <!--더미-->
+    <string name="dummy_profile">내 정보 화면입니다.</string>
+    <string name="dummy_map">내 주변 화면입니다.</string>
+    <string name="dummy_home">홈 화면입니다.</string>
 </resources>

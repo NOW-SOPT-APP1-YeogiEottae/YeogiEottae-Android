@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.sopt.yeogieottae.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/fragment_map"
+        android:name="com.sopt.yeogieottae.ui.map.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.sopt.yeogieottae.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/fragment_compare"
+        android:name="com.sopt.yeogieottae.ui.compare.CompareFragment"
+        android:label="CompareFragment"
+        tools:layout="@layout/fragment_compare" />
+
+    <fragment
+        android:id="@+id/fragment_hotel"
+        android:name="com.sopt.yeogieottae.ui.hotel.HotelFragment"
+        android:label="HotelFragment"
+        tools:layout="@layout/fragment_hotel">
+        <action
+            android:id="@+id/action_hotel_to_room"
+            app:destination="@id/fragment_room" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_like"
+        android:name="com.sopt.yeogieottae.ui.like.LikeFragment"
+        android:label="LikeFragment"
+        tools:layout="@layout/fragment_like" />
+
+    <fragment
+        android:id="@+id/fragment_room"
+        android:name="com.sopt.yeogieottae.ui.room.RoomFragment"
+        android:label="RoomFragment"
+        tools:layout="@layout/fragment_room" />
+
+    <fragment
+        android:id="@+id/fragment_search"
+        android:name="com.sopt.yeogieottae.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_hotel"
+            app:destination="@id/fragment_hotel" />
+    </fragment>
+
+</navigation>
