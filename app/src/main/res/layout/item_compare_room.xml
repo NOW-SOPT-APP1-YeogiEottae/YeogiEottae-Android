@@ -7,7 +7,7 @@
     android:padding="10dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_hotel"
+        android:id="@+id/iv_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher_background"
@@ -15,10 +15,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="@id/iv_room"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_room"
+        app:layout_constraintTop_toTopOf="@id/iv_room">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_compare_detail"
@@ -27,9 +31,9 @@
             android:layout_marginStart="10dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="@id/iv_hotel"
+            app:layout_constraintBottom_toBottomOf="@id/iv_room"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_hotel"
+            app:layout_constraintStart_toEndOf="@id/iv_room"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_compare_detail" />
     </HorizontalScrollView>
