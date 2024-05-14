@@ -13,4 +13,17 @@
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
+
+    <!--compare -->
+    <string name="compare_title">객실 비교하기</string>
+    <string name="compare_tv_date">5.2 목 - 5.3 금</string>
+    <string name="compare_iv_calender">달력 아이콘</string>
+    <string name="compare_iv_person">사람 아이콘</string>
+    <string name="compare_tv_person">2명</string>
+    <string name="compare_tv_btn_edit">수정하기</string>
+    <string name="compare_tv_hotel_room">객실 및 호텔</string>
+    <string name="compare_tv_low_price">낮은 가격 순</string>
+    <string name="compare_tv_high_grade">높은 평점 순</string>
+    <string name="compare_tv_high_discount">높은 할인 순</string>
+    <string name="compare_tv_facility">부대 시설</string>
 </resources>

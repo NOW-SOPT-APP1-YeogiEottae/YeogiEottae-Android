@@ -1,6 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/compare_title"
+        app:titleTextAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h2"
+        app:titleTextColor="@color/gray_950" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bg_calender"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray_200"
+        app:layout_constraintEnd_toStartOf="@id/bg_person"
+        app:layout_constraintHorizontal_weight="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:shapeAppearance="@style/ShapeAppearance.M3.Sys.Shape.Corner.Small" />
+
+    <ImageView
+        android:id="@+id/iv_calender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="11dp"
+        android:layout_marginStart="12dp"
+        android:contentDescription="@string/compare_iv_calender"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintBottom_toBottomOf="@id/bg_calender"
+        app:layout_constraintStart_toStartOf="@id/bg_calender"
+        app:layout_constraintTop_toTopOf="@id/bg_calender" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:text="@string/compare_tv_date"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h6"
+        app:layout_constraintBottom_toBottomOf="@id/bg_calender"
+        app:layout_constraintStart_toEndOf="@id/iv_calender"
+        app:layout_constraintTop_toTopOf="@id/bg_calender" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bg_person"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="19dp"
+        android:background="@color/gray_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/bg_calender"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:shapeAppearance="@style/ShapeAppearance.M3.Sys.Shape.Corner.Small" />
+
+    <ImageView
+        android:id="@+id/iv_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="11dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/compare_iv_person"
+        android:src="@drawable/ic_person"
+        app:layout_constraintBottom_toBottomOf="@id/bg_person"
+        app:layout_constraintStart_toStartOf="@id/bg_person"
+        app:layout_constraintTop_toTopOf="@id/bg_person" />
+
+    <TextView
+        android:id="@+id/tv_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="@string/compare_tv_person"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h6"
+        app:layout_constraintBottom_toBottomOf="@id/bg_person"
+        app:layout_constraintStart_toEndOf="@id/iv_person"
+        app:layout_constraintTop_toTopOf="@id/bg_person" />
+
+    <TextView
+        android:id="@+id/tv_btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/compare_tv_btn_edit"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b5"
+        android:textColor="@color/gray_800"
+        app:layout_constraintEnd_toEndOf="@id/bg_person"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@id/bg_person"
+        app:layout_constraintTop_toBottomOf="@id/bg_person" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/compare_divier1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_btn_edit" />
+
+    <TextView
+        android:id="@+id/tv_hotel_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compare_tv_hotel_room"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/compare_divier1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/compare_divier2"/>
+
+    <TextView
+        android:id="@+id/tv_low_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compare_tv_low_price"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/compare_divier1"
+        app:layout_constraintStart_toEndOf="@id/tv_hotel_room"
+        app:layout_constraintBottom_toTopOf="@id/compare_divier2"/>
+
+    <TextView
+        android:id="@+id/tv_high_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compare_tv_high_grade"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/compare_divier1"
+        app:layout_constraintStart_toEndOf="@id/tv_low_price"
+        app:layout_constraintBottom_toTopOf="@id/compare_divier2"/>
+
+    <TextView
+        android:id="@+id/tv_facility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compare_tv_facility"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/compare_divier1"
+        app:layout_constraintStart_toEndOf="@id/tv_high_grade"
+        app:layout_constraintBottom_toTopOf="@id/compare_divier2"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/compare_divier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_hotel_room" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_compare"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/compare_divier2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_compare_hotels" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

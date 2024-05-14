@@ -43,7 +43,11 @@
         android:id="@+id/fragment_like"
         android:name="com.sopt.yeogieottae.ui.like.LikeFragment"
         android:label="LikeFragment"
-        tools:layout="@layout/fragment_like" />
+        tools:layout="@layout/fragment_like" >
+        <action
+            android:id="@+id/action_like_to_compare"
+            app:destination="@id/fragment_compare" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_room"
