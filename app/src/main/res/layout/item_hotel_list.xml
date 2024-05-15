@@ -119,6 +119,7 @@
 
     <!-- 호텔 찜 -->
     <FrameLayout
+        android:id="@+id/lo_btnfavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
@@ -134,13 +135,23 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_favorite_bg" />
 
-        <!-- 찜 하트 -->
+        <!-- 찜 하트 on -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_btnfavorite_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_favorite_on"
+            tools:visibility="invisible" />
+
+        <!-- 찜 하트 off -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_btnfavorite_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_favorite_off" />
+            android:src="@drawable/ic_favorite_off"
+            tools:visibility="visible" />
     </FrameLayout>
 
     <!-- 호텔 가격 -->

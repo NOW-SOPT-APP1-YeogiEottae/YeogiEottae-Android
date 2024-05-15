@@ -134,4 +134,10 @@
         <item name="android:fontFamily">@font/pretendard_variable</item>
     </style>
 
+    <style name="TextAppearance.Yeogieotte.Pretendard_L9" parent="TextAppearance.Yeogieotte">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:fontFamily">@font/pretendard_variable</item>
+    </style>
+
 </resources>
