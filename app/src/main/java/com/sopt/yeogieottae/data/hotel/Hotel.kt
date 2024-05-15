@@ -5,4 +5,5 @@ data class Hotel(
     val location: String,
     val rating: String,
     val reviewCount: String,
+    var isLiked: Boolean,
 )

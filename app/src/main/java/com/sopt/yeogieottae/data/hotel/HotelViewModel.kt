@@ -12,8 +12,12 @@ class HotelViewModel : ViewModel() {
     init {
         // 더미데이터 사용
         val dummyData = listOf(
-            Hotel("Hotel A", "Location A", "4.5", "1000"),
-            Hotel("Hotel B", "Location B", "4.0", "800")
+            Hotel("Hotel A", "Location A", "4.5", "1000", false),
+            Hotel("Hotel B", "Location B", "4.0", "800", false),
+            Hotel("Hotel B", "Location B", "4.0", "800", false),
+            Hotel("Hotel B", "Location B", "4.0", "800", false),
+            Hotel("Hotel B", "Location B", "4.0", "800", false),
+            Hotel("Hotel B", "Location B", "4.0", "800", false)
         )
         _hotels.value = dummyData
     }
