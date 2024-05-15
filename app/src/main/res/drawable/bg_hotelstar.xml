@@ -1,19 +1,12 @@
-<!-- drawable/frame_60194.xml -->
-<vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="40dp"
     android:height="22dp"
     android:viewportWidth="40"
-    android:viewportHeight="22"
-    >
+    android:viewportHeight="22">
     <group>
-        <clip-path
-            android:pathData="M6 0H34C37.3137 0 40 2.68629 40 6V16C40 19.3137 37.3137 22 34 22H6C2.68629 22 0 19.3137 0 16V6C0 2.68629 2.68629 0 6 0Z"
-            />
+        <clip-path android:pathData="M6 0H34C37.3137 0 40 2.68629 40 6V16C40 19.3137 37.3137 22 34 22H6C2.68629 22 0 19.3137 0 16V6C0 2.68629 2.68629 0 6 0Z" />
         <path
-            android:pathData="M0 0V22H40V0"
-            android:fillColor="#FFAC09"
-            />
+            android:fillColor="@color/star_dark2"
+            android:pathData="M0 0V22H40V0" />
     </group>
 </vector>
