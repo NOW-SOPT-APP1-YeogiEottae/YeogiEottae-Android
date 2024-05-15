@@ -24,4 +24,12 @@
     <string name="hotel_total_price">90,000원</string>
     <string name="hotel_subtext">subtext</string>
     <string name="hotel_star_text">9.5</string>
+
+    <!--찜-->
+    <string name="favorite_hotel_on">찜에 추가했어요</string>
+    <string name="favorite_hotel_off">찜을 해제했어요</string>
+    <string name="favorite_room">방도 찜할 수 있어요</string>
+
+    <string name="undo">실행취소</string>
+    <string name="go_directly">바로이동</string>
 </resources>
