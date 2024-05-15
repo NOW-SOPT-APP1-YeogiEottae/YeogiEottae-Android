@@ -13,4 +13,15 @@
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
+
+    <!--호텔-->
+    <string name="hotel_rating">4성급</string>
+    <string name="hotel_name">호텔 이름</string>
+    <string name="hotel_location">위치</string>
+    <string name="hotel_review_count">2,710개 평가</string>
+    <string name="hotel_discount_percent">10%</string>
+    <string name="hotel_coupon">쿠폰적용시</string>
+    <string name="hotel_total_price">90,000원</string>
+    <string name="hotel_subtext">subtext</string>
+    <string name="hotel_star_text">9.5</string>
 </resources>
