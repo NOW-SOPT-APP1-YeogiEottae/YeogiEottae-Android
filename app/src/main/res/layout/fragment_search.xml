@@ -5,17 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Auto layout, variables, and unit scale are not yet supported -->
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/frame_60194"
-        android:layout_width="40dp"
-        android:layout_height="22dp"
-        android:background="@drawable/frame_60194"
-        />
-
-
-
     <ImageView
         android:id="@+id/iv_searchlist_title"
         android:layout_width="match_parent"
@@ -34,6 +23,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_searchlist_title"
         tools:listitem="@layout/item_hotel_list" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
