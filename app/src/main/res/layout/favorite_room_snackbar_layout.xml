@@ -4,15 +4,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_room_snackbar_bg"
         android:layout_width="314dp"
         android:layout_height="60dp"
-        android:background="@drawable/bg_snackbar_hotel_favorite"
-        android:clipToOutline="true"
+        android:background="@color/gray_1000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/HotelSnackBarBg" />
 
     <TextView
         android:id="@+id/tv_room_favorite_on"
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="@string/favorite_hotel_on"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b3"
         android:textColor="@color/white"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/iv_room_snackbar_bg"
         app:layout_constraintStart_toStartOf="@id/iv_room_snackbar_bg"
         app:layout_constraintTop_toTopOf="@id/iv_room_snackbar_bg" />
@@ -32,8 +32,8 @@
         android:layout_height="48dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/go_directly"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b6"
         android:textColor="@color/snackbar_go"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/iv_room_snackbar_bg"
         app:layout_constraintEnd_toStartOf="@id/iv_room_snackbar_line"
         app:layout_constraintTop_toTopOf="@id/iv_room_snackbar_bg" />
@@ -54,8 +54,8 @@
         android:layout_marginEnd="18dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/undo"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b6"
         android:textColor="@color/brand"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/iv_room_snackbar_bg"
         app:layout_constraintEnd_toEndOf="@id/iv_room_snackbar_bg"
         app:layout_constraintTop_toTopOf="@id/iv_room_snackbar_bg" />

@@ -21,6 +21,7 @@
     <string name="hotel_review_count">2,710개 평가</string>
     <string name="hotel_discount_percent">10%</string>
     <string name="hotel_coupon">쿠폰적용시</string>
+    <string name="hotel_discount_price">30,000원</string>
     <string name="hotel_total_price">90,000원</string>
     <string name="hotel_subtext">subtext</string>
     <string name="hotel_star_text">9.5</string>

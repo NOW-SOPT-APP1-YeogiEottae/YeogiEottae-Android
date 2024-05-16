@@ -21,7 +21,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:textColor="@color/gray_850"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_searchlist_hotel_img"
         app:layout_constraintTop_toTopOf="@id/iv_searchlist_hotel_img">
@@ -31,32 +30,32 @@
             android:id="@+id/tv_hotel_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hotel_rating"
-            android:textSize="12sp"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L7"
+            android:textColor="@color/gray_850"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="~~~~~" />
 
         <!-- 호텔 이름 -->
         <TextView
             android:id="@+id/tv_hotel_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hotel_name"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h4"
             app:layout_constraintStart_toStartOf="@id/tv_hotel_rating"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_rating" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_rating"
+            tools:text="~~~~~" />
 
         <!-- 호텔 위치 -->
         <TextView
             android:id="@+id/tv_hotel_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hotel_location"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L2"
             android:textColor="@color/gray_700"
-            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/tv_hotel_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_name"
+            tools:text="~~~~~" />
 
         <!-- 호텔 평점 -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,8 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hotel_star_text"
-                android:textSize="12sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
                 app:layout_constraintStart_toEndOf="@id/iv_hotel_star"
                 app:layout_constraintTop_toTopOf="@id/iv_hotel_star" />
 
@@ -109,9 +107,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"
-            android:text="2,710개 평가"
+            android:text="@string/hotel_review_count"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b6"
             android:textColor="@color/gray_850"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/layout_hotel_star"
             app:layout_constraintStart_toEndOf="@id/layout_hotel_star"
             app:layout_constraintTop_toTopOf="@id/layout_hotel_star" />
@@ -178,10 +176,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
-                android:text="10%"
+                android:text="@string/hotel_discount_percent"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b7"
                 android:textColor="@color/brand"
-                android:textSize="13sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tv_hotel_coupon"
                 app:layout_constraintEnd_toStartOf="@+id/tv_hotel_discount_price"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -191,9 +188,9 @@
                 android:id="@+id/tv_hotel_discount_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30,000"
+                android:text="@string/hotel_discount_price"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L5"
                 android:textColor="@color/gray_700"
-                android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@+id/lo_hotel_coupon_price"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_hotel_discount_percent" />
@@ -214,21 +211,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:text="쿠폰적용시"
+                android:text="@string/hotel_coupon"
                 android:textColor="@color/gray_700"
-                app:layout_constraintEnd_toStartOf="@+id/tv_hotel_total_price"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintEnd_toStartOf="@+id/tv_hotel_total_price" />
 
             <!-- 가격 -->
             <TextView
                 android:id="@+id/tv_hotel_total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="90,000원"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints" />
+                android:text="@string/hotel_total_price"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h3"
+                app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
 
         <!-- subtext -->
@@ -236,10 +230,9 @@
             android:id="@+id/tv_hotel_subtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="subtext"
+            android:text="@string/hotel_subtext"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b7"
             android:textColor="@color/brand"
-            android:textSize="13sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lo_hotel_coupon_price" />
     </androidx.constraintlayout.widget.ConstraintLayout>
