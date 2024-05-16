@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">YeogiEottae</string>
-
+    <!--공용-->
+    <string name="all_price_all">총</string>
+    <string name="all_price">%,3d원</string>
     <!--menu-->
     <string name="menu_title_home">홈</string>
     <string name="menu_title_search">검색</string>
     <string name="menu_title_map">주변</string>
     <string name="menu_title_favorite">찜</string>
     <string name="menu_title_info">내 정보</string>
-
-    <string name="all_price_all">총</string>
 
     <!--더미-->
     <string name="dummy_profile">내 정보 화면입니다.</string>
@@ -34,7 +34,6 @@
     <string name="room_reservation">예약하기</string>
     <string name="room_type">숙박</string>
     <string name="room_normal_info">기본정보</string>
-
     <string name="room_in_out">입실 %s 퇴실 %s</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.sopt.yeogieottae.ui.room
 
-
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -30,8 +29,9 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
     private fun initView() {
         with(binding) {
             tvRoomDetailRoomName.text = roomViewModel.Room.value?.room_name
-            tvRoomSummaryDiscountPrice.text = roomViewModel.Room.value?.price.toString()
-            tvRoomDetailBottomPrice.text = roomViewModel.Room.value?.price.toString()
+            tvRoomSummaryDiscountPrice.text =  getString(R.string.all_price).format(roomViewModel.Room.value?.price)
+            tvRoomDetailBottomPrice.text =
+                getString(R.string.all_price).format(roomViewModel.Room.value?.price)
             tvRoomSummaryTime.text = getString(R.string.room_in_out).format(
                 roomViewModel.Room.value?.start_time,
                 roomViewModel.Room.value?.end_time
