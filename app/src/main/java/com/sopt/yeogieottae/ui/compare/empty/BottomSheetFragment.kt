@@ -14,9 +14,10 @@ import com.sopt.yeogieottae.databinding.FragmentBottomSheetBinding
 import com.sopt.yeogieottae.ui.compare.CompareViewModel
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
-
     private var _binding: FragmentBottomSheetBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentBottomSheetBinding
+        get() = requireNotNull(_binding) { "FragmentBottomSheetBinding is not initialized" }
+
     private val viewModel: BottomSheetViewModel by viewModels()
     private val compareViewModel: CompareViewModel by activityViewModels()
     private lateinit var adapter: LikeListAdapter
@@ -32,16 +33,26 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupAdapter()
+        observeViewModel()
+        initAddButton()
+    }
+
+    private fun setupAdapter() {
         adapter = LikeListAdapter { isSelected ->
             viewModel.updateSelectedCount(isSelected)
         }
         binding.recyclerView.adapter = adapter
         adapter.submitList(viewModel.getExampleItems())
+    }
 
+    private fun observeViewModel() {
         viewModel.selectedCount.observe(viewLifecycleOwner) { count ->
             binding.tvCount.text = count.toString()
         }
+    }
 
+    private fun initAddButton() {
         binding.ivBgAddBtn.setOnClickListener {
             Log.d("BottomSheetFragment", "ivBgAddBtn clicked")
             compareViewModel.setApiResponse(isEmpty = false)
@@ -49,6 +60,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             dismiss()
         }
     }
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): BottomSheetDialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
