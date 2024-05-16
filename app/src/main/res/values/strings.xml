@@ -13,4 +13,18 @@
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
+
+    <!--compare -->
+    <string name="compare_title">객실 비교하기</string>
+    <string name="compare_tv_date">5.2 목 - 5.3 금</string>
+    <string name="compare_iv_calender">달력 아이콘</string>
+    <string name="compare_iv_person">사람 아이콘</string>
+    <string name="compare_tv_person">2명</string>
+
+    <!--compare emty -->
+    <string name="compare_emty1">아직 추가한 숙소가 없어요</string>
+    <string name="compare_emty2">비교하고 싶은 숙소를 추가하면</string>
+    <string name="compare_emty3">간단하게 비교해볼 수 있어요</string>
+    <string name="compare_emty_plus">추가하기</string>
+
 </resources>
