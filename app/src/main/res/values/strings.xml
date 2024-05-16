@@ -8,9 +8,33 @@
     <string name="menu_title_favorite">찜</string>
     <string name="menu_title_info">내 정보</string>
 
+    <string name="all_price_all">총</string>
 
     <!--더미-->
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
+
+    <!--room-->
+    <string name="room_cancel_impossible">무료취소 불가</string>
+    <string name="room_discount_price">30000원</string>
+    <string name="room_discount_percent">10%</string>
+    <string name="room_cupon">쿠폰 적용시</string>
+    <string name="room_discounted_price">90,000원</string>
+    <string name="room_sub_text">sub Text</string>
+    <string name="room_select_day">선택날짜</string>
+    <string name="room_check_in">체크인</string>
+    <string name="room_check_in_time">24.05.02(목)\n15:00</string>
+    <string name="room_night">1박</string>
+    <string name="room_check_out">체크아웃</string>
+    <string name="room_check_out_time">24.05.02(목)\n15:00</string>
+    <string name="room_facilities">편의시설</string>
+    <string name="room_cancel">취소 및 환불 규정</string>
+    <string name="room_night_price">1박요금</string>
+    <string name="room_reservation">예약하기</string>
+    <string name="room_type">숙박</string>
+    <string name="room_normal_info">기본정보</string>
+
+    <string name="room_in_out">입실 %s 퇴실 %s</string>
+
 </resources>

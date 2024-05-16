@@ -32,9 +32,10 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
             tvRoomDetailRoomName.text = roomViewModel.Room.value?.room_name
             tvRoomSummaryDiscountPrice.text = roomViewModel.Room.value?.price.toString()
             tvRoomDetailBottomPrice.text = roomViewModel.Room.value?.price.toString()
-            tvRoomSummaryTime.text =
-                "입실 ${roomViewModel.Room.value?.start_time} 퇴실 ${roomViewModel.Room.value?.end_time}"
-
+            tvRoomSummaryTime.text = getString(R.string.room_in_out).format(
+                roomViewModel.Room.value?.start_time,
+                roomViewModel.Room.value?.end_time
+            )
             tvRoomDetailNormalInfoDescription.text =
                 createSpannedText(roomViewModel.detail.value?.information ?: emptyList())
             tvRoomDetailFacilitiesDescription.text =
