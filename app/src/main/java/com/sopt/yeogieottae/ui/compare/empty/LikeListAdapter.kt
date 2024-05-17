@@ -9,7 +9,6 @@ import com.sopt.yeogieottae.databinding.ItemLikeListBinding
 
 class LikeListAdapter(private val onCheckedChanged: (Boolean) -> Unit) :
     ListAdapter<RoomInformation, LikeListViewHolder>(DiffCallback()) {
-
     private val selectedItems = mutableSetOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikeListViewHolder {

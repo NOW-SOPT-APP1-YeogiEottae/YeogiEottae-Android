@@ -13,22 +13,41 @@ class LikeListViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: RoomInformation, position: Int) {
+        loadImage(item.roomImage)
+        setRoomName(item.roomName)
+        updateCheckbox(position)
+        initItemClickListener(position)
+    }
+
+    private fun loadImage(imageUrl: String) {
         val imageSize = binding.ivRoomImage.width
         Glide.with(binding.ivRoomImage.context)
-            .load(item.roomImage)
+            .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
             .override(imageSize, imageSize)
             .centerCrop()
             .into(binding.ivRoomImage)
+    }
 
-        binding.tvRoomName.text = item.roomName
-        updateCheckbox(position)
+    private fun setRoomName(roomName: String) {
+        binding.tvRoomName.text = roomName
+    }
 
+    private fun updateCheckbox(position: Int) {
+        val isSelected = selectedItems.contains(position)
+        binding.root.setBackgroundResource(
+            if (isSelected) R.drawable.bg_gray400_radius_10dp else android.R.color.transparent
+        )
+        binding.ivCheckbox.setImageResource(
+            if (isSelected) R.drawable.ic_checkbox else R.drawable.ic_uncheckbox
+        )
+    }
+
+    private fun initItemClickListener(position: Int) {
         binding.root.setOnClickListener {
             toggleSelection(position)
         }
-
-        binding.cbSelected.setOnClickListener {
+        binding.ivCheckbox.setOnClickListener {
             toggleSelection(position)
         }
     }
@@ -42,11 +61,5 @@ class LikeListViewHolder(
         }
         updateCheckbox(position)
         onCheckedChanged(!isSelected)
-    }
-
-    private fun updateCheckbox(position: Int) {
-        val isSelected = selectedItems.contains(position)
-        binding.root.setBackgroundResource(if (isSelected) R.drawable.bg_gray400_radius_10dp else android.R.color.transparent)
-        binding.cbSelected.setImageResource(if (isSelected) R.drawable.ic_checkbox else R.drawable.ic_uncheckbox)
     }
 }
