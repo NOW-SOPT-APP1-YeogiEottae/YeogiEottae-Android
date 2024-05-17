@@ -14,6 +14,15 @@
         <item name="cornerSizeBottomLeft">10dp</item>
     </style>
 
+    <style name="Round_10dp_stroke">
+        <item name="cornerSizeTopLeft">50%</item>
+        <item name="cornerSizeTopRight">50%</item>
+        <item name="cornerSizeBottomRight">50%</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+    </style>
+
+
+
     <style name="Circle">
         <item name="cornerSize">50%</item>
     </style>
