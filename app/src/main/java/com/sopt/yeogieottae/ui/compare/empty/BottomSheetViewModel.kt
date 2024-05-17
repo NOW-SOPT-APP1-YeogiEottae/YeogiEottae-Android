@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.sopt.yeogieottae.data.RoomInformation
 
 class BottomSheetViewModel : ViewModel() {
-
     private val _selectedCount = MutableLiveData(INITIAL)
     val selectedCount: LiveData<Int> get() = _selectedCount
 
