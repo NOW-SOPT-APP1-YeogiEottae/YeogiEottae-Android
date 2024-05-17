@@ -1,0 +1,296 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/lo_favoritehotel_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_favorite_hotel_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="322:379"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 호텔 정보 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lo_favoritehotel_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toEndOf="@id/lo_favoritehotel_bg"
+        app:layout_constraintStart_toStartOf="@id/lo_favoritehotel_bg"
+        app:layout_constraintTop_toTopOf="@id/lo_favoritehotel_bg">
+
+        <!-- 호텔 이미지 -->
+        <ImageView
+            android:id="@+id/iv_favoritehotel_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/img_favorite_hotel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="40:40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 호텔 이름 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h5"
+            android:textColor="@color/gray_900"
+            app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_img"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="그랜드 인터컨티넨탈 파르나스" />
+
+        <!--Blank-->
+        <ImageView
+            android:id="@+id/iv_favoritehotel_blank"
+            android:layout_width="37dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/img_blank"
+            app:layout_constraintStart_toEndOf="@id/tv_favoritehotel_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 호텔 별점 별 -->
+        <ImageView
+            android:id="@+id/iv_favoritehotel_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_star_rate"
+            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
+            app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_img" />
+
+        <!-- 호텔 별점 -->
+        <TextView
+            android:id="@+id/tv_favoritehote_star_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/hotel_star_text"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L3"
+            android:textColor="@color/gray_900"
+            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
+            app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_star" />
+
+        <!-- 동그라미 -->
+        <ImageView
+            android:id="@+id/iv_favoritehotel_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/shape_circle"
+            app:layout_constraintBottom_toBottomOf="@id/tv_favoritehote_star_text"
+            app:layout_constraintStart_toEndOf="@id/tv_favoritehote_star_text"
+            app:layout_constraintTop_toTopOf="@id/tv_favoritehote_star_text" />
+
+        <!-- 호텔 위치 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/hotel_location2"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
+            android:textColor="@color/gray_850"
+            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
+            app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_circle" />
+
+        <!-- 호텔 상세보기 버튼 -->
+        <ImageView
+            android:id="@+id/iv_favoritehotel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_next_btn"
+            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_favoritehotel_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 객실 이미지 -->
+    <ImageView
+        android:id="@+id/iv_favoritehotel_room"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/img_favorite_room"
+        app:layout_constraintDimensionRatio="292:143"
+        app:layout_constraintEnd_toEndOf="@id/lo_favoritehotel_info"
+        app:layout_constraintStart_toStartOf="@id/lo_favoritehotel_info"
+        app:layout_constraintTop_toBottomOf="@id/lo_favoritehotel_info" />
+
+    <ImageView
+        android:id="@+id/iv_favoritehotel_room_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_more_img"
+        app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_room"
+        app:layout_constraintEnd_toEndOf="@id/iv_favoritehotel_room" />
+
+    <!-- 호텔 정보 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lo_favoritehotel_roominfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/lo_favoritehotel_bg"
+        app:layout_constraintStart_toStartOf="@id/lo_favoritehotel_bg"
+        app:layout_constraintTop_toBottomOf="@id/iv_favoritehotel_room">
+
+        <!-- 객실 이름 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_roomname"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+            android:textColor="@color/gray_950"
+            app:layout_constraintStart_toStartOf="@id/lo_favoritehotel_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling"
+            tools:text="스탠다드 트윈룸" />
+
+        <!-- 객실 이름 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_roominfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/room_info"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
+            android:textColor="@color/gray_600"
+            app:layout_constraintStart_toStartOf="@id/tv_favoritehotel_roomname"
+            app:layout_constraintTop_toBottomOf="@id/tv_favoritehotel_roomname" />
+
+        <!-- 객실 이름 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_roominfo_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/room_info_detail"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
+            android:textColor="@color/gray_600"
+            app:layout_constraintStart_toEndOf="@id/tv_favoritehotel_roominfo"
+            app:layout_constraintTop_toTopOf="@id/tv_favoritehotel_roominfo" />
+
+        <!-- 객실 이름 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_package_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/room_package"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
+            android:textColor="@color/gray_600"
+            app:layout_constraintStart_toStartOf="@id/tv_favoritehotel_roomname"
+            app:layout_constraintTop_toBottomOf="@id/tv_favoritehotel_roominfo" />
+
+        <!-- 객실 이름 -->
+        <TextView
+            android:id="@+id/tv_favoritehotel_package_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/room_package_detail"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
+            android:textColor="@color/gray_600"
+            app:layout_constraintStart_toEndOf="@id/tv_favoritehotel_roominfo"
+            app:layout_constraintTop_toTopOf="@id/tv_favoritehotel_package_info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 호텔 가격 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lo_hotel_price_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="18dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/lo_favoritehotel_bg"
+        app:layout_constraintEnd_toEndOf="@id/lo_favoritehotel_bg">
+
+        <!-- 호텔 할인율 -->
+        <LinearLayout
+            android:id="@+id/lo_hotel_discount_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 할인 퍼센트 -->
+            <TextView
+                android:id="@+id/tv_hotel_discount_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:text="@string/hotel_discount_percent"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b7"
+                android:textColor="@color/brand"
+                app:layout_constraintBottom_toTopOf="@+id/tv_hotel_coupon"
+                app:layout_constraintEnd_toStartOf="@+id/tv_hotel_discount_price"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 할인 가격 -->
+            <TextView
+                android:id="@+id/tv_hotel_discount_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hotel_discount_price"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L5"
+                android:textColor="@color/gray_700"
+                app:layout_constraintBottom_toTopOf="@+id/lo_hotel_coupon_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_hotel_discount_percent" />
+        </LinearLayout>
+
+        <!-- 총 가격 -->
+        <LinearLayout
+            android:id="@+id/lo_hotel_coupon_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lo_hotel_discount_price">
+
+            <!-- 쿠폰 적용 -->
+            <TextView
+                android:id="@+id/tv_hotel_coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/hotel_coupon"
+                android:textColor="@color/gray_700"
+                app:layout_constraintEnd_toStartOf="@+id/tv_hotel_total_price" />
+
+            <!-- 가격 -->
+            <TextView
+                android:id="@+id/tv_hotel_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hotel_total_price"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h3"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
