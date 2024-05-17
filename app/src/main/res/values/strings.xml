@@ -13,4 +13,7 @@
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
+    <string name="all_won">원</string>
+    <string name="hotel_room_info">객실정보</string>
+    <string name="hotel_room_person">기준 2인 최대 2인</string>
 </resources>
