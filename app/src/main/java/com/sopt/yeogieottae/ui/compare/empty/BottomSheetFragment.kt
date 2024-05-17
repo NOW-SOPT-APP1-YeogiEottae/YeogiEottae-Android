@@ -1,12 +1,10 @@
 package com.sopt.yeogieottae.ui.compare.empty
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,8 +16,8 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     private val binding: FragmentBottomSheetBinding
         get() = requireNotNull(_binding) { "FragmentBottomSheetBinding is not initialized" }
 
-    private val viewModel: BottomSheetViewModel by viewModels()
-    private val compareViewModel: CompareViewModel by activityViewModels()
+    private lateinit var bottomSheetViewModel: BottomSheetViewModel
+    private lateinit var compareViewModel: CompareViewModel
     private lateinit var adapter: LikeListAdapter
 
     override fun onCreateView(
@@ -33,6 +31,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        bottomSheetViewModel = ViewModelProvider(this)[BottomSheetViewModel::class.java]
+        compareViewModel = ViewModelProvider(requireActivity())[CompareViewModel::class.java]
+
         setupAdapter()
         observeViewModel()
         initAddButton()
@@ -40,27 +41,24 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setupAdapter() {
         adapter = LikeListAdapter { isSelected ->
-            viewModel.updateSelectedCount(isSelected)
+            bottomSheetViewModel.updateSelectedCount(isSelected)
         }
         binding.recyclerView.adapter = adapter
-        adapter.submitList(viewModel.getExampleItems())
+        adapter.submitList(bottomSheetViewModel.getExampleItems())
     }
 
     private fun observeViewModel() {
-        viewModel.selectedCount.observe(viewLifecycleOwner) { count ->
+        bottomSheetViewModel.selectedCount.observe(viewLifecycleOwner) { count ->
             binding.tvCount.text = count.toString()
         }
     }
 
     private fun initAddButton() {
         binding.ivBgAddBtn.setOnClickListener {
-            Log.d("BottomSheetFragment", "ivBgAddBtn clicked")
             compareViewModel.setApiResponse(isEmpty = false)
-            Log.d("BottomSheetFragment", "ViewModel updated: ${compareViewModel.apiResponse.value}")
             dismiss()
         }
     }
-
 
     override fun onCreateDialog(savedInstanceState: Bundle?): BottomSheetDialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
