@@ -1,6 +1,438 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray_0">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 상단 AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ScrollView를 사용하여 스크롤 가능하게 함 -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_0">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="19dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="19dp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_hotel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintDimensionRatio="360:284"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_hotel_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:text="4성급"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L3"
+                android:textColor="@color/gray_700"
+                app:layout_constraintStart_toEndOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/iv_hotel" />
+
+            <TextView
+                android:id="@+id/tv_hotel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그랜드 인터컨피넨탈 파르나스"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h1"
+                android:textColor="@color/gray_950"
+                app:layout_constraintStart_toStartOf="@id/tv_hotel_star"
+                app:layout_constraintTop_toBottomOf="@id/tv_hotel_star" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_room_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@null"
+                android:padding="12dp"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="@id/tv_hotel_name"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintTop_toTopOf="@id/tv_hotel_star" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_room_favorite_btn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/gray_200"
+                android:elevation="-1dp"
+                android:padding="7dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_room_favorite"
+                app:layout_constraintEnd_toEndOf="@id/iv_room_favorite"
+                app:layout_constraintStart_toStartOf="@id/iv_room_favorite"
+                app:layout_constraintTop_toTopOf="@id/iv_room_favorite"
+                app:shapeAppearance="@style/Circle" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/ic_map"
+                android:backgroundTint="@color/secondary_600"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_hotel_name" />
+
+            <TextView
+                android:id="@+id/tv_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="경기 성남시 수정구 시흥동 296-3"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b4"
+                android:textColor="@color/gray_900"
+                app:layout_constraintBottom_toBottomOf="@id/iv_map"
+                app:layout_constraintStart_toEndOf="@id/iv_map"
+                app:layout_constraintTop_toTopOf="@id/iv_map" />
+
+            <TextView
+                android:id="@+id/tv_map_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지도 보기"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h6"
+                android:textColor="@color/secondary_600"
+                app:layout_constraintBottom_toBottomOf="@id/iv_map"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintTop_toTopOf="@id/iv_map" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_star_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_star"
+                app:layout_constraintEnd_toEndOf="@id/iv_map"
+                app:layout_constraintStart_toStartOf="@id/iv_map"
+                app:layout_constraintTop_toBottomOf="@id/iv_map" />
+
+            <TextView
+                android:id="@+id/tv_star_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="9.4"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h3"
+                android:textColor="@color/gray_850"
+                app:layout_constraintBottom_toBottomOf="@id/iv_star_rate"
+                app:layout_constraintStart_toEndOf="@id/iv_star_rate"
+                app:layout_constraintTop_toTopOf="@id/iv_star_rate" />
+
+            <TextView
+                android:id="@+id/tv_total_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="740개 평가"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b4"
+                android:textColor="@color/gray_700"
+                app:layout_constraintBottom_toBottomOf="@id/tv_star_rate"
+                app:layout_constraintStart_toEndOf="@id/tv_star_rate"
+                app:layout_constraintTop_toTopOf="@id/tv_star_rate" />
+
+            <TextView
+                android:id="@+id/tv_star_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리뷰 보기"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h6"
+                android:textColor="@color/secondary_600"
+                app:layout_constraintBottom_toBottomOf="@id/iv_star_rate"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintTop_toTopOf="@id/iv_star_rate" />
+
+            <View
+                android:id="@+id/view_spacer"
+                android:layout_width="wrap_content"
+                android:layout_height="9dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_star_rate" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="21dp"
+                android:src="@drawable/ic_price"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/view_spacer" />
+
+            <TextView
+                android:id="@+id/tv_pay_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="결제 혜택"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+                android:textColor="@color/gray_900"
+                app:layout_constraintBottom_toBottomOf="@id/iv_pay"
+                app:layout_constraintStart_toEndOf="@id/iv_pay"
+                app:layout_constraintTop_toTopOf="@id/iv_pay" />
+
+            <TextView
+                android:id="@+id/tv_pay_more_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
+                android:text="더보기"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h4"
+                android:textColor="@color/secondary_600"
+                app:layout_constraintBottom_toBottomOf="@id/iv_pay"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintTop_toTopOf="@id/iv_pay" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_pay_toss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="24dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="5dp"
+                android:src="@drawable/img_toss"
+                app:layout_constraintStart_toStartOf="@id/iv_pay"
+                app:layout_constraintTop_toBottomOf="@id/iv_pay" />
+
+            <TextView
+                android:id="@+id/tv_pay_toss_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:text="토스페이"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h5"
+                android:textColor="@color/gray_950"
+                app:layout_constraintBottom_toBottomOf="@id/iv_pay_toss"
+                app:layout_constraintStart_toEndOf="@id/iv_pay_toss"
+                app:layout_constraintTop_toTopOf="@id/iv_pay_toss" />
+
+            <TextView
+                android:id="@+id/tv_pay_toss_contents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:lineSpacingExtra="10dp"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h5"
+                android:textColor="@color/gray_900"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/iv_pay_toss"
+                app:layout_constraintTop_toBottomOf="@id/tv_pay_toss_title" />
+
+            <View
+                android:id="@+id/view_spacer2"
+                android:layout_width="wrap_content"
+                android:layout_height="9dp"
+                android:layout_marginTop="21dp"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_pay_toss_contents" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_hotel_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="21dp"
+                android:src="@drawable/ic_gift"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/view_spacer2" />
+
+            <TextView
+                android:id="@+id/tv_hotel_event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="숙소이벤트"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+                android:textColor="@color/gray_900"
+                app:layout_constraintBottom_toBottomOf="@id/iv_hotel_event"
+                app:layout_constraintStart_toEndOf="@id/iv_hotel_event"
+                app:layout_constraintTop_toTopOf="@id/iv_hotel_event" />
+
+            <TextView
+                android:id="@+id/tv_hotel_event_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
+                android:text="더보기"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h4"
+                android:textColor="@color/secondary_600"
+                app:layout_constraintBottom_toBottomOf="@id/iv_hotel_event"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintTop_toTopOf="@id/iv_hotel_event" />
+
+            <TextView
+                android:id="@+id/tv_hotel_event_contents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:lineSpacingExtra="10dp"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h5"
+                android:textColor="@color/gray_900"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/iv_hotel_event"
+                app:layout_constraintTop_toBottomOf="@id/tv_hotel_event_name" />
+
+            <View
+                android:id="@+id/view_spacer3"
+                android:layout_width="wrap_content"
+                android:layout_height="9dp"
+                android:layout_marginTop="23dp"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_hotel_event_contents" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_days"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginHorizontal="1dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/view_spacer3"
+                android:background="@drawable/bg_radius_10_corner"
+                />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:src="@drawable/ic_calendar"
+                app:layout_constraintBottom_toBottomOf="@id/iv_days"
+                app:layout_constraintStart_toStartOf="@id/iv_days"
+                app:layout_constraintTop_toTopOf="@id/iv_days" />
+
+            <TextView
+                android:id="@+id/tv_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="5.15 수 - 5.16 목"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h4"
+                android:textColor="@color/secondary_500"
+                app:layout_constraintBottom_toBottomOf="@id/iv_calendar"
+                app:layout_constraintStart_toEndOf="@id/iv_calendar"
+                app:layout_constraintTop_toTopOf="@id/iv_calendar" />
+
+            <TextView
+                android:id="@+id/tv_total_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/bg_radius_20"
+                android:backgroundTint="@color/secondary_200"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="1박"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L3"
+                android:textColor="@color/secondary_500"
+                app:layout_constraintBottom_toBottomOf="@id/tv_days"
+                app:layout_constraintStart_toEndOf="@id/tv_days"
+                app:layout_constraintTop_toTopOf="@id/tv_days" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/gray_200"
+                app:layout_constraintStart_toEndOf="@id/tv_total_night"
+                app:layout_constraintEnd_toStartOf="@id/iv_person"
+                app:layout_constraintTop_toTopOf="@id/iv_calendar"
+                app:layout_constraintBottom_toBottomOf="@id/iv_calendar"
+                />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/ic_person"
+                app:layout_constraintBottom_toBottomOf="@id/iv_days"
+                app:layout_constraintEnd_toStartOf="@id/tv_people_num"
+                app:layout_constraintTop_toTopOf="@id/iv_days" />
+
+            <TextView
+                android:id="@+id/tv_people_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="23dp"
+                android:text="2명"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h4"
+                android:textColor="@color/secondary_500"
+                app:layout_constraintBottom_toBottomOf="@id/iv_days"
+                app:layout_constraintEnd_toEndOf="@id/iv_days"
+                app:layout_constraintTop_toTopOf="@id/iv_days" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_room"
+                android:layout_marginTop="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_days"
+                tools:listitem="@layout/item_hotel_room" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
