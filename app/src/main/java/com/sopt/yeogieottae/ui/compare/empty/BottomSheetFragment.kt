@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -16,7 +17,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     private val binding: FragmentBottomSheetBinding
         get() = requireNotNull(_binding) { "FragmentBottomSheetBinding is not initialized" }
 
-    private lateinit var bottomSheetViewModel: BottomSheetViewModel
+    private val bottomSheetViewModel: BottomSheetViewModel by viewModels()
     private lateinit var compareViewModel: CompareViewModel
     private lateinit var adapter: LikeListAdapter
 
@@ -31,7 +32,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bottomSheetViewModel = ViewModelProvider(this)[BottomSheetViewModel::class.java]
         compareViewModel = ViewModelProvider(requireActivity())[CompareViewModel::class.java]
 
         setupAdapter()
