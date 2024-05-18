@@ -98,7 +98,7 @@ class LikeFragment : Fragment() {
                     isScrolledUp = true
                     binding.loLikeTitleDate.animate()
                         .alpha(0f)
-                        .setDuration(100)
+                        .setDuration(300)
                         .withEndAction { binding.loLikeTitleDate.visibility = View.GONE }
                         .start()
                 } else if (dy < 0 && isScrolledUp) {
