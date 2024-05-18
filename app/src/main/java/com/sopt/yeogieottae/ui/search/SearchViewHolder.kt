@@ -70,7 +70,7 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
 
         val snackBarLayout = this.view as Snackbar.SnackbarLayout
         snackBarLayout.apply {
-            setPadding(0, 0, 0, 0)
+            setPadding(0, 0, 0, 330)
             removeAllViews()
             addView(customLayout)
 
@@ -87,7 +87,7 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
 
         val snackBarLayout = this.view as Snackbar.SnackbarLayout
         snackBarLayout.apply {
-            setPadding(0, 0, 0, 0)
+            setPadding(0, 0, 0, 300)
             removeAllViews()
             addView(customLayout)
 
