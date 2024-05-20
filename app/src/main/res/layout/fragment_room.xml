@@ -35,8 +35,9 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_room_detail"
                 android:layout_width="0dp"
-                android:layout_height="284dp"
+                android:layout_height="0dp"
                 android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="360:284"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,10 +78,10 @@
                     android:layout_height="0dp"
                     android:background="@drawable/bg_white_radius_19dp"
                     android:backgroundTint="@color/gray_200"
-                    app:layout_constraintStart_toStartOf="@id/iv_room_favorite"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_room_favorite"
                     app:layout_constraintEnd_toEndOf="@id/iv_room_favorite"
-                    app:layout_constraintTop_toTopOf="@id/iv_room_favorite"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_room_favorite"/>
+                    app:layout_constraintStart_toStartOf="@id/iv_room_favorite"
+                    app:layout_constraintTop_toTopOf="@id/iv_room_favorite" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_room_favorite"
@@ -255,9 +256,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@id/tv_room_detail_check_in"
                             app:layout_constraintTop_toBottomOf="@id/tv_room_detail_check_in" />
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
                     <View
                         android:id="@+id/view_vertical_bar"
                         android:layout_width="3dp"
@@ -337,11 +336,11 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="5dp"
                     android:lineSpacingExtra="10dp"
-                    tool:text="• 2인 기준 최대 3인 (유료)\n• 인원 추가시 비용이 발생되요"
                     android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b5"
                     android:textColor="@color/gray_700"
                     app:layout_constraintStart_toStartOf="@id/tv_room_detail_normal_info"
-                    app:layout_constraintTop_toBottomOf="@id/tv_room_detail_normal_info" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_room_detail_normal_info"
+                    tool:text="• 2인 기준 최대 3인 (유료)\n• 인원 추가시 비용이 발생되요" />
 
                 <!--편의시설 제목 -->
                 <TextView
@@ -362,12 +361,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    tool:text="•TV, 쇼파, 티테이블, 사무용책상, 옷장, 에어컨, 냉장고,미니바(유료), 드라이기, 욕실용품, 샤워가운, 슬리퍼"
                     android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b5"
                     android:textColor="@color/gray_700"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_room_detail_facilities"
-                    app:layout_constraintTop_toBottomOf="@id/tv_room_detail_facilities" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_room_detail_facilities"
+                    tool:text="•TV, 쇼파, 티테이블, 사무용책상, 옷장, 에어컨, 냉장고,미니바(유료), 드라이기, 욕실용품, 샤워가운, 슬리퍼" />
 
                 <!--취소밑 환불 규정 제목 -->
                 <TextView
@@ -391,13 +390,13 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="18dp"
                     android:lineSpacingExtra="10dp"
-                    tool:text="• 체크인일 기준 3일전 18시까지 : 100% 환불\n• 체크인일 기준 3일전 18시 이후~당일 및 No-show : 환불  불가 (연박의 경우 최초 1박 환불 불가, 이후 일자 100% 환불)"
                     android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b5"
                     android:textColor="@color/gray_700"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_room_detail_cancel" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_room_detail_cancel"
+                    tool:text="• 체크인일 기준 3일전 18시까지 : 100% 환불\n• 체크인일 기준 3일전 18시 이후~당일 및 No-show : 환불  불가 (연박의 경우 최초 1박 환불 불가, 이후 일자 100% 환불)" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -465,11 +464,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/tv_room_detail_bottom_day"
                     app:layout_constraintEnd_toEndOf="@id/layout_room_detail_bottom"
                     app:layout_constraintTop_toTopOf="@id/tv_room_detail_bottom_Price" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
