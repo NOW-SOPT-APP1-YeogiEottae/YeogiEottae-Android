@@ -14,6 +14,7 @@
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
 
+
     <!--compare -->
     <string name="compare_title">객실 비교하기</string>
     <string name="compare_tv_date">5.2 목 - 5.3 금</string>
@@ -26,5 +27,25 @@
     <string name="compare_emty2">비교하고 싶은 숙소를 추가하면</string>
     <string name="compare_emty3">간단하게 비교해볼 수 있어요</string>
     <string name="compare_emty_plus">추가하기</string>
+
+    <!--호텔-->
+    <string name="hotel_rating">4성급</string>
+    <string name="hotel_name">호텔 이름</string>
+    <string name="hotel_location">위치</string>
+    <string name="hotel_review_count">2,710개 평가</string>
+    <string name="hotel_discount_percent">10%</string>
+    <string name="hotel_coupon">쿠폰적용시</string>
+    <string name="hotel_discount_price">30,000원</string>
+    <string name="hotel_total_price">90,000원</string>
+    <string name="hotel_subtext">subtext</string>
+    <string name="hotel_star_text">9.5</string>
+
+    <!--찜-->
+    <string name="favorite_hotel_on">찜에 추가했어요</string>
+    <string name="favorite_hotel_off">찜을 해제했어요</string>
+    <string name="favorite_room">방도 찜할 수 있어요</string>
+
+    <string name="undo">실행취소</string>
+    <string name="go_directly">바로이동</string>
 
 </resources>
