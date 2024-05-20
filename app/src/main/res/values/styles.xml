@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="YeogiSnackbar" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+      
     <style name="HotelSnackBarBg">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">30dp</item>
+    </style>
+
+    <style name="YeogiRound3dp" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">3dp</item>
+    </style>
+
+    <style name="YeogiRound20dp" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="YeogiRound10dp" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
     </style>
 
     <style name="RoomSnackBarBg">
@@ -11,3 +27,4 @@
         <item name="cornerSize">25dp</item>
     </style>
 </resources>
+

@@ -68,4 +68,6 @@ dependencies {
     implementation libs.squareup.okhttp3
 
     implementation(platform(libs.okhttp3))
+    implementation libs.glide
+    implementation libs.glide.compiler
 }
