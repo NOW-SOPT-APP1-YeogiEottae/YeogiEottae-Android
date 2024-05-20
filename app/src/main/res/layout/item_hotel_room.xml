@@ -33,7 +33,6 @@
         android:id="@+id/iv_room_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@null"
         android:padding="12dp"
         android:src="@drawable/ic_favorite"
         app:layout_constraintBottom_toBottomOf="@id/tv_room_name"
@@ -79,11 +78,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="입실 15:00 퇴실 11:00"
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
         android:textColor="@color/gray_700"
         app:layout_constraintEnd_toEndOf="@id/iv_room_favorite_btn"
-        app:layout_constraintTop_toBottomOf="@id/tv_room_price"
-        android:text="입실 15:00 퇴실 11:00" />
+        app:layout_constraintTop_toBottomOf="@id/tv_room_price" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_room_detail"

@@ -31,7 +31,7 @@ class HotelRoomListAdapter(context: Context) :
                     oldItem: Room,
                     newItem: Room
                 ): Boolean {
-                    return (oldItem == newItem)
+                    return (oldItem.room_id == newItem.room_id)
                 }
 
                 override fun areContentsTheSame(
