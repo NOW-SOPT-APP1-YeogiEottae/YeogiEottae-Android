@@ -20,6 +20,7 @@
     <color name="secondary_100">#ECF4FD</color>
 
     <!--Gray -->
+    <color name="gray_1000">#CC070707</color>
     <color name="gray_950">#000000</color>
     <color name="gray_900">#333333</color>
     <color name="gray_850">#707070</color>
@@ -38,4 +39,6 @@
     <color name="star_dark2">#FFAC09</color>
     <color name="cuation">#CA0101</color>
 
+    <!--SnackBar-->
+    <color name="snackbar_go">#3D95FB</color>
 </resources>
