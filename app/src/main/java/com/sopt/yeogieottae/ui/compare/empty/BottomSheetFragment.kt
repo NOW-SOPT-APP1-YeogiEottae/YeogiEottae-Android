@@ -18,6 +18,7 @@ import com.sopt.yeogieottae.ui.compare.CompareViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentBottomSheetBinding? = null
@@ -115,7 +116,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             if (response.isSuccessful) {
                 compareViewModel.fetchCompareData()
             } else {
-                Snackbar.make(binding.root, response.message(), Snackbar.LENGTH_SHORT).show()
+                val rawJson = response.errorBody()?.string() ?: "No error message provided"
+                val error = JSONObject(rawJson).optString("message", "error message")
+                Snackbar.make(binding.root, error, Snackbar.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Snackbar.make(binding.root, "네트워크 전송 오류 발생.", Snackbar.LENGTH_SHORT).show()
