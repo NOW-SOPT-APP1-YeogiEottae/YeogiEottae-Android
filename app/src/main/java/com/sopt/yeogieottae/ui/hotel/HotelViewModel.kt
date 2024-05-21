@@ -1,7 +1,9 @@
 package com.sopt.yeogieottae.ui.hotel
 
 import android.net.http.HttpException
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresExtension
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +12,7 @@ import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.network.ServicePool
 import com.sopt.yeogieottae.network.mapper.HotelMapper
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class HotelViewModel : ViewModel() {
 
@@ -43,6 +46,7 @@ class HotelViewModel : ViewModel() {
         }
     }
 
+
     fun getHotelInfo(hotelId: Int) {
         viewModelScope.launch {
             runCatching {
@@ -53,8 +57,10 @@ class HotelViewModel : ViewModel() {
                     Log.d("getHotel", "_hotel정보여유: ${_hotel.value}")
                 }
             }.onFailure { e ->
-                if(e is HttpException) Log.d("getHotelMessage", "getHotelInfo: ${e.message}")
-                Log.d("getHotel", "getHotelInfo: ${e.message}")
+                val error = e.message
+                val errorJson = JSONObject(error)
+                val errorMessage = errorJson.getString("message")
+                Log.d("", "getHotelInfo: $errorMessage")
             }
         }
     }

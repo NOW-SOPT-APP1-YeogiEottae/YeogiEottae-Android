@@ -1,6 +1,5 @@
 package com.sopt.yeogieottae.ui.hotel
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.databinding.ItemHotelRoomBinding
 
-class HotelRoomListAdapter(context: Context) :
+class HotelRoomListAdapter(private val ItemClickEvent: (Room) -> Unit) :
     ListAdapter<Room, RecyclerView.ViewHolder>(roomDiffer) {
-    private val inflater by lazy { LayoutInflater.from(context) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        HotelRoomViewHolder(ItemHotelRoomBinding.inflate(inflater, parent, false))
+        HotelRoomViewHolder(
+            ItemHotelRoomBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ), ItemClickEvent
+        )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -23,10 +27,8 @@ class HotelRoomListAdapter(context: Context) :
     }
 
     companion object {
-
         val roomDiffer by lazy {
             object : DiffUtil.ItemCallback<Room>() {
-
                 override fun areItemsTheSame(
                     oldItem: Room,
                     newItem: Room
