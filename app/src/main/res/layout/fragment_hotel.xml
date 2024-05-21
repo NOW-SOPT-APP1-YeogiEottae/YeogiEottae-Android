@@ -91,20 +91,19 @@
                 android:id="@+id/iv_room_favorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@null"
                 android:padding="12dp"
-                android:src="@drawable/ic_favorite"
+                android:src="@drawable/ic_favorite_on"
                 app:layout_constraintBottom_toBottomOf="@id/tv_hotel_name"
                 app:layout_constraintEnd_toEndOf="@id/gl_end"
-                app:layout_constraintTop_toTopOf="@id/tv_hotel_star" />
+                app:layout_constraintTop_toTopOf="@id/tv_hotel_name" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_room_favorite_btn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/gray_200"
-                android:elevation="-1dp"
                 android:padding="7dp"
+                android:elevation="-1dp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_room_favorite"
                 app:layout_constraintEnd_toEndOf="@id/iv_room_favorite"
                 app:layout_constraintStart_toStartOf="@id/iv_room_favorite"
