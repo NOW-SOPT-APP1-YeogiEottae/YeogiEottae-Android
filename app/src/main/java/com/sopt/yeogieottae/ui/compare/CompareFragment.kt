@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentCompareBinding
 import com.sopt.yeogieottae.ui.compare.empty.CompareEmptyFragment
@@ -14,7 +15,6 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>(
 ) {
     private lateinit var compareViewModel: CompareViewModel
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -24,19 +24,24 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>(
 
     private fun initCompareViewModel() {
         compareViewModel = ViewModelProvider(requireActivity())[CompareViewModel::class.java]
+        compareViewModel.fetchCompareData()
     }
 
     private fun observeCompareViewModel() {
-        compareViewModel.apiResponse.observe(viewLifecycleOwner) { apiResponse ->
-            if (apiResponse.data.isEmpty()) {
-                parentFragmentManager.commit {
+        compareViewModel.compareResponse.observe(viewLifecycleOwner) { compareResponse ->
+            if (compareResponse.result.isEmpty()) {
+                childFragmentManager.commit {
                     replace(R.id.compare_fcv, CompareEmptyFragment())
                 }
             } else {
-                parentFragmentManager.commit {
+                childFragmentManager.commit {
                     replace(R.id.compare_fcv, CompareNotEmptyFragment())
                 }
             }
+        }
+
+        compareViewModel.message.observe(viewLifecycleOwner) { message ->
+            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
         }
     }
 }
