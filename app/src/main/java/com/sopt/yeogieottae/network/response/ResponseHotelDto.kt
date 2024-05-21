@@ -16,37 +16,37 @@ data class ResponseHotelDto(
 ) {
     @Serializable
     data class Hotel(
-        @SerialName("hotel_name")
+        @SerialName("hotelName")
         val hotel_name: String,
         @SerialName("star")
         val star: String,
         @SerialName("location")
         val location: String,
-        @SerialName("review_rate")
+        @SerialName("reviewRate")
         val review_rate: Float,
-        @SerialName("review_count")
+        @SerialName("reviewCount")
         val review_count: Int,
-        @SerialName("is_liked")
+        @SerialName("isLiked")
         val is_liked: Boolean,
-        @SerialName("room_list")
+        @SerialName("roomList")
         val room_list: List<Room>
     )
     {
         @Serializable
         data class Room(
-            @SerialName("room_id")
+            @SerialName("roomId")
             val room_id: Int,
-            @SerialName("room_name")
+            @SerialName("roomName")
             val room_name: String,
             @SerialName("price")
             val price: Int,
-            @SerialName("start_time")
+            @SerialName("startTime")
             val start_time: String,
-            @SerialName("end_time")
+            @SerialName("endTime")
             val end_time: String,
-            @SerialName("image_url")
+            @SerialName("imageUrl")
             val image_url: String,
-            @SerialName("is_liked")
+            @SerialName("isLiked")
             val is_liked: Boolean
         )
     }
