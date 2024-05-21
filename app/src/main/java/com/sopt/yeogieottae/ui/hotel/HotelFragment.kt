@@ -15,13 +15,15 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
 ) {
     private val viewModel: HotelViewModel by viewModels()
     private lateinit var hotelRoomListAdapter: HotelRoomListAdapter
+    val hotelId = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         observeViewModel()
-        viewModel.getHotelInfo(1)
+        viewModel.getHotelInfo(hotelId)
         initBtnClickListener()
+        updateHotelImage()
     }
 
     private fun observeViewModel() {
@@ -38,13 +40,15 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
         }
     }
 
-    private fun initBtnClickListener(){
-        with(binding){
+    private fun initBtnClickListener() {
+        with(binding) {
             ivRoomFavoriteBtn.setOnClickListener {
                 viewModel.setLike()
             }
         }
     }
+    //뷰 홀더 클릭 이벤트 -> UI 변화
+    // 프래그먼트에서는 데이터 관리 어뎁터를 초기화 하면서 데이터를 주고받을 수 있도록
 
     private fun updateHotelView(hotel: HotelViewModel.Hotel) {
         with(binding) {
@@ -53,14 +57,22 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
             tvStarRate.text = hotel.review_rate.toString()
             tvTotalReview.text = hotel.review_count.toString()
             tvMap.text = hotel.location
-            // Update favorite button icon
-            val iconResId = if (hotel.is_liked) {
-                R.drawable.ic_favorite_on
-            } else {
-                R.drawable.ic_favorite_off
-            }
-            ivRoomFavorite.setImageResource(iconResId)
+            ivRoomFavorite.setImageResource(
+                if (hotel.is_liked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
+            )
         }
+    }
+
+    private fun updateHotelImage() {
+        binding.ivHotel.setImageResource(
+            when (hotelId % 5) {
+                0 -> R.drawable.img_hotel_0
+                1 -> R.drawable.img_hotel_1
+                2 -> R.drawable.img_hotel_2
+                3 -> R.drawable.img_hotel_3
+                else -> R.drawable.img_hotel_4
+            }
+        )
     }
 
     private fun updateHotelInfoView(hotelInfo: HotelViewModel.Hotel_info) {
@@ -71,7 +83,11 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
     }
 
     private fun initAdapter() {
-        hotelRoomListAdapter = HotelRoomListAdapter(requireContext())
+        hotelRoomListAdapter = HotelRoomListAdapter { room ->
+            {
+
+            }
+        }
         binding.rvRoom.adapter = hotelRoomListAdapter
         binding.rvRoom.layoutManager = LinearLayoutManager(requireContext())
     }
