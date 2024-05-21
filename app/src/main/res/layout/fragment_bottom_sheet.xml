@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:listitem="@layout/item_like_list" />
+        tools:listitem="@layout/item_compare_like_list" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_bg_add_btn"
