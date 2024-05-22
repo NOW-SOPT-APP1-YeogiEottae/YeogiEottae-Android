@@ -87,8 +87,8 @@
     <string name="like_date">5.2 목 - 5.3 금</string>
     <string name="like_people">2명</string>
 
-    <string name="undo">실행취소</string>
-    <string name="go_directly">바로이동</string>
+    <string name="undo">실행 취소</string>
+    <string name="go_directly">찜으로 이동</string>
 
     <!--팝업-->
     <string name="favorite_hotel_delete">찜에서 삭제하기</string>
