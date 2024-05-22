@@ -87,9 +87,8 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
 
     private fun initAdapter() {
         hotelRoomListAdapter = HotelRoomListAdapter { room ->
-            {
-
-            }
+            if(room.is_liked)  viewModel.deleteLikeRoom(room.room_id)
+            else  viewModel.postLikeRoom(room.room_id)
         }
         binding.rvRoom.adapter = hotelRoomListAdapter
         binding.rvRoom.layoutManager = LinearLayoutManager(requireContext())

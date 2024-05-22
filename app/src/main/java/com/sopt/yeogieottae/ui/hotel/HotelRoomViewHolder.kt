@@ -22,18 +22,17 @@ class HotelRoomViewHolder(
         with(binding) {
             tvRoomName.text = room.room_name
             tvRoomPrice.text = binding.root.context.getString(R.string.all_price_Int, room.price)
-            button(room.is_liked)
+            updateLikeBtn(room.is_liked)
         }
     }
 
     private fun initButton(room: Room) {
         binding.ivRoomFavoriteBtn.setOnClickListener {
-            room.is_liked = !room.is_liked
             ItemClickEvent(room)
-            button(room.is_liked)
+            updateLikeBtn(room.is_liked)
         }
     }
-    private fun button(is_liked:Boolean){
+    private fun updateLikeBtn(is_liked:Boolean){
         binding.ivRoomFavorite.setImageResource(
             if (is_liked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
         )

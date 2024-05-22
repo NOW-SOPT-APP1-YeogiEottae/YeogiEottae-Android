@@ -23,7 +23,6 @@ class HotelViewModel : ViewModel() {
     val hotel_info: LiveData<Hotel_info>
         get() = _hotel_info
 
-
     init {
         _hotel_info.value = Hotel_info(
             pay = listOf(
@@ -48,7 +47,7 @@ class HotelViewModel : ViewModel() {
                 )
             }.onSuccess { response ->
                 response.body()?.message.let {
-                    _hotel.value=_hotel.value?.copy(is_liked = true)
+                    _hotel.value = _hotel.value?.copy(is_liked = true)
                     Log.d("Hotel- postLike", "postLike: $it")
                 }
 
@@ -58,7 +57,7 @@ class HotelViewModel : ViewModel() {
         }
     }
 
-    fun deleteLikeHotel(hotelId:Int){
+    fun deleteLikeHotel(hotelId: Int) {
         viewModelScope.launch {
             runCatching {
                 ServicePool.yeogieottaeService.deleteLike(
@@ -69,9 +68,12 @@ class HotelViewModel : ViewModel() {
                 response.body()?.let {
                     Log.d("Hotel- delLike", "deleteLike: $it")
                 }
-                _hotel.value=_hotel.value?.copy(is_liked = false)
+                _hotel.value = _hotel.value?.copy(is_liked = false)
             }.onFailure { e ->
-                if(e is HttpException) Log.d("Hotel- delLike", "deleteLikeError Http:${e.message} ")
+                if (e is HttpException) Log.d(
+                    "Hotel- delLike",
+                    "deleteLikeError Http:${e.message} "
+                )
                 Log.d("Hotel- delLike", "deleteLikeError: ${e}")
                 Log.d("Hotel- delLike", "deleteLikeError Message: ${e.message}")
             }
@@ -81,11 +83,43 @@ class HotelViewModel : ViewModel() {
     fun postLikeRoom(roomId: Int) {
         viewModelScope.launch {
             runCatching {
-                ServicePool.yeogieottaeService.postLike(1, requestLikeDto = RequestLikeDto(roomId))
+                ServicePool.yeogieottaeService.postLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = roomId)
+                )
             }.onSuccess { response ->
                 response.body()?.message.let {
-                    Log.d("postLike", "postLike: $it")
+                    val updatedRoomList = updateRoomLikeStatus(roomId, true)
+                    _hotel.value = _hotel.value?.copy(room_list = updatedRoomList ?: listOf())
+                    Log.d("Hotel- postLike", "postLike: $it")
                 }
+
+            }.onFailure { e ->
+                Log.d("Hotel- postLike", "setLikeHotel: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteLikeRoom(roomId: Int) {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.deleteLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = roomId)
+                )
+            }.onSuccess { response ->
+                response.body()?.let {
+                    Log.d("Hotel- delLike", "deleteLike: $it")
+                }
+                val updatedRoomList = updateRoomLikeStatus(roomId, false)
+                _hotel.value = _hotel.value?.copy(room_list = updatedRoomList ?: listOf())
+            }.onFailure { e ->
+                if (e is HttpException) Log.d(
+                    "Hotel- delLike",
+                    "deleteLikeError Http:${e.message} "
+                )
+                Log.d("Hotel- delLike", "deleteLikeError: $e")
+                Log.d("Hotel- delLike", "deleteLikeError Message: ${e.message}")
             }
         }
     }
@@ -108,6 +142,17 @@ class HotelViewModel : ViewModel() {
         }
     }
 
+    private fun updateRoomLikeStatus(roomId: Int, isLiked: Boolean): List<Room>? {
+        return _hotel.value?.room_list?.map { room ->
+            if (room.room_id == roomId) {
+                room.copy(is_liked = isLiked)
+            } else {
+                room
+            }
+        }
+    }
+
+
     data class Hotel(
         val name: String,
         val star: String,
@@ -117,7 +162,6 @@ class HotelViewModel : ViewModel() {
         val is_liked: Boolean,
         val room_list: List<Room>
     )
-
 
     data class Hotel_info(
         val pay: List<String>,
