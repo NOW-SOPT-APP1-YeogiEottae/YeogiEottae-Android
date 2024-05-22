@@ -30,11 +30,11 @@
             android:id="@+id/tv_hotel_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/hotel_rating"
             android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L7"
             android:textColor="@color/gray_850"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="~~~~~" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <!-- 호텔 이름 -->
         <TextView
@@ -107,9 +107,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"
-            android:text="@string/hotel_review_count"
             android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b6"
             android:textColor="@color/gray_850"
+            tools:text="~~~~~"
             app:layout_constraintBottom_toBottomOf="@id/layout_hotel_star"
             app:layout_constraintStart_toEndOf="@id/layout_hotel_star"
             app:layout_constraintTop_toTopOf="@id/layout_hotel_star" />

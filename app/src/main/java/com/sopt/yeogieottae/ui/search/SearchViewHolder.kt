@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +14,8 @@ import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
 class SearchViewHolder(private val binding: ItemHotelListBinding) :
     RecyclerView.ViewHolder(binding.root) {
+
+    private var searchFragment = SearchFragment()
 
     fun bind(item: Hotel) {
         loadImage(item.imageUrl)
@@ -35,8 +38,8 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
         with(binding) {
             tvHotelName.text = item.hotelName
             tvHotelLocation.text = item.location
-            tvHotelRating.text = item.reviewRate.toString()
-            tvHotelReviewCount.text = item.reviewCount.toString()
+            tvHotelStarText.text = item.reviewRate.toString()
+            tvHotelReviewCount.text = itemView.context.getString(R.string.hotel_review_count).format(item.reviewCount)
             tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             tvHotelTotalPrice.text =
                 itemView.context.getString(R.string.all_price).format(item.price)
@@ -62,6 +65,10 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
                     setOffCustomLayout()
                 }.show()
             }
+        }
+
+        binding.root.setOnClickListener {
+            searchFragment.goToHotelDetail()
         }
     }
 
@@ -105,7 +112,7 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
 
         val snackBarLayout = this.view as Snackbar.SnackbarLayout
         snackBarLayout.apply {
-            setPadding(0, 0, 0, 300)
+            setPadding(0, 0, 0, 330)
             removeAllViews()
             addView(customLayout)
 
