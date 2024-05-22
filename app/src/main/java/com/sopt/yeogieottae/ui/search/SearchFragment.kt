@@ -3,8 +3,10 @@ package com.sopt.yeogieottae.ui.search
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentSearchBinding
 import com.sopt.yeogieottae.util.BaseFragment
 
@@ -56,5 +58,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                 }
             }
         })
+    }
+
+    fun goToHotelDetail() {
+        findNavController().navigate(R.id.fragment_hotel)
     }
 }
