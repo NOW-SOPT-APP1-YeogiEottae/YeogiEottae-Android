@@ -18,6 +18,7 @@ serializationConverter = "1.0.0"
 okhttpBom = "4.10.0"
 glide = "4.13.0"
 materialVersion = "1.13.0-alpha02"
+roomKtx = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,8 +46,10 @@ okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 google-material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+navigate-safearg = {id = 'androidx.navigation.safeargs.kotlin', version = '2.7.0'}
