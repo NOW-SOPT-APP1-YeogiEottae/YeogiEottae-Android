@@ -21,5 +21,5 @@ object ApiFactory {
 }
 
 object ServicePool {
-    val likeService = ApiFactory.create<YeogieottaeService>()
+    val yeogieottaeService = ApiFactory.create<YeogieottaeService>()
 }
