@@ -4,17 +4,17 @@ import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.network.response.Hotel
-import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
-class SearchViewHolder(private val binding: ItemHotelListBinding) :
+class SearchViewHolder(
+    private val binding: com.sopt.yeogieottae.databinding.ItemHotelListBinding,
+    private val searchViewModel: SearchViewModel,
+) :
     RecyclerView.ViewHolder(binding.root) {
-
     private var searchFragment = SearchFragment()
 
     fun bind(item: Hotel) {
@@ -29,7 +29,7 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
         Glide.with(binding.ivSearchlistHotelImg.context)
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
-            .override(imageSize, imageSize)
+            .override(120, 180)
             .centerCrop()
             .into(binding.ivSearchlistHotelImg)
     }
@@ -39,7 +39,8 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
             tvHotelName.text = item.hotelName
             tvHotelLocation.text = item.location
             tvHotelStarText.text = item.reviewRate.toString()
-            tvHotelReviewCount.text = itemView.context.getString(R.string.hotel_review_count).format(item.reviewCount)
+            tvHotelReviewCount.text =
+                itemView.context.getString(R.string.hotel_review_count).format(item.reviewCount)
             tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             tvHotelTotalPrice.text =
                 itemView.context.getString(R.string.all_price).format(item.price)
@@ -58,17 +59,19 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
                 createSnackBar(it, "Custom Snackbar", Snackbar.LENGTH_SHORT).apply {
                     setHotelCustomLayout()
                 }.show()
+                searchViewModel.postLikeHotel(hotelData.hotelId)
             } else {
                 binding.ivBtnfavoriteOff.visibility = View.VISIBLE
                 binding.ivBtnfavoriteOn.visibility = View.GONE
                 createSnackBar(it, "Custom Snackbar", Snackbar.LENGTH_SHORT).apply {
                     setOffCustomLayout()
                 }.show()
+                searchViewModel.deleteLikeHotel(hotelData.hotelId)
             }
         }
 
         binding.root.setOnClickListener {
-            searchFragment.goToHotelDetail()
+            searchFragment.navigateToHotel(hotelData.hotelId)
         }
     }
 
@@ -91,7 +94,7 @@ class SearchViewHolder(private val binding: ItemHotelListBinding) :
     @SuppressLint("RestrictedApi")
     private fun Snackbar.setHotelCustomLayout() {
         val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_hotel_snackbar_layout, null)
+            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_on_layout, null)
 
         val snackBarLayout = this.view as Snackbar.SnackbarLayout
         snackBarLayout.apply {

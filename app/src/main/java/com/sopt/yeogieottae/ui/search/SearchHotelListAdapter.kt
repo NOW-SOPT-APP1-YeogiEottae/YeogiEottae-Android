@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sopt.yeogieottae.network.response.Hotel
 import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
-class SearchHotelListAdapter : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchHotelListAdapter(private val searchViewModel: SearchViewModel) :
+    RecyclerView.Adapter<SearchViewHolder>() {
     private var hotels = ArrayList<Hotel>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -20,7 +21,7 @@ class SearchHotelListAdapter : RecyclerView.Adapter<SearchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding =
             ItemHotelListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchViewHolder(binding)
+        return SearchViewHolder(binding, searchViewModel)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {

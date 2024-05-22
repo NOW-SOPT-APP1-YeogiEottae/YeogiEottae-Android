@@ -13,7 +13,7 @@ import com.sopt.yeogieottae.util.BaseFragment
 class SearchFragment : BaseFragment<FragmentSearchBinding>(
     FragmentSearchBinding::inflate
 ) {
-    private val hotelListAdapter = SearchHotelListAdapter()
+    private val hotelListAdapter by lazy { SearchHotelListAdapter(searchViewModel) }
     private val searchViewModel: SearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +60,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         })
     }
 
-    fun goToHotelDetail() {
-        findNavController().navigate(R.id.fragment_hotel)
+    fun navigateToHotel(hotelId: Int) {
+        val action = SearchFragmentDirections.actionSearchToHotel(hotelId)
+        findNavController().navigate(action)
     }
 }

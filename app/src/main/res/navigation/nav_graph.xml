@@ -69,7 +69,12 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_search_to_hotel"
-            app:destination="@id/fragment_hotel" />
+            app:destination="@id/fragment_hotel">
+            <argument
+                android:name="hotelId"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <fragment
