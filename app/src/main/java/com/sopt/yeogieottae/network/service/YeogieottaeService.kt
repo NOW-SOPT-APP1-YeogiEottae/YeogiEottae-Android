@@ -10,6 +10,8 @@ import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import com.sopt.yeogieottae.network.response.ResponseLikeHotelDto
+import retrofit2.Call
 
 interface YeogieottaeService {
 
@@ -27,4 +29,7 @@ interface YeogieottaeService {
         @Query("roomType") roomType: Int,
         @Body requestLikeDto: RequestLikeDto
     ): Response<ResponseLikeDto>
+
+    @GET("api/v1/likes")
+    fun getLikeHotel(): Call<ResponseLikeHotelDto>
 }

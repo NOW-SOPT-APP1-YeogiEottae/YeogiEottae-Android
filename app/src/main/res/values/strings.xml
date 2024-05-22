@@ -11,6 +11,7 @@
     <string name="menu_title_favorite">찜</string>
     <string name="menu_title_info">내 정보</string>
 
+
     <!--더미-->
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
@@ -65,6 +66,7 @@
     <string name="hotel_rating">4성급</string>
     <string name="hotel_name">호텔 이름</string>
     <string name="hotel_location">위치</string>
+    <string name="hotel_location2">삼성역 도보 5분</string>
     <string name="hotel_review_count">2,710개 평가</string>
     <string name="hotel_discount_percent">10%</string>
     <string name="hotel_coupon">쿠폰적용시</string>
@@ -73,12 +75,25 @@
     <string name="hotel_subtext">subtext</string>
     <string name="hotel_star_text">9.5</string>
 
+    <!--객실-->
+    <string name="room_info_detail">기준 2인 최대 2인</string>
+    <string name="room_package">패키지</string>
+    <string name="room_package_detail">롯데월드 자유이용권 2매</string>
+
     <!--찜-->
     <string name="favorite_hotel_on">찜에 추가했어요</string>
     <string name="favorite_hotel_off">찜을 해제했어요</string>
     <string name="favorite_room">방도 찜할 수 있어요</string>
+    <string name="like_date">5.2 목 - 5.3 금</string>
+    <string name="like_people">2명</string>
 
     <string name="undo">실행취소</string>
     <string name="go_directly">바로이동</string>
 
+    <!--팝업-->
+    <string name="favorite_hotel_delete">찜에서 삭제하기</string>
+    <string name="favorite_hotel_add">비교에 추가하기</string>
+    <string name="like_empty_room">찜한 방이 없어요</string>
+    <string name="like_start_compare_explain">방을 찜하면 비교하기 기능을 사용할 수 있어요</string>
+    <string name="like_room_start">찜하러 가기</string>
 </resources>

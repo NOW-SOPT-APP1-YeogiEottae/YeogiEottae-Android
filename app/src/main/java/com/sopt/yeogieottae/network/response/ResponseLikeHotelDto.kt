@@ -1,34 +1,30 @@
-package com.sopt.yeogieottae.data
+package com.sopt.yeogieottae.network.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseLikesDto(
+data class ResponseLikeHotelDto(
     @SerialName("code")
     val code: Int,
     @SerialName("success")
     val success: Boolean,
+    @SerialName("message")
+    val message: String,
     @SerialName("result")
-    val result: Result,
+    val result: List<LikeHotelInformation>,
 )
 
 @Serializable
-data class Result(
-    @SerialName("room_likes")
-    val roomLikes: List<RoomLike>,
-)
-
-@Serializable
-data class RoomLike(
-    @SerialName("room_information")
-    val roomInformation: RoomInformation,
+data class LikeHotelInformation(
     @SerialName("hotelId")
     val hotelId: Int,
     @SerialName("hotelName")
     val hotelName: String,
     @SerialName("reviewRate")
     val reviewRate: Double,
+    @SerialName("roomInformation")
+    val roomInformation: RoomInformation? = null,
 )
 
 @Serializable

@@ -1,10 +1,10 @@
 package com.sopt.yeogieottae.ui.hotel
 
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.databinding.ItemHotelRoomBinding
-import com.bumptech.glide.Glide
 
 class HotelRoomViewHolder(
     private val binding: ItemHotelRoomBinding,
@@ -32,7 +32,8 @@ class HotelRoomViewHolder(
             updateLikeBtn(room.is_liked)
         }
     }
-    private fun updateLikeBtn(is_liked:Boolean){
+
+    private fun updateLikeBtn(is_liked: Boolean) {
         binding.ivRoomFavorite.setImageResource(
             if (is_liked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
         )
