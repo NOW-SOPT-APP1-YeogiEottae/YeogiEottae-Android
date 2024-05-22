@@ -11,7 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class FavoriteHotelViewModel : ViewModel() {
-    private val likeService by lazy { ServicePool.likeService }
+    private val likeService by lazy { ServicePool.yeogieottaeService }
     private val _likehotels = MutableLiveData<List<LikeHotelState>>()
     val likehotels: LiveData<List<LikeHotelState>> get() = _likehotels
     fun getLikeHotelInfo() {

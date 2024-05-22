@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
         app:shapeAppearance="@style/Round_10dp" />
 
     <TextView
@@ -33,8 +34,8 @@
         android:id="@+id/iv_room_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:src="@drawable/ic_favorite"
+        android:padding="5dp"
+        android:src="@drawable/ic_favorite_on"
         app:layout_constraintBottom_toBottomOf="@id/tv_room_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_room_name" />

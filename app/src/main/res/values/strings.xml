@@ -3,6 +3,7 @@
     <!--공용-->
     <string name="all_price_all">총</string>
     <string name="all_price">%,3d원</string>
+    <string name="all_price_Int">%,3d</string>
     <!--menu-->
     <string name="menu_title_home">홈</string>
     <string name="menu_title_search">검색</string>
@@ -24,7 +25,6 @@
     <string name="hotel_more_info">더보기</string>
     <string name="hotel_toss_pay">토스페이</string>
     <string name="hotel_event">숙소이벤트</string>
-
 
     <!--room-->
     <string name="room_cancel_impossible">무료취소 불가</string>
