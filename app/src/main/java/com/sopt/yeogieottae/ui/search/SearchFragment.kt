@@ -1,29 +1,18 @@
 package com.sopt.yeogieottae.ui.search
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sopt.yeogieottae.data.hotel.HotelViewModel
 import com.sopt.yeogieottae.databinding.FragmentSearchBinding
+import com.sopt.yeogieottae.util.BaseFragment
 
-class SearchFragment : Fragment() {
-    private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
-    private val hotelListAdapter = HotelListAdapter()
-    private val hotelViewModel: HotelViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+class SearchFragment : BaseFragment<FragmentSearchBinding>(
+    FragmentSearchBinding::inflate
+) {
+    private val hotelListAdapter = SearchHotelListAdapter()
+    private val searchViewModel: SearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,8 +34,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun initObserver() {
-        hotelViewModel.hotels.observe(viewLifecycleOwner) { hotels ->
-            hotelListAdapter.setItems(hotels)
+        searchViewModel.hotels.observe(viewLifecycleOwner) { hotels ->
+            hotels?.let {
+                hotelListAdapter.setItems(hotels)
+            }
         }
     }
 

@@ -8,7 +8,6 @@
     <string name="menu_title_favorite">찜</string>
     <string name="menu_title_info">내 정보</string>
 
-
     <!--더미-->
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
@@ -46,4 +45,9 @@
     <!--팝업-->
     <string name="favorite_hotel_delete">찜에서 삭제하기</string>
     <string name="favorite_hotel_add">비교에 추가하기</string>
+    <string name="like_empty_room">찜한 방이 없어요</string>
+    <string name="like_start_compare_explain">방을 찜하면 비교하기 기능을 사용할 수 있어요</string>
+    <string name="like_room_start">찜하러 가기</string>
+
+    <string name="all_price">%,3d원</string>
 </resources>

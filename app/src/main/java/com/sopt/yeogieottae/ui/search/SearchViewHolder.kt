@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.data.hotel.Hotel
@@ -12,26 +13,43 @@ import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
 class SearchViewHolder(private val binding: ItemHotelListBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(hotelData: Hotel) {
-        binding.run {
-            tvHotelName.text = hotelData.name
-            tvHotelLocation.text = hotelData.location
-            tvHotelRating.text = hotelData.rating
-            tvHotelReviewCount.text = hotelData.reviewCount
-            tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
-            initLikeView(hotelData.isLiked)
-            initClickListner(hotelData)
+    fun bind(item: Hotel) {
+        loadImage(item.imageUrl)
+        setHotelInfo(item)
+        initLikeView(item.isLiked)
+        initClickListner(item)
+    }
+
+    private fun loadImage(imageUrl: String) {
+        val imageSize = binding.ivSearchlistHotelImg.width
+        Glide.with(binding.ivSearchlistHotelImg.context)
+            .load(imageUrl)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .override(imageSize, imageSize)
+            .centerCrop()
+            .into(binding.ivSearchlistHotelImg)
+    }
+
+    private fun setHotelInfo(item: Hotel) {
+        with(binding) {
+            tvHotelName.text = item.hotelName
+            tvHotelLocation.text = item.location
+            tvHotelRating.text = item.reviewRate.toString()
+            tvHotelReviewCount.text = item.reviewCount.toString()
+            tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            tvHotelTotalPrice.text =
+                itemView.context.getString(R.string.all_price).format(item.price)
         }
     }
 
-    private fun initClickListner(hotel: Hotel) {
+    private fun initClickListner(hotelData: Hotel) {
         binding.loBtnfavorite.setOnClickListener {
             // 찜 상태 토글
-            hotel.isLiked = !hotel.isLiked
+            hotelData.isLiked = !hotelData.isLiked
 
             // 찜 상태에 따라 이미지 변경
-            if (hotel.isLiked) {
+            if (hotelData.isLiked) {
                 binding.ivBtnfavoriteOff.visibility = View.GONE
                 binding.ivBtnfavoriteOn.visibility = View.VISIBLE
                 createSnackBar(it, "Custom Snackbar", Snackbar.LENGTH_SHORT).apply {
