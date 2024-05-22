@@ -4,18 +4,18 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sopt.yeogieottae.data.Like.FavoriteHotel
+import com.sopt.yeogieottae.data.like.LikeHotelState
 import com.sopt.yeogieottae.databinding.ItemFavoriteHotelBinding
 
 class FavoriteHotelListAdapter(
-    private val onItemLongClick: (FavoriteHotel) -> Unit,
+    private val onItemLongClick: (LikeHotelState) -> Unit,
 ) : RecyclerView.Adapter<FavoriteHotelViewHolder>() {
-    private var hotels = ArrayList<FavoriteHotel>()
+    private var hotels = ArrayList<LikeHotelState>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(items: List<FavoriteHotel>) {
-        this.hotels.clear()
-        this.hotels.addAll(items)
+    fun setItems(items: List<LikeHotelState>) {
+        hotels.clear()
+        hotels.addAll(items)
         notifyDataSetChanged()
     }
 
