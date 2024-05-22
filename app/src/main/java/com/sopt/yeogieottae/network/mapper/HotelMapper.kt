@@ -6,7 +6,19 @@ import com.sopt.yeogieottae.ui.hotel.HotelViewModel.Hotel
 
 object HotelMapper {
     fun fromDto(dto: ResponseHotelDto.Hotel): Hotel {
-        val roomList = dto.room_list.map { room ->
+        return Hotel(
+            name = dto.hotel_name,
+            star = dto.star,
+            location = dto.location,
+            review_rate = dto.review_rate,
+            review_count = dto.review_count,
+            is_liked = dto.is_liked,
+            room_list = fromDto(dto.room_list)
+        )
+    }
+
+    fun fromDto(dto: List<ResponseHotelDto.Hotel.Room>): List<Room> {
+        return dto.map { room ->
             Room(
                 room_id = room.room_id,
                 room_name = room.room_name,
@@ -17,15 +29,5 @@ object HotelMapper {
                 is_liked = room.is_liked
             )
         }
-
-        return Hotel(
-            name = dto.hotel_name,
-            star = dto.star,
-            location = dto.location,
-            review_rate = dto.review_rate,
-            review_count = dto.review_count,
-            is_liked = dto.is_liked,
-            room_list = roomList
-        )
     }
 }
