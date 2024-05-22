@@ -2,44 +2,35 @@ package com.sopt.yeogieottae.ui.like
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.yeogieottae.R
-import com.sopt.yeogieottae.data.Like.FavoriteHotelViewModel
 import com.sopt.yeogieottae.databinding.FragmentLikeBinding
+import com.sopt.yeogieottae.util.BaseFragment
 
-class LikeFragment : Fragment() {
+class LikeFragment: BaseFragment<FragmentLikeBinding>(
+    FragmentLikeBinding::inflate
+){
     private var _binding: FragmentLikeBinding? = null
-    private val binding get() = _binding!!
     private val favoriteHotelViewModel by viewModels<FavoriteHotelViewModel>()
     private val favoriteHotelListAdapter = FavoriteHotelListAdapter { hotel ->
         showPopup()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentLikeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
+        initRecyclerViews()
         initTitleView()
         initObserver()
         initClickListner()
     }
 
-    private fun initViews() {
+    private fun initRecyclerViews() {
         // 초기 팝업 상태를 invisible로 설정
         hidePopup()
 
@@ -50,13 +41,15 @@ class LikeFragment : Fragment() {
         }
 
         // ViewModel의 데이터 관찰
-        favoriteHotelViewModel.hotels.observe(viewLifecycleOwner) { hotels ->
+        favoriteHotelViewModel.likehotels.observe(viewLifecycleOwner) { hotels ->
             favoriteHotelListAdapter.setItems(hotels)
         }
     }
 
     private fun initObserver() {
-        favoriteHotelViewModel.hotels.observe(viewLifecycleOwner) { hotels ->
+        favoriteHotelViewModel.getLikeHotelInfo()
+
+        favoriteHotelViewModel.likehotels.observe(viewLifecycleOwner) { hotels ->
             favoriteHotelListAdapter.setItems(hotels)
         }
     }
@@ -64,6 +57,10 @@ class LikeFragment : Fragment() {
     private fun initClickListner() {
         binding.vLikePopupBg.setOnClickListener {
             hidePopup()
+        }
+
+        binding.ivCompareBtn.setOnClickListener {
+            findNavController().navigate(R.id.fragment_compare)
         }
     }
 
@@ -112,6 +109,4 @@ class LikeFragment : Fragment() {
             }
         })
     }
-
 }
-
