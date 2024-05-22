@@ -3,7 +3,7 @@ package com.sopt.yeogieottae.ui.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sopt.yeogieottae.data.hotel.Hotel
+import com.sopt.yeogieottae.network.response.Hotel
 
 class SearchViewModel : ViewModel() {
     private val _hotels = MutableLiveData<List<Hotel>>()

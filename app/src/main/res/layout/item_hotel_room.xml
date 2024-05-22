@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_0"
+    android:padding="19dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_room"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_launcher_background"
+        app:layout_constraintDimensionRatio="322:169"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/Round_10dp" />
+
+    <TextView
+        android:id="@+id/tv_room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h3"
+        android:textColor="@color/gray_950"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_room"
+        tool:text="스탠다드 트윈룸" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_room_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/tv_room_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_room_name" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_room_favorite_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/gray_200"
+        android:elevation="-1dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_room_favorite"
+        app:layout_constraintEnd_toEndOf="@id/iv_room_favorite"
+        app:layout_constraintStart_toStartOf="@id/iv_room_favorite"
+        app:layout_constraintTop_toTopOf="@id/iv_room_favorite"
+        app:shapeAppearance="@style/Circle" />
+
+    <TextView
+        android:id="@+id/tv_room_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h3"
+        android:textColor="@color/gray_950"
+        app:layout_constraintEnd_toStartOf="@id/tv_room_price_won"
+        app:layout_constraintTop_toBottomOf="@id/iv_room_favorite_btn"
+        tool:text="156,900" />
+
+    <TextView
+        android:id="@+id/tv_room_price_won"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_won"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h4"
+        android:textColor="@color/gray_950"
+        app:layout_constraintBottom_toBottomOf="@id/tv_room_price"
+        app:layout_constraintEnd_toEndOf="@id/iv_room_favorite_btn"
+        app:layout_constraintTop_toTopOf="@id/tv_room_price" />
+
+    <TextView
+        android:id="@+id/tv_in_out_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="입실 15:00 퇴실 11:00"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
+        android:textColor="@color/gray_700"
+        app:layout_constraintEnd_toEndOf="@id/iv_room_favorite_btn"
+        app:layout_constraintTop_toBottomOf="@id/tv_room_price" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_room_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/gray_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_in_out_time" />
+
+    <TextView
+        android:id="@+id/tv_room_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="13dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/hotel_room_info"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L8"
+        android:textColor="@color/gray_700"
+        app:layout_constraintBottom_toBottomOf="@id/iv_room_detail"
+        app:layout_constraintStart_toStartOf="@id/iv_room_detail"
+        app:layout_constraintTop_toTopOf="@id/iv_room_detail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:text="@string/hotel_room_person"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b7"
+        android:textColor="@color/secondary_700"
+        app:layout_constraintBottom_toBottomOf="@id/iv_room_detail"
+        app:layout_constraintStart_toEndOf="@id/tv_room_info"
+        app:layout_constraintTop_toTopOf="@id/iv_room_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

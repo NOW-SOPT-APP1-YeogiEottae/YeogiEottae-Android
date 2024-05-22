@@ -1,8 +1,8 @@
-package com.sopt.yeogieottae.data
+package com.sopt.yeogieottae.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sopt.yeogieottae.BuildConfig
-import com.sopt.yeogieottae.data.like.LikeService
+import com.sopt.yeogieottae.network.service.YeogieottaeService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
@@ -21,5 +21,5 @@ object ApiFactory {
 }
 
 object ServicePool {
-    val likeService = ApiFactory.create<LikeService>()
+    val likeService = ApiFactory.create<YeogieottaeService>()
 }

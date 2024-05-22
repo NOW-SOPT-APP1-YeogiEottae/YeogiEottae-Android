@@ -1,5 +1,7 @@
 package com.sopt.yeogieottae.data.like
 
+import com.sopt.yeogieottae.network.response.RoomInformation
+
 data class LikeHotelState(
     val isSuccess: Boolean,
     val message: String,

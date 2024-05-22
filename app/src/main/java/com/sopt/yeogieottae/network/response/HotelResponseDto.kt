@@ -1,4 +1,4 @@
-package com.sopt.yeogieottae.data.hotel
+package com.sopt.yeogieottae.network.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -1,12 +1,11 @@
 package com.sopt.yeogieottae.ui.like
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sopt.yeogieottae.data.like.LikeHotelState
-import com.sopt.yeogieottae.data.like.ResponseLikeHotelDto
-import com.sopt.yeogieottae.data.ServicePool
+import com.sopt.yeogieottae.network.response.ResponseLikeHotelDto
+import com.sopt.yeogieottae.network.ServicePool
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sopt.yeogieottae.data.hotel.Hotel
+import com.sopt.yeogieottae.network.response.Hotel
 import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
 class SearchHotelListAdapter : RecyclerView.Adapter<SearchViewHolder>() {

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
-import com.sopt.yeogieottae.data.hotel.Hotel
+import com.sopt.yeogieottae.network.response.Hotel
 import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
 class SearchViewHolder(private val binding: ItemHotelListBinding) :
