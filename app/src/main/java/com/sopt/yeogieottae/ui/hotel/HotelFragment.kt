@@ -22,8 +22,8 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
         initAdapter()
         observeViewModel()
         viewModel.getHotelInfo(hotelId)
-        initBtnClickListener()
         updateHotelImage()
+        initBtnClickListener()
     }
 
     private fun observeViewModel() {
@@ -43,12 +43,15 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
     private fun initBtnClickListener() {
         with(binding) {
             ivRoomFavoriteBtn.setOnClickListener {
-                viewModel.setLike()
+                viewModel.hotel.value?.let {
+                    if (it.is_liked) viewModel.deleteLikeHotel(hotelId)
+                    else viewModel.postLikeHotel(hotelId)
+
+                    updateHotelImage()
+                }
             }
         }
     }
-    //뷰 홀더 클릭 이벤트 -> UI 변화
-    // 프래그먼트에서는 데이터 관리 어뎁터를 초기화 하면서 데이터를 주고받을 수 있도록
 
     private fun updateHotelView(hotel: HotelViewModel.Hotel) {
         with(binding) {

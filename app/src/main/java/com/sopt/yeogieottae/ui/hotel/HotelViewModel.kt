@@ -1,9 +1,6 @@
 package com.sopt.yeogieottae.ui.hotel
 
-import android.net.http.HttpException
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresExtension
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.network.ServicePool
 import com.sopt.yeogieottae.network.mapper.HotelMapper
+import com.sopt.yeogieottae.network.request.RequestLikeDto
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import retrofit2.HttpException
 
 class HotelViewModel : ViewModel() {
 
@@ -40,12 +39,56 @@ class HotelViewModel : ViewModel() {
         )
     }
 
-    fun setLike() {
-        _hotel.value = _hotel.value?.let { hotel ->
-            hotel.copy(is_liked = !hotel.is_liked)
+    fun postLikeHotel(hotelId: Int) {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.postLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = hotelId)
+                )
+            }.onSuccess { response ->
+                response.body()?.message.let {
+                    _hotel.value=_hotel.value?.copy(is_liked = true)
+                    Log.d("Hotel- postLike", "postLike: $it")
+                }
+
+            }.onFailure { e ->
+                Log.d("Hotel- postLike", "setLikeHotel: ${e.message}")
+            }
         }
     }
 
+    fun deleteLikeHotel(hotelId:Int){
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.deleteLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = hotelId)
+                )
+            }.onSuccess { response ->
+                response.body()?.let {
+                    Log.d("Hotel- delLike", "deleteLike: $it")
+                }
+                _hotel.value=_hotel.value?.copy(is_liked = false)
+            }.onFailure { e ->
+                if(e is HttpException) Log.d("Hotel- delLike", "deleteLikeError Http:${e.message} ")
+                Log.d("Hotel- delLike", "deleteLikeError: ${e}")
+                Log.d("Hotel- delLike", "deleteLikeError Message: ${e.message}")
+            }
+        }
+    }
+
+    fun postLikeRoom(roomId: Int) {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.postLike(1, requestLikeDto = RequestLikeDto(roomId))
+            }.onSuccess { response ->
+                response.body()?.message.let {
+                    Log.d("postLike", "postLike: $it")
+                }
+            }
+        }
+    }
 
     fun getHotelInfo(hotelId: Int) {
         viewModelScope.launch {
