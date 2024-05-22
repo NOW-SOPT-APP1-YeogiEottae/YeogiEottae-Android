@@ -279,6 +279,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:layout_marginHorizontal="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -302,7 +303,6 @@
             android:id="@+id/lo_favoritehotel_info_empty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -311,9 +311,13 @@
             <!-- 호텔 이미지 -->
             <ImageView
                 android:id="@+id/iv_favoritehotel_img_empty"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="40:40"
                 android:src="@drawable/img_favorite_hotel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -406,6 +410,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
                 android:text="@string/like_empty_room"
+                android:layout_marginHorizontal="15dp"
                 android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L2"
                 android:textColor="@color/gray_850"
                 app:layout_constraintStart_toStartOf="parent"
@@ -419,7 +424,7 @@
                 android:text="@string/like_start_compare_explain"
                 android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L6"
                 android:textColor="@color/gray_800"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_favoritehotel_emptyroom"
                 app:layout_constraintTop_toBottomOf="@id/tv_favoritehotel_emptyroom" />
             <!-- 찜하기 버튼 -->
             <TextView
@@ -430,7 +435,7 @@
                 android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L1"
                 android:textColor="@color/secondary_600"
                 app:layout_constraintBottom_toBottomOf="@id/tv_favoritehotel_emptyroom_explain"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/iv_favoritehotel_button_empty"
                 app:layout_constraintTop_toTopOf="@id/tv_favoritehotel_emptyroom" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
