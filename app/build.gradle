@@ -69,4 +69,6 @@ dependencies {
     implementation(platform(libs.okhttp3))
     implementation libs.glide
     implementation libs.glide.compiler
+
+    implementation libs.amarjain07
 }
