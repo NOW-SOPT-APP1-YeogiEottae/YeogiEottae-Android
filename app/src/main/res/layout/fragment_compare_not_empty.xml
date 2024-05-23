@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="32dp"
         android:gravity="center_vertical"
         android:text="@string/compare_tv_hotel_room"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +58,7 @@
         android:layout_marginVertical="12dp"
         android:layout_marginStart="30dp"
         android:text="@string/compare_tv_low_price"
+        app:layout_constraintEnd_toStartOf="@id/tv_high_grade"
         app:layout_constraintBottom_toTopOf="@id/compare_divier2"
         app:layout_constraintStart_toEndOf="@id/tv_hotel_room"
         app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
@@ -67,21 +68,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:text="@string/compare_tv_high_grade"
         app:layout_constraintBottom_toTopOf="@id/compare_divier2"
-        app:layout_constraintStart_toEndOf="@id/tv_low_price"
-        app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
-
-    <TextView
-        android:id="@+id/tv_facility"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp"
-        android:layout_marginStart="30dp"
-        android:text="@string/compare_tv_facility"
-        app:layout_constraintBottom_toTopOf="@id/compare_divier2"
-        app:layout_constraintStart_toEndOf="@id/tv_high_grade"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
 
     <com.google.android.material.divider.MaterialDivider
