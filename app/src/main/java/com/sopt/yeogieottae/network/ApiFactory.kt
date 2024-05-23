@@ -33,5 +33,5 @@ object ApiFactory {
 }
 
 object ServicePool {
-    val authService = ApiFactory.create<YeogieottaeService>()
+    val YeogieottaeService = ApiFactory.create<YeogieottaeService>()
 }
