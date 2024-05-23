@@ -8,7 +8,8 @@ import com.sopt.yeogieottae.databinding.ItemHotelRoomBinding
 
 class HotelRoomViewHolder(
     private val binding: ItemHotelRoomBinding,
-    private val ItemClickEvent: (Room) -> Unit
+    private val ItemClickEvent: (Room) -> Unit,
+    private val RoomClickEvent: (Room) -> Unit
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -29,7 +30,9 @@ class HotelRoomViewHolder(
     private fun initButton(room: Room) {
         binding.ivRoomFavoriteBtn.setOnClickListener {
             ItemClickEvent(room)
-            updateLikeBtn(room.is_liked)
+        }
+        binding.root.setOnClickListener {
+            RoomClickEvent(room)
         }
     }
 
@@ -40,11 +43,9 @@ class HotelRoomViewHolder(
     }
 
     private fun loadImage(imageUrl: String) {
-        val imageSize = binding.ivRoom.width
         Glide.with(binding.ivRoom.context)
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
-            .override(imageSize, imageSize)
             .into(binding.ivRoom)
     }
 }

@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.databinding.ItemHotelRoomBinding
 
-class HotelRoomListAdapter(private val ItemClickEvent: (Room) -> Unit) :
+class HotelRoomListAdapter(
+    private val ItemClickEvent: (Room) -> Unit,
+    private val RoomClickEvent: (Room) -> Unit
+) :
     ListAdapter<Room, RecyclerView.ViewHolder>(roomDiffer) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
@@ -17,7 +20,8 @@ class HotelRoomListAdapter(private val ItemClickEvent: (Room) -> Unit) :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ), ItemClickEvent
+            ),
+            ItemClickEvent, RoomClickEvent
         )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
