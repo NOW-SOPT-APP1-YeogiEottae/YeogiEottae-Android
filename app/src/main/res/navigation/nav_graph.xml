@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/fragment_compareEmty"
-        android:name="com.sopt.yeogieottae.ui.compare.empty.CompareEmptyFragment"
+        android:name="com.sopt.yeogieottae.ui.compare.CompareEmptyFragment"
         android:label="CompareEmtyFragment"
         tools:layout="@layout/fragment_compare_empty" />
 
