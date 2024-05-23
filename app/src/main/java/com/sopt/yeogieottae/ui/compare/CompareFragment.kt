@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentCompareBinding
-import com.sopt.yeogieottae.ui.compare.empty.CompareEmptyFragment
 import com.sopt.yeogieottae.util.BaseFragment
 
 class CompareFragment : BaseFragment<FragmentCompareBinding>(

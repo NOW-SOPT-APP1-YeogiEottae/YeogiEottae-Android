@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.sopt.yeogieottae.databinding.FragmentCompareNotEmptyBinding
-import com.sopt.yeogieottae.ui.compare.empty.BottomSheetFragment
 import com.sopt.yeogieottae.util.BaseFragment
 import kotlinx.coroutines.launch
 

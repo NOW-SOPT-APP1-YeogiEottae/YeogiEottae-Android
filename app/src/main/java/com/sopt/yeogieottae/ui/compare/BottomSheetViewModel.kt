@@ -1,4 +1,4 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

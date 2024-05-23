@@ -1,4 +1,4 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.databinding.FragmentBottomSheetBinding
 import com.sopt.yeogieottae.network.ServicePool
 import com.sopt.yeogieottae.network.request.RequestRoomId
-import com.sopt.yeogieottae.ui.compare.CompareViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

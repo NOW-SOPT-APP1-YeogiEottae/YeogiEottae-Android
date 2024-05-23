@@ -1,4 +1,4 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

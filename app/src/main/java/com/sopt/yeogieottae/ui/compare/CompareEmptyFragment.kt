@@ -1,8 +1,9 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import android.os.Bundle
 import android.view.View
 import com.sopt.yeogieottae.databinding.FragmentCompareEmptyBinding
+import com.sopt.yeogieottae.ui.compare.BottomSheetFragment
 import com.sopt.yeogieottae.util.BaseFragment
 
 class CompareEmptyFragment : BaseFragment<FragmentCompareEmptyBinding>(
