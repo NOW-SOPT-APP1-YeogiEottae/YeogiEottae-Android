@@ -111,7 +111,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private suspend fun postRoomIds(roomIdRequest: RequestRoomId) {
         try {
-            val response = ServicePool.authService.postCompare(roomIdRequest)
+            val response = ServicePool.YeogieottaeService.postCompare(roomIdRequest)
 
             if (response.isSuccessful) {
                 compareViewModel.fetchCompareData()

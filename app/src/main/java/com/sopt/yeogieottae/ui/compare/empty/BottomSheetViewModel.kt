@@ -28,7 +28,7 @@ class BottomSheetViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response: Response<ResponseCompareLikesDto> =
-                    ServicePool.authService.getCompare()
+                    ServicePool.YeogieottaeService.getCompare()
                 if (response.isSuccessful) {
                     response.body()?.result?.roomList?.let { rooms ->
                         _roomList.value = rooms
