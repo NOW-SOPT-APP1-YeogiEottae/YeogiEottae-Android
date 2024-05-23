@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="com.sopt.yeogieottae.ui.home.HomeFragment"
+        android:name="com.sopt.yeogieottae.ui.room.RoomFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
 
@@ -44,6 +44,27 @@
         <action
             android:id="@+id/action_hotel_to_room"
             app:destination="@id/fragment_room" />
+        <argument
+            android:name="roomId"
+            app:argType="integer" />
+        <argument
+            android:name="roomName"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="integer" />
+        <argument
+            android:name="startTime"
+            app:argType="string" />
+        <argument
+            android:name="endTime"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+        <argument
+            android:name="isLiked"
+            app:argType="boolean" />
     </fragment>
 
     <fragment
@@ -60,7 +81,29 @@
         android:id="@+id/fragment_room"
         android:name="com.sopt.yeogieottae.ui.room.RoomFragment"
         android:label="RoomFragment"
-        tools:layout="@layout/fragment_room" />
+        tools:layout="@layout/fragment_room" >
+        <argument
+            android:name="roomId"
+            app:argType="integer" />
+        <argument
+            android:name="roomName"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="integer" />
+        <argument
+            android:name="startTime"
+            app:argType="string" />
+        <argument
+            android:name="endTime"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+        <argument
+            android:name="isLiked"
+            app:argType="boolean" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_search"

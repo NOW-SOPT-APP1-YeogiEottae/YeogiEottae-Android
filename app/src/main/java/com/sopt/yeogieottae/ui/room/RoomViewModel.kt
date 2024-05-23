@@ -1,29 +1,26 @@
 package com.sopt.yeogieottae.ui.room
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.sopt.yeogieottae.data.model.Room
+import com.sopt.yeogieottae.network.ServicePool
+import com.sopt.yeogieottae.network.request.RequestLikeDto
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class RoomViewModel : ViewModel() {
-    private val _Room = MutableLiveData<Room>()
-    val Room: LiveData<Room>
-        get() = _Room
+    private val _room = MutableLiveData<Room>()
+    val room: LiveData<Room>
+        get() = _room
 
     private val _detail = MutableLiveData<Detail>()
     val detail: LiveData<Detail>
         get() = _detail
 
     init {
-        _Room.value = Room(
-            room_id = 1,
-            room_name = "스탠다드 트윈룸",
-            price = 156900,
-            start_time = "15:00",
-            end_time = "11:00",
-            image_url = "",
-            is_liked = true
-        )
         _detail.value = Detail(
             information = listOf(
                 "2인 기준 최대 3인 (유료)",
@@ -45,6 +42,52 @@ class RoomViewModel : ViewModel() {
                 "예약 후 10분 경과 시엔 해당 숙소의 취소 및 환불 규정이 적용됩니다.",
             )
         )
+    }
+
+    fun setRoomData(
+        room: Room
+    ) {
+        _room.value = room
+    }
+
+    fun postLikeRoom() {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.postLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = _room.value?.room_id ?: 0)
+                )
+            }.onSuccess {
+                _room.value?.is_liked = true
+                Log.d("Room - postLike", "postLike: ${_room.value?.is_liked}")
+            }.onFailure { e ->
+                if (e is HttpException) Log.d(
+                    "Room - postLike",
+                    "postLike Http:${e.message} "
+                )
+                Log.d("Room - postLike", "postLike Message: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteLikeRoom() {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.deleteLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = _room.value?.room_id ?: 0)
+                )
+            }.onSuccess {
+                _room.value?.is_liked = false
+                Log.d("Room - delLike", "deleteLikeRoom: ${_room.value?.is_liked}")
+            }.onFailure { e ->
+                if (e is HttpException) Log.d(
+                    "Room - delLike",
+                    "deleteLikeError Http:${e.message} "
+                )
+                Log.d("Room - delLike", "deleteLikeError Message: ${e.message}")
+            }
+        }
     }
 
     data class Detail(

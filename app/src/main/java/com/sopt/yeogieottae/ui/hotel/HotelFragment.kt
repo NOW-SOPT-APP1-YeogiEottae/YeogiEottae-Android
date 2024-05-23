@@ -3,6 +3,7 @@ package com.sopt.yeogieottae.ui.hotel
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentHotelBinding
@@ -89,6 +90,18 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
             { room ->
                 if (room.is_liked) viewModel.deleteLikeRoom(room.room_id)
                 else viewModel.postLikeRoom(room.room_id)
+            },
+            { room ->
+                val action = HotelFragmentDirections.actionHotelToRoom(
+                    roomId = room.room_id,
+                    roomName = room.room_name,
+                    price = room.price,
+                    startTime = room.start_time,
+                    endTime = room.end_time,
+                    imageUrl = room.image_url,
+                    isLiked = room.is_liked
+                )
+                findNavController().navigate(action)
             }
         )
         binding.rvRoom.adapter = hotelRoomListAdapter

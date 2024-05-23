@@ -23,22 +23,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="19dp" />
+                app:layout_constraintGuide_begin="20dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/gl_room_detail_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="19dp" />
+                app:layout_constraintGuide_end="20dp" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_room_detail"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="360:284"
                 android:src="@drawable/ic_launcher_background"
+                app:layout_constraintDimensionRatio="360:284"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,10 +47,9 @@
                 android:id="@+id/layout_room_detail_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp"
                 android:paddingVertical="26dp"
                 app:layout_constraintEnd_toEndOf="@id/gl_room_detail_end"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/gl_room_detail_start"
                 app:layout_constraintTop_toBottomOf="@id/iv_room_detail">
 
                 <TextView
@@ -74,20 +73,23 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_room_detail_room_name" />
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/btn_room_detail_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/bg_white_radius_19dp"
-                    android:backgroundTint="@color/gray_200"
+                    android:background="@color/gray_200"
+                    android:elevation="-1dp"
+                    android:padding="5dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_room_favorite"
                     app:layout_constraintEnd_toEndOf="@id/iv_room_favorite"
                     app:layout_constraintStart_toStartOf="@id/iv_room_favorite"
-                    app:layout_constraintTop_toTopOf="@id/iv_room_favorite" />
+                    app:layout_constraintTop_toTopOf="@id/iv_room_favorite"
+                    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_room_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="12dp"
                     android:src="@drawable/ic_favorite"
                     app:layout_constraintBottom_toBottomOf="@id/tv_room_detail_room_option"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -257,6 +259,7 @@
                             app:layout_constraintStart_toStartOf="@id/tv_room_detail_check_in"
                             app:layout_constraintTop_toBottomOf="@id/tv_room_detail_check_in" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <View
                         android:id="@+id/view_vertical_bar"
                         android:layout_width="3dp"
