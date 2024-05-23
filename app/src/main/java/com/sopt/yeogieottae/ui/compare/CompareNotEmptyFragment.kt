@@ -23,6 +23,7 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
         setupRecyclerView()
         observeViewModel()
         setupClickListeners()
+        setupFragmentResultListener()
     }
 
     private fun initCompareViewModel() {
@@ -69,6 +70,13 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
             toggleEditMode()
         }
     }
+
+    private fun setupFragmentResultListener() {
+        parentFragmentManager.setFragmentResultListener("requestRoom", viewLifecycleOwner) { _, _ ->
+            compareViewModel.fetchCompareData()
+        }
+    }
+
 
     private fun toggleEditMode() {
         isEditMode = !isEditMode

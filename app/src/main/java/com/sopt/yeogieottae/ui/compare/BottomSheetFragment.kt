@@ -5,26 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.databinding.FragmentBottomSheetBinding
-import com.sopt.yeogieottae.network.ServicePool
 import com.sopt.yeogieottae.network.request.RequestRoomId
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentBottomSheetBinding? = null
     private val binding: FragmentBottomSheetBinding
         get() = requireNotNull(_binding) { "FragmentBottomSheetBinding is not initialized" }
 
-    private val bottomSheetViewModel: BottomSheetViewModel by viewModels()
     private lateinit var compareViewModel: CompareViewModel
     private lateinit var adapter: LikeListAdapter
 
@@ -78,21 +71,21 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             } else {
                 selectedRoomIds.remove(roomId)
             }
-            bottomSheetViewModel.updateSelectedCount(isSelected)
+            compareViewModel.updateSelectedCount(isSelected)
         }
         binding.recyclerView.adapter = adapter
     }
 
     private fun observeViewModel() {
-        bottomSheetViewModel.count.observe(viewLifecycleOwner) { count ->
+        compareViewModel.count.observe(viewLifecycleOwner) { count ->
             binding.tvCount.text = count.toString()
         }
 
-        bottomSheetViewModel.roomList.observe(viewLifecycleOwner) { compareLikesRooms ->
+        compareViewModel.roomList.observe(viewLifecycleOwner) { compareLikesRooms ->
             adapter.submitList(compareLikesRooms)
         }
 
-        bottomSheetViewModel.message.observe(viewLifecycleOwner) { message ->
+        compareViewModel.message.observe(viewLifecycleOwner) { message ->
             Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
         }
     }
@@ -101,27 +94,12 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding.ivBgAddBtn.setOnClickListener {
             if (selectedRoomIds.isNotEmpty()) {
                 val roomIdRequest = RequestRoomId(roomId = selectedRoomIds.toList())
-                CoroutineScope(Dispatchers.Main).launch {
-                    postRoomIds(roomIdRequest)
-                }
-            }
-            dismiss()
-        }
-    }
-
-    private suspend fun postRoomIds(roomIdRequest: RequestRoomId) {
-        try {
-            val response = ServicePool.YeogieottaeService.postCompare(roomIdRequest)
-
-            if (response.isSuccessful) {
-                compareViewModel.fetchCompareData()
+                compareViewModel.postRoomIds(roomIdRequest)
+                parentFragmentManager.setFragmentResult("requestRoom", Bundle())
+                dismiss()
             } else {
-                val rawJson = response.errorBody()?.string() ?: "No error message provided"
-                val error = JSONObject(rawJson).optString("message", "error message")
-                Snackbar.make(binding.root, error, Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "선택된 방이 없습니다.", Snackbar.LENGTH_SHORT).show()
             }
-        } catch (e: Exception) {
-            Snackbar.make(binding.root, "네트워크 전송 오류 발생.", Snackbar.LENGTH_SHORT).show()
         }
     }
 
