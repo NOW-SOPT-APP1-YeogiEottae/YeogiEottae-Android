@@ -71,4 +71,5 @@ dependencies {
     implementation libs.glide.compiler
 
     implementation libs.amarjain07
+    implementation 'com.github.Zardozz:fixedheadertablelayout:0.0.0.5'
 }

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="10dp"
-    android:layout_marginStart="20dp"
     android:elevation="10dp">
 
     <TextView
@@ -22,19 +21,19 @@
         android:id="@+id/tv_money_basic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="30,000"
         android:textColor="@color/gray_700"
-        app:layout_constraintBottom_toTopOf="@id/tv_price"
-        app:layout_constraintEnd_toEndOf="@id/tv_price"
+        app:layout_constraintBottom_toTopOf="@id/tv_Price"
+        app:layout_constraintEnd_toEndOf="@id/tv_Price"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_price"
+        android:id="@+id/tv_Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:text="400,000만원"
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
         android:textColor="@color/gray_900"
@@ -51,11 +50,11 @@
         android:layout_marginEnd="3dp"
         android:src="@drawable/ic_star_rate"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_money_basic"
+        app:layout_constraintStart_toEndOf="@id/tv_Price"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_review_rate"
+        android:id="@+id/tv_review_Rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="4.6"
@@ -74,7 +73,7 @@
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b4"
         android:textColor="@color/gray_850"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_review_rate"
+        app:layout_constraintStart_toEndOf="@id/tv_review_Rate"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

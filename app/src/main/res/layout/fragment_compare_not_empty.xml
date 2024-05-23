@@ -24,79 +24,32 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="15dp"
         android:text="수정완료"
-        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b3"
         android:textColor="@color/secondary_600"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/compare_divier1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_btn_edit" />
-
-    <TextView
-        android:id="@+id/tv_hotel_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp"
-        android:layout_marginStart="32dp"
-        android:gravity="center_vertical"
-        android:text="@string/compare_tv_hotel_room"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
-
-    <TextView
-        android:id="@+id/tv_low_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp"
-        android:layout_marginStart="30dp"
-        android:text="@string/compare_tv_low_price"
-        app:layout_constraintEnd_toStartOf="@id/tv_high_grade"
-        app:layout_constraintBottom_toTopOf="@id/compare_divier2"
-        app:layout_constraintStart_toEndOf="@id/tv_hotel_room"
-        app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
-
-    <TextView
-        android:id="@+id/tv_high_grade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:text="@string/compare_tv_high_grade"
-        app:layout_constraintBottom_toTopOf="@id/compare_divier2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/compare_divier2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/rv_compare"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_hotel_room" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_compare"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/iv_plus_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/compare_divier2"
-        tools:listitem="@layout/item_compare_room" />
+        app:layout_constraintTop_toBottomOf="@id/tv_btn_edit">
+
+        <com.github.zardozz.FixedHeaderTableLayout.FixedHeaderTableLayout
+            android:id="@+id/fixedHeaderTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="true"
+            android:scrollbarSize="10dp"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="horizontal|vertical"
+            app:fhtl_max_scale="1.5" />
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/iv_plus_btn"
@@ -106,7 +59,7 @@
         android:src="@drawable/ic_plus"
         app:layout_constraintBottom_toTopOf="@id/iv_bg_reserve_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_compare" />
+        app:layout_constraintTop_toBottomOf="@id/scrollView" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_bg_reserve_btn"
