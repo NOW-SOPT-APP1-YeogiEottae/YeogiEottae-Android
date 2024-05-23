@@ -1,10 +1,10 @@
 package com.sopt.yeogieottae.ui.hotel
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentHotelBinding
@@ -16,10 +16,13 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
 ) {
     private val viewModel: HotelViewModel by viewModels()
     private lateinit var hotelRoomListAdapter: HotelRoomListAdapter
-    val hotelId = 1
+    private val args: HotelFragmentArgs by navArgs()
+    private var hotelId: Int = 0
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hotelId = args.hotelId
         initAdapter()
         observeViewModel()
         viewModel.getHotelInfo(hotelId)
