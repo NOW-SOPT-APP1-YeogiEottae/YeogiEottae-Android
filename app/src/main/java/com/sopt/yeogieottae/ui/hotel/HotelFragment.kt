@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentHotelBinding
 import com.sopt.yeogieottae.util.BaseFragment
@@ -72,15 +73,17 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
     }
 
     private fun updateHotelImage() {
-        binding.ivHotel.setImageResource(
-            when (hotelId % 5) {
-                0 -> R.drawable.img_hotel_0
-                1 -> R.drawable.img_hotel_1
-                2 -> R.drawable.img_hotel_2
-                3 -> R.drawable.img_hotel_3
-                else -> R.drawable.img_hotel_4
-            }
-        )
+        val imageUrl = when (hotelId ) {
+            1 -> "https://bit.ly/4bF6NHO"
+            2 -> "https://bit.ly/3VbEMCl"
+            3 -> "https://bit.ly/3wB5DxY"
+            4 -> "https://bit.ly/4dKfFxp"
+            else -> "https://bit.ly/3K43Lkm"
+        }
+        Glide.with(binding.ivHotel)
+            .load(imageUrl)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .into(binding.ivHotel)
     }
 
     private fun updateHotelInfoView(hotelInfo: HotelViewModel.Hotel_info) {
@@ -112,4 +115,5 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
         binding.rvRoom.adapter = hotelRoomListAdapter
         binding.rvRoom.layoutManager = LinearLayoutManager(requireContext())
     }
+
 }
