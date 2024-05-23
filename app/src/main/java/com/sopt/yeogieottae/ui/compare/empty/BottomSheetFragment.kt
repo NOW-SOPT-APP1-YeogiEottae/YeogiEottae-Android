@@ -106,6 +106,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                     postRoomIds(roomIdRequest)
                 }
             }
+            dismiss()
         }
     }
 
