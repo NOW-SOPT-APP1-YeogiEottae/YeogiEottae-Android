@@ -84,7 +84,7 @@ class HotelViewModel : ViewModel() {
         viewModelScope.launch {
             runCatching {
                 ServicePool.yeogieottaeService.postLike(
-                    0,
+                    1,
                     requestLikeDto = RequestLikeDto(id = roomId)
                 )
             }.onSuccess { response ->
@@ -104,7 +104,7 @@ class HotelViewModel : ViewModel() {
         viewModelScope.launch {
             runCatching {
                 ServicePool.yeogieottaeService.deleteLike(
-                    0,
+                    1,
                     requestLikeDto = RequestLikeDto(id = roomId)
                 )
             }.onSuccess { response ->

@@ -1,6 +1,7 @@
 package com.sopt.yeogieottae.ui.hotel
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -61,6 +62,7 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
             tvTotalReview.text = hotel.review_count.toString()
             tvMap.text = hotel.location
             ivRoomFavorite.setImageResource(
+
                 if (hotel.is_liked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
             )
         }
