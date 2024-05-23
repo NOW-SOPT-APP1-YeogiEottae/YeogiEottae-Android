@@ -1,7 +1,7 @@
 package com.sopt.yeogieottae.ui.compare
 
-import android.app.AlertDialog
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,7 +9,6 @@ import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.ItemCompareRoomBinding
 import com.sopt.yeogieottae.network.response.ResponseCompareRoom
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 class OuterViewHolder(
     private val binding: ItemCompareRoomBinding,
@@ -21,13 +20,13 @@ class OuterViewHolder(
     private var isSelected = false
 
     fun bind(item: ResponseCompareRoom, isEditMode: Boolean) {
-        setupView(item, isEditMode)
+        setupView(item)
         setupInnerAdapter(item, isEditMode)
         setupClickListeners(item, isEditMode)
         toggleEditModeViews(isEditMode)
     }
 
-    private fun setupView(item: ResponseCompareRoom, isEditMode: Boolean) {
+    private fun setupView(item: ResponseCompareRoom) {
         binding.apply {
             tvRoomName.text = item.roomName
             tvHotelName.text = item.hotelName
@@ -38,9 +37,9 @@ class OuterViewHolder(
     }
 
     private fun setupInnerAdapter(item: ResponseCompareRoom, isEditMode: Boolean) {
-        val innerAdapter = InnerAdapter { innerItem ->
+        val innerAdapter = InnerAdapter { _ ->
             if (!isEditMode) {
-                toggleSelection(innerItem.roomId)
+                toggleSelection()
             }
         }
         binding.rvCompareDetail.adapter = innerAdapter
@@ -51,12 +50,12 @@ class OuterViewHolder(
         binding.apply {
             ivCheckbox.setOnClickListener {
                 if (!isEditMode) {
-                    toggleSelection(item.roomId)
+                    toggleSelection()
                 }
             }
 
             ivDelete.setOnClickListener {
-                showDeleteDialog(item)
+                showDeleteDialog(item.roomId)
             }
 
             root.setOnClickListener {
@@ -74,7 +73,7 @@ class OuterViewHolder(
         }
     }
 
-    private fun toggleSelection(roomId: Int) {
+    private fun toggleSelection() {
         isSelected = !isSelected
         updateSelection(isSelected)
     }
@@ -92,16 +91,11 @@ class OuterViewHolder(
         }
     }
 
-    private fun showDeleteDialog(item: ResponseCompareRoom) {
-        AlertDialog.Builder(binding.root.context)
-            .setTitle("방 삭제")
-            .setMessage("진짜 삭제?")
-            .setPositiveButton("ㅇㅇ") { _, _ ->
-                coroutineScope.launch {
-                    deleteCompareRoom(item.roomId)
-                }
-            }
-            .setNegativeButton("ㄴㄴ", null)
-            .show()
+    private fun showDeleteDialog(roomId: Int) {
+        val dialogFragment = DeleteDialogFragment(deleteCompareRoom, roomId, coroutineScope)
+        dialogFragment.show(
+            (binding.root.context as AppCompatActivity).supportFragmentManager,
+            "CustomDeleteDialog"
+        )
     }
 }
