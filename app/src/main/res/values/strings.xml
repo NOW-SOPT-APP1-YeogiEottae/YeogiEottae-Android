@@ -67,7 +67,7 @@
     <string name="hotel_name">호텔 이름</string>
     <string name="hotel_location">위치</string>
     <string name="hotel_location2">삼성역 도보 5분</string>
-    <string name="hotel_review_count">2,710개 평가</string>
+    <string name="hotel_review_count">%,3d개 평가</string>
     <string name="hotel_discount_percent">10%</string>
     <string name="hotel_coupon">쿠폰적용시</string>
     <string name="hotel_discount_price">30,000원</string>
@@ -87,8 +87,8 @@
     <string name="like_date">5.2 목 - 5.3 금</string>
     <string name="like_people">2명</string>
 
-    <string name="undo">실행취소</string>
-    <string name="go_directly">바로이동</string>
+    <string name="undo">실행 취소</string>
+    <string name="go_directly">찜으로 이동</string>
 
     <!--팝업-->
     <string name="favorite_hotel_delete">찜에서 삭제하기</string>

@@ -1,9 +1,15 @@
 package com.sopt.yeogieottae.ui.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sopt.yeogieottae.network.ServicePool
+import com.sopt.yeogieottae.network.request.RequestLikeDto
 import com.sopt.yeogieottae.network.response.Hotel
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class SearchViewModel : ViewModel() {
     private val _hotels = MutableLiveData<List<Hotel>>()
@@ -72,5 +78,51 @@ class SearchViewModel : ViewModel() {
             )
         )
         _hotels.value = hotelData
+    }
+
+    fun postLikeHotel(hotelId: Int) {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.postLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = hotelId)
+                )
+            }.onSuccess { response ->
+                response.body()?.message.let {
+                    _hotels.value = _hotels.value?.map { hotel ->
+                        if (hotel.hotelId == hotelId) hotel.copy(isLiked = true) else hotel
+                    }
+                    Log.d("Hotel- postLike", "postLike: $it")
+                }
+
+            }.onFailure { e ->
+                Log.d("Hotel- postLike", "setLikeHotel: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteLikeHotel(hotelId: Int) {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.deleteLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = hotelId)
+                )
+            }.onSuccess { response ->
+                response.body()?.let {
+                    Log.d("Hotel- delLike", "deleteLike: $it")
+                }
+                _hotels.value = _hotels.value?.map { hotel ->
+                    if (hotel.hotelId == hotelId) hotel.copy(isLiked = false) else hotel
+                }
+            }.onFailure { e ->
+                if (e is HttpException) Log.d(
+                    "Hotel- delLike",
+                    "deleteLikeError Http:${e.message} "
+                )
+                Log.d("Hotel- delLike", "deleteLikeError: $e")
+                Log.d("Hotel- delLike", "deleteLikeError Message: ${e.message}")
+            }
+        }
     }
 }

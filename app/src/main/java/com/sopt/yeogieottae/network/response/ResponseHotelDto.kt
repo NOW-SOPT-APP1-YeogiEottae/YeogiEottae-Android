@@ -51,5 +51,3 @@ data class ResponseHotelDto(
         )
     }
 }
-
-
