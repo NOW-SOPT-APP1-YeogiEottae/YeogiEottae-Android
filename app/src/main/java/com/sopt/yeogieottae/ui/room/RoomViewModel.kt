@@ -6,24 +6,15 @@ import androidx.lifecycle.ViewModel
 import com.sopt.yeogieottae.data.model.Room
 
 class RoomViewModel : ViewModel() {
-    private val _Room = MutableLiveData<Room>()
-    val Room: LiveData<Room>
-        get() = _Room
+    private val _room = MutableLiveData<Room>()
+    val room: LiveData<Room>
+        get() = _room
 
     private val _detail = MutableLiveData<Detail>()
     val detail: LiveData<Detail>
         get() = _detail
 
     init {
-        _Room.value = Room(
-            room_id = 1,
-            room_name = "스탠다드 트윈룸",
-            price = 156900,
-            start_time = "15:00",
-            end_time = "11:00",
-            image_url = "",
-            is_liked = true
-        )
         _detail.value = Detail(
             information = listOf(
                 "2인 기준 최대 3인 (유료)",
@@ -45,6 +36,12 @@ class RoomViewModel : ViewModel() {
                 "예약 후 10분 경과 시엔 해당 숙소의 취소 및 환불 규정이 적용됩니다.",
             )
         )
+    }
+
+    fun setRoomData(
+        room: Room
+    ) {
+        _room.value = room
     }
 
     data class Detail(
