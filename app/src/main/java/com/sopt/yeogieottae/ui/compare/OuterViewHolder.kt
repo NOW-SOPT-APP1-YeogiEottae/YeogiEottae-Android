@@ -21,25 +21,37 @@ class OuterViewHolder(
     private var isSelected = false
 
     fun bind(item: ResponseCompareRoom, isEditMode: Boolean) {
+        setupView(item, isEditMode)
+        setupInnerAdapter(item, isEditMode)
+        setupClickListeners(item, isEditMode)
+        toggleEditModeViews(isEditMode)
+    }
+
+    private fun setupView(item: ResponseCompareRoom, isEditMode: Boolean) {
         binding.apply {
             tvRoomName.text = item.roomName
             tvHotelName.text = item.hotelName
-
             Glide.with(ivRoom.context)
                 .load(item.imageUrl)
                 .into(ivRoom)
+        }
+    }
 
-            val innerAdapter = InnerAdapter { innerItem ->
-                if (!isEditMode) {
-                    toggleSelection(innerItem.roomId, isEditMode)
-                }
+    private fun setupInnerAdapter(item: ResponseCompareRoom, isEditMode: Boolean) {
+        val innerAdapter = InnerAdapter { innerItem ->
+            if (!isEditMode) {
+                toggleSelection(innerItem.roomId)
             }
-            rvCompareDetail.adapter = innerAdapter
-            innerAdapter.submitList(listOf(item))
+        }
+        binding.rvCompareDetail.adapter = innerAdapter
+        innerAdapter.submitList(listOf(item))
+    }
 
+    private fun setupClickListeners(item: ResponseCompareRoom, isEditMode: Boolean) {
+        binding.apply {
             ivCheckbox.setOnClickListener {
                 if (!isEditMode) {
-                    toggleSelection(item.roomId, isEditMode)
+                    toggleSelection(item.roomId)
                 }
             }
 
@@ -52,17 +64,19 @@ class OuterViewHolder(
                     onRoomSelected(item)
                 }
             }
+        }
+    }
 
+    private fun toggleEditModeViews(isEditMode: Boolean) {
+        binding.apply {
             ivCheckbox.visibility = if (isEditMode) View.INVISIBLE else View.VISIBLE
             ivDelete.visibility = if (isEditMode) View.VISIBLE else View.INVISIBLE
         }
     }
 
-    private fun toggleSelection(roomId: Int, isEditMode: Boolean) {
-        if (!isEditMode) {
-            isSelected = !isSelected
-            updateSelection(isSelected)
-        }
+    private fun toggleSelection(roomId: Int) {
+        isSelected = !isSelected
+        updateSelection(isSelected)
     }
 
     private fun updateSelection(isSelected: Boolean) {
@@ -82,7 +96,7 @@ class OuterViewHolder(
         AlertDialog.Builder(binding.root.context)
             .setTitle("방 삭제")
             .setMessage("진짜 삭제?")
-            .setPositiveButton("ㅇㅇ") { dialog, which ->
+            .setPositiveButton("ㅇㅇ") { _, _ ->
                 coroutineScope.launch {
                     deleteCompareRoom(item.roomId)
                 }

@@ -15,7 +15,6 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
 ) {
     private lateinit var compareViewModel: CompareViewModel
     private lateinit var outerAdapter: OuterAdapter
-
     private var isEditMode = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,18 +23,7 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
         initCompareViewModel()
         setupRecyclerView()
         observeViewModel()
-
-        binding.ivPlusBtn.setOnClickListener {
-            BottomSheetFragment().show(parentFragmentManager, "BottomSheetFragment")
-        }
-
-        binding.tvBtnEdit.setOnClickListener {
-            toggleEditMode()
-        }
-
-        binding.tvBtnEditDone.setOnClickListener {
-            toggleEditMode()
-        }
+        setupClickListeners()
     }
 
     private fun initCompareViewModel() {
@@ -45,7 +33,7 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
     private fun setupRecyclerView() {
         outerAdapter = OuterAdapter(
             onRoomSelected = { room ->
-                ///todo 선택된 방을 처리 하는 로직 추가
+                // TODO 호텔 이동 로직
             },
             deleteCompareRoom = { roomId ->
                 lifecycleScope.launch {
@@ -66,6 +54,20 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
 
         compareViewModel.message.observe(viewLifecycleOwner) { message ->
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setupClickListeners() {
+        binding.ivPlusBtn.setOnClickListener {
+            BottomSheetFragment().show(parentFragmentManager, "BottomSheetFragment")
+        }
+
+        binding.tvBtnEdit.setOnClickListener {
+            toggleEditMode()
+        }
+
+        binding.tvBtnEditDone.setOnClickListener {
+            toggleEditMode()
         }
     }
 
