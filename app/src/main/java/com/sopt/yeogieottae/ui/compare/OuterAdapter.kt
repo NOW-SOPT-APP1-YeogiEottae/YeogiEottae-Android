@@ -2,28 +2,49 @@ package com.sopt.yeogieottae.ui.compare
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.sopt.yeogieottae.databinding.ItemCompareRoomBinding
+import com.sopt.yeogieottae.network.response.ResponseCompareRoom
+import kotlinx.coroutines.CoroutineScope
 
-data class OuterItem(
-    val imageUrl: String,
-    val roomName: String,
-    val hotelName: String,
-    val details: InnerItem
-)
+class OuterAdapter(
+    private val onRoomSelected: (ResponseCompareRoom) -> Unit,
+    private val deleteCompareRoom: suspend (Int) -> Unit,
+    private val coroutineScope: CoroutineScope,
+) : ListAdapter<ResponseCompareRoom, OuterViewHolder>(OuterDiffCallback()) {
 
-class OuterAdapter(private val items: List<OuterItem>) : RecyclerView.Adapter<OuterViewHolder>() {
+    private var isEditMode = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OuterViewHolder {
-        val binding = ItemCompareRoomBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OuterViewHolder(binding)
+        val binding =
+            ItemCompareRoomBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return OuterViewHolder(binding, onRoomSelected, deleteCompareRoom, coroutineScope)
     }
 
     override fun onBindViewHolder(holder: OuterViewHolder, position: Int) {
-        holder.bind(items[position])
+        val item = getItem(position)
+        holder.bind(item, isEditMode)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
+    fun setEditMode(isEditMode: Boolean) {
+        this.isEditMode = isEditMode
+        notifyDataSetChanged()
+    }
+
+    class OuterDiffCallback : DiffUtil.ItemCallback<ResponseCompareRoom>() {
+        override fun areItemsTheSame(
+            oldItem: ResponseCompareRoom,
+            newItem: ResponseCompareRoom,
+        ): Boolean {
+            return oldItem.roomId == newItem.roomId
+        }
+
+        override fun areContentsTheSame(
+            oldItem: ResponseCompareRoom,
+            newItem: ResponseCompareRoom,
+        ): Boolean {
+            return oldItem == newItem
+        }
     }
 }
