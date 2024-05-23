@@ -11,6 +11,7 @@
         android:id="@+id/tv_money_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="4dp"
         android:text="10%"
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b7"
