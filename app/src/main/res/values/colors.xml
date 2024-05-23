@@ -41,4 +41,6 @@
     <color name="star_dark2">#FFAC09</color>
     <color name="cuation">#CA0101</color>
 
+    <color name="transparent">#00ff0000</color>
+
 </resources>
