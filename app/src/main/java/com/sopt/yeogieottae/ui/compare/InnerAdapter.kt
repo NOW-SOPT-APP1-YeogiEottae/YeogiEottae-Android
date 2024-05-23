@@ -2,28 +2,32 @@ package com.sopt.yeogieottae.ui.compare
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.sopt.yeogieottae.databinding.ItemCompareDetailBinding
+import com.sopt.yeogieottae.network.response.ResponseCompareRoom
 
-data class InnerItem(
-    val money: String,
-    val starRate: String,
-    val reviewCount: String
-)
-
-class InnerAdapter(private val items: List<InnerItem>) : RecyclerView.Adapter<InnerViewHolder>() {
+class InnerAdapter(
+    private val onItemClicked: (ResponseCompareRoom) -> Unit
+) : ListAdapter<ResponseCompareRoom, InnerViewHolder>(InnerDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerViewHolder {
-        val binding =
-            ItemCompareDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return InnerViewHolder(binding)
+        val binding = ItemCompareDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return InnerViewHolder(binding, onItemClicked)
     }
 
     override fun onBindViewHolder(holder: InnerViewHolder, position: Int) {
-        holder.bind(items[position])
+        val item = getItem(position)
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
+    class InnerDiffCallback : DiffUtil.ItemCallback<ResponseCompareRoom>() {
+        override fun areItemsTheSame(oldItem: ResponseCompareRoom, newItem: ResponseCompareRoom): Boolean {
+            return oldItem.roomId == newItem.roomId
+        }
+
+        override fun areContentsTheSame(oldItem: ResponseCompareRoom, newItem: ResponseCompareRoom): Boolean {
+            return oldItem == newItem
+        }
     }
 }
