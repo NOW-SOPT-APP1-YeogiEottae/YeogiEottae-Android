@@ -25,6 +25,7 @@ class CompareViewModel : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
+
     init {
         fetchCompareData()
         fetchRoomList()
