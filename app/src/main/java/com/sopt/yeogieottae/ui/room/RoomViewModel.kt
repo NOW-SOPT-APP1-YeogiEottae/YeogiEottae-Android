@@ -1,9 +1,15 @@
 package com.sopt.yeogieottae.ui.room
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.sopt.yeogieottae.data.model.Room
+import com.sopt.yeogieottae.network.ServicePool
+import com.sopt.yeogieottae.network.request.RequestLikeDto
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class RoomViewModel : ViewModel() {
     private val _room = MutableLiveData<Room>()
@@ -42,6 +48,46 @@ class RoomViewModel : ViewModel() {
         room: Room
     ) {
         _room.value = room
+    }
+
+    fun postLikeRoom() {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.postLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = _room.value?.room_id ?: 0)
+                )
+            }.onSuccess {
+                _room.value?.is_liked = true
+                Log.d("Room - postLike", "postLike: ${_room.value?.is_liked}")
+            }.onFailure { e ->
+                if (e is HttpException) Log.d(
+                    "Room - postLike",
+                    "postLike Http:${e.message} "
+                )
+                Log.d("Room - postLike", "postLike Message: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteLikeRoom() {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.deleteLike(
+                    0,
+                    requestLikeDto = RequestLikeDto(id = _room.value?.room_id ?: 0)
+                )
+            }.onSuccess {
+                _room.value?.is_liked = false
+                Log.d("Room - delLike", "deleteLikeRoom: ${_room.value?.is_liked}")
+            }.onFailure { e ->
+                if (e is HttpException) Log.d(
+                    "Room - delLike",
+                    "deleteLikeError Http:${e.message} "
+                )
+                Log.d("Room - delLike", "deleteLikeError Message: ${e.message}")
+            }
+        }
     }
 
     data class Detail(

@@ -22,6 +22,7 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
         super.onViewCreated(view, savedInstanceState)
         initArgs()
         setupView()
+        initBtnEvent()
     }
 
     private fun initArgs() {
@@ -46,6 +47,7 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
         setupRoomFacilities()
         setupRoomCancelPolicy()
         setupRoomImage()
+        setupImage()
     }
 
     private fun setupRoomName() {
@@ -86,5 +88,25 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
             .load(roomViewModel.room.value?.image_url.orEmpty())
             .placeholder(R.drawable.ic_launcher_foreground) // Placeholder 이미지 설정
             .into(binding.ivRoomDetail)
+    }
+
+    private fun initBtnEvent() {
+        binding.btnRoomDetailBtn.setOnClickListener {
+            if (roomViewModel.room.value?.is_liked ?: true) {
+                roomViewModel.deleteLikeRoom()
+                binding.ivRoomFavorite.setImageResource(R.drawable.ic_favorite)
+            } else {
+                roomViewModel.postLikeRoom()
+                binding.ivRoomFavorite.setImageResource(R.drawable.ic_favorite_room_on)
+            }
+        }
+    }
+
+    private fun setupImage() {
+        binding.ivRoomFavorite.setImageResource(
+            if (roomViewModel.room.value?.is_liked
+                    ?: true
+            ) R.drawable.ic_favorite_room_on else R.drawable.ic_favorite
+        )
     }
 }
