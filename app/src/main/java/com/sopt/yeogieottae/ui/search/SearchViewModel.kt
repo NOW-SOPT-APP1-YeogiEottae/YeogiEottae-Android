@@ -55,7 +55,7 @@ class SearchViewModel : ViewModel() {
             ),
             Hotel(
                 hotelId = 4,
-                hotelName = "그랜드 인터컨티넨탈 파르나스",
+                hotelName = "나인트리 프리미어 로카우스 호텔 서울 용산",
                 location = "건대입구역 도보 3분",
                 type = "호텔",
                 reviewRate = 9.4,
@@ -98,9 +98,16 @@ class SearchViewModel : ViewModel() {
                 _hotels.value = _hotels.value?.map { hotel ->
                     if (hotel.hotelId == hotelId) hotel.copy(isLiked = isLiked) else hotel
                 }
-                Log.d("Hotel - ${if (isLiked) "post" else "delete"}Like", "Like status updated for hotelId: $hotelId")
+                Log.d(
+                    "Hotel - ${if (isLiked) "post" else "delete"}Like",
+                    "Like status updated for hotelId: $hotelId"
+                )
             }.onFailure { e ->
-                Log.e("Hotel - ${if (isLiked) "post" else "delete"}Like", "Error updating like status: ${e.message}", e)
+                Log.e(
+                    "Hotel - ${if (isLiked) "post" else "delete"}Like",
+                    "Error updating like status: ${e.message}",
+                    e
+                )
             }
         }
     }

@@ -81,6 +81,7 @@
                 android:id="@+id/tv_hotel_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxWidth="300dp"
                 android:text="그랜드 인터컨피넨탈 파르나스"
                 android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h1"
                 android:textColor="@color/gray_950"
