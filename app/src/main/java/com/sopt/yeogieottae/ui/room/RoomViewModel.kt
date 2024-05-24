@@ -45,47 +45,36 @@ class RoomViewModel : ViewModel() {
     }
 
     fun setRoomData(
-        room: Room
+        room: Room,
     ) {
         _room.value = room
     }
 
     fun postLikeRoom() {
-        viewModelScope.launch {
-            runCatching {
-                ServicePool.yeogieottaeService.postLike(
-                    1,
-                    requestLikeDto = RequestLikeDto(id = _room.value?.room_id ?: 0)
-                )
-            }.onSuccess {
-                _room.value?.is_liked = true
-                Log.d("Room - postLike", "postLike: ${_room.value?.is_liked}")
-            }.onFailure { e ->
-                if (e is HttpException) Log.d(
-                    "Room - postLike",
-                    "postLike Http:${e.message} "
-                )
-                Log.d("Room - postLike", "postLike Message: ${e.message}")
-            }
-        }
+        handleLikeAction(isLike = true)
     }
 
     fun deleteLikeRoom() {
+        handleLikeAction(isLike = false)
+    }
+
+    private fun handleLikeAction(isLike: Boolean) {
         viewModelScope.launch {
             runCatching {
-                ServicePool.yeogieottaeService.deleteLike(
-                    1,
-                    requestLikeDto = RequestLikeDto(id = _room.value?.room_id ?: 0)
-                )
+                val roomId = _room.value?.roomId ?: 0
+                if (isLike) {
+                    ServicePool.yeogieottaeService.postLike(1, RequestLikeDto(roomId))
+                } else {
+                    ServicePool.yeogieottaeService.deleteLike(1, RequestLikeDto(roomId))
+                }
             }.onSuccess {
-                _room.value?.is_liked = false
-                Log.d("Room - delLike", "deleteLikeRoom: ${_room.value?.is_liked}")
-            }.onFailure { e ->
-                if (e is HttpException) Log.d(
-                    "Room - delLike",
-                    "deleteLikeError Http:${e.message} "
+                _room.value = _room.value?.copy(isLiked = isLike)
+                Log.d(
+                    "Room - ${if (isLike) "post" else "delete"}Like",
+                    "Like: ${_room.value?.isLiked}"
                 )
-                Log.d("Room - delLike", "deleteLikeError Message: ${e.message}")
+            }.onFailure { e ->
+                Log.e("Room - ${if (isLike) "post" else "delete"}Like", "Error: ${e.message}", e)
             }
         }
     }
@@ -95,5 +84,4 @@ class RoomViewModel : ViewModel() {
         var facilities: List<String>,
         var cancel: List<String>,
     )
-
 }

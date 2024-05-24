@@ -8,6 +8,7 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.DialogDeleteBinding
+import com.sopt.yeogieottae.databinding.FragmentBottomSheetBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -18,7 +19,8 @@ class DeleteDialogFragment(
 ) : DialogFragment() {
 
     private var _binding: DialogDeleteBinding? = null
-    private val binding get() = _binding!!
+    private val binding: DialogDeleteBinding
+        get() = requireNotNull(_binding) { "DialogDeleteBinding is not initialized" }
 
     override fun onCreateView(
         inflater: LayoutInflater,

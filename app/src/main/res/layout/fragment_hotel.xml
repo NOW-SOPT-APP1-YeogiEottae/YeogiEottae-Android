@@ -242,7 +242,7 @@
                 android:layout_marginTop="24dp"
                 android:paddingHorizontal="4dp"
                 android:paddingVertical="5dp"
-                android:src="@drawable/img_toss"
+                android:src="@drawable/img_tosspay"
                 app:layout_constraintStart_toStartOf="@id/iv_pay"
                 app:layout_constraintTop_toBottomOf="@id/iv_pay" />
 

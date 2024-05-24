@@ -8,44 +8,28 @@ import com.sopt.yeogieottae.databinding.ItemHotelRoomBinding
 
 class HotelRoomViewHolder(
     private val binding: ItemHotelRoomBinding,
-    private val ItemClickEvent: (Room) -> Unit,
-    private val RoomClickEvent: (Room) -> Unit
-) :
-    RecyclerView.ViewHolder(binding.root) {
+    private val itemClickEvent: (Room) -> Unit,
+    private val roomClickEvent: (Room) -> Unit,
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(room: Room) {
-        initView(room)
-        loadImage(room.image_url)
-        initButton(room)
-    }
-
-    private fun initView(room: Room) {
         with(binding) {
-            tvRoomName.text = room.room_name
-            tvRoomPrice.text = binding.root.context.getString(R.string.all_price_Int, room.price)
-            updateLikeBtn(room.is_liked)
+            tvRoomName.text = room.roomName
+            tvRoomPrice.text = root.context.getString(R.string.all_price_Int, room.price)
+            updateLikeButton(room.isLiked)
+            ivRoomFavoriteBtn.setOnClickListener { itemClickEvent(room) }
+            root.setOnClickListener { roomClickEvent(room) }
+            Glide.with(ivRoom.context)
+                .load(room.imageUrl)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(ivRoom)
         }
+
     }
 
-    private fun initButton(room: Room) {
-        binding.ivRoomFavoriteBtn.setOnClickListener {
-            ItemClickEvent(room)
-        }
-        binding.root.setOnClickListener {
-            RoomClickEvent(room)
-        }
-    }
-
-    private fun updateLikeBtn(is_liked: Boolean) {
+    private fun updateLikeButton(isLiked: Boolean) {
         binding.ivRoomFavorite.setImageResource(
-            if (is_liked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
+            if (isLiked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
         )
-    }
-
-    private fun loadImage(imageUrl: String) {
-        Glide.with(binding.ivRoom.context)
-            .load(imageUrl)
-            .placeholder(R.drawable.ic_launcher_foreground)
-            .into(binding.ivRoom)
     }
 }

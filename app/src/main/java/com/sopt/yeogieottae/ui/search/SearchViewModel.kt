@@ -9,18 +9,17 @@ import com.sopt.yeogieottae.network.ServicePool
 import com.sopt.yeogieottae.network.request.RequestLikeDto
 import com.sopt.yeogieottae.network.response.Hotel
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 class SearchViewModel : ViewModel() {
     private val _hotels = MutableLiveData<List<Hotel>>()
     val hotels: LiveData<List<Hotel>> get() = _hotels
 
     init {
-        fetchHotelResponse()
+        fetchHotels()
     }
 
-    fun fetchHotelResponse() {
-        val hotelData = listOf(
+    private fun fetchHotels() {
+        _hotels.value = listOf(
             Hotel(
                 hotelId = 1,
                 hotelName = "그랜드 인터컨티넨탈 파르나스",
@@ -77,51 +76,31 @@ class SearchViewModel : ViewModel() {
                 isLiked = false
             )
         )
-        _hotels.value = hotelData
     }
 
     fun postLikeHotel(hotelId: Int) {
-        viewModelScope.launch {
-            runCatching {
-                ServicePool.yeogieottaeService.postLike(
-                    0,
-                    requestLikeDto = RequestLikeDto(id = hotelId)
-                )
-            }.onSuccess { response ->
-                response.body()?.message.let {
-                    _hotels.value = _hotels.value?.map { hotel ->
-                        if (hotel.hotelId == hotelId) hotel.copy(isLiked = true) else hotel
-                    }
-                    Log.d("Hotel- postLike", "postLike: $it")
-                }
-
-            }.onFailure { e ->
-                Log.d("Hotel- postLike", "setLikeHotel: ${e.message}")
-            }
-        }
+        updateLikeStatus(hotelId, true)
     }
 
     fun deleteLikeHotel(hotelId: Int) {
+        updateLikeStatus(hotelId, false)
+    }
+
+    private fun updateLikeStatus(hotelId: Int, isLiked: Boolean) {
         viewModelScope.launch {
             runCatching {
-                ServicePool.yeogieottaeService.deleteLike(
-                    0,
-                    requestLikeDto = RequestLikeDto(id = hotelId)
-                )
-            }.onSuccess { response ->
-                response.body()?.let {
-                    Log.d("Hotel- delLike", "deleteLike: $it")
+                if (isLiked) {
+                    ServicePool.yeogieottaeService.postLike(0, RequestLikeDto(id = hotelId))
+                } else {
+                    ServicePool.yeogieottaeService.deleteLike(0, RequestLikeDto(id = hotelId))
                 }
+            }.onSuccess {
                 _hotels.value = _hotels.value?.map { hotel ->
-                    if (hotel.hotelId == hotelId) hotel.copy(isLiked = false) else hotel
+                    if (hotel.hotelId == hotelId) hotel.copy(isLiked = isLiked) else hotel
                 }
+                Log.d("Hotel - ${if (isLiked) "post" else "delete"}Like", "Like status updated for hotelId: $hotelId")
             }.onFailure { e ->
-                if (e is HttpException) Log.d(
-                    "Hotel- delLike",
-                    "deleteLikeError Http:${e.message} "
-                )
-                Log.d("Hotel- delLike", "deleteLikeError: $e")
-                Log.d("Hotel- delLike", "deleteLikeError Message: ${e.message}")
+                Log.e("Hotel - ${if (isLiked) "post" else "delete"}Like", "Error updating like status: ${e.message}", e)
             }
         }
     }
