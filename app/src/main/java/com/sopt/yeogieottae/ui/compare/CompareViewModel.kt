@@ -25,7 +25,6 @@ class CompareViewModel : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
-
     init {
         fetchCompareData()
         fetchRoomList()
@@ -107,6 +106,10 @@ class CompareViewModel : ViewModel() {
                 _count.value = currentCount - 1
             }
         }
+    }
+
+    fun resetCount() {
+        _count.value = INITIAL
     }
 
     companion object {
