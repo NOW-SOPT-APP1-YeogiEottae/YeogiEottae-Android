@@ -1,5 +1,8 @@
 package com.sopt.yeogieottae.ui.compare
 
+import android.net.http.HttpException
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,17 +18,17 @@ class CompareViewModel : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
+
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun fetchCompareData() {
         viewModelScope.launch {
-            try {
-                val response = ServicePool.authService.compare()
-                if (response.isSuccessful) {
-                    _compareResponse.value = response.body()
-                } else {
-                    _message.value = "CompareViewModel 응답 실패"
-                }
-            } catch (e: Exception) {
-                _message.value = "CompareViewModel 에러"
+            runCatching {
+                ServicePool.authService.compare()
+            }.onSuccess { response ->
+                _compareResponse.value = response.body()
+            }.onFailure { e ->
+                if(e is HttpException)  _message.value = "CompareViewModel 응답 실패"
+                else _message.value = "CompareViewModel 에러"
             }
         }
     }
