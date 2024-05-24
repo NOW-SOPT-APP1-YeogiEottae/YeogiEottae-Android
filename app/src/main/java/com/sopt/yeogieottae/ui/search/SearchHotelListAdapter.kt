@@ -1,35 +1,34 @@
 package com.sopt.yeogieottae.ui.search
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.sopt.yeogieottae.network.response.Hotel
 import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 
-class SearchHotelListAdapter(private val searchViewModel: SearchViewModel) :
-    RecyclerView.Adapter<SearchViewHolder>() {
-    private var hotels = ArrayList<Hotel>()
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setItems(items: List<Hotel>) {
-        this.hotels.clear()
-        this.hotels.addAll(items)
-        notifyDataSetChanged()
-    }
+class SearchHotelListAdapter(
+    private val searchViewModel: SearchViewModel,
+    private val itemClickEvent: (Int) -> Unit
+) : ListAdapter<Hotel, SearchViewHolder>(HotelDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val binding =
-            ItemHotelListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchViewHolder(binding, searchViewModel)
+        val binding = ItemHotelListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SearchViewHolder(binding, searchViewModel, itemClickEvent)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        val hotel = hotels[position]
+        val hotel = getItem(position)
         holder.bind(hotel)
     }
+}
 
-    override fun getItemCount(): Int {
-        return hotels.size
+class HotelDiffCallback : DiffUtil.ItemCallback<Hotel>() {
+    override fun areItemsTheSame(oldItem: Hotel, newItem: Hotel): Boolean {
+        return oldItem.hotelId == newItem.hotelId
+    }
+
+    override fun areContentsTheSame(oldItem: Hotel, newItem: Hotel): Boolean {
+        return oldItem == newItem
     }
 }

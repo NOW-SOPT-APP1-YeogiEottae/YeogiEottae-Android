@@ -13,9 +13,9 @@ import com.sopt.yeogieottae.network.response.Hotel
 class SearchViewHolder(
     private val binding: com.sopt.yeogieottae.databinding.ItemHotelListBinding,
     private val searchViewModel: SearchViewModel,
+    private val itemClickEvent: (Int) -> Unit,
 ) :
     RecyclerView.ViewHolder(binding.root) {
-    private var searchFragment = SearchFragment()
 
     fun bind(item: Hotel) {
         loadImage(item.imageUrl)
@@ -25,7 +25,6 @@ class SearchViewHolder(
     }
 
     private fun loadImage(imageUrl: String) {
-        val imageSize = binding.ivSearchlistHotelImg.width
         Glide.with(binding.ivSearchlistHotelImg.context)
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
@@ -71,7 +70,7 @@ class SearchViewHolder(
         }
 
         binding.root.setOnClickListener {
-            searchFragment.navigateToHotel(hotelData.hotelId)
+            itemClickEvent(hotelData.hotelId)
         }
     }
 

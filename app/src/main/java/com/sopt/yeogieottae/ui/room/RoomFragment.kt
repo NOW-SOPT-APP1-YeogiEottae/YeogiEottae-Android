@@ -1,10 +1,13 @@
 package com.sopt.yeogieottae.ui.room
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.databinding.FragmentRoomBinding
@@ -93,9 +96,23 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
     private fun initBtnEvent() {
         binding.btnRoomDetailBtn.setOnClickListener {
             if (roomViewModel.room.value?.is_liked ?: true) {
+                createSnackBar(
+                    binding.root,
+                    "Custom Snackbar",
+                    Snackbar.LENGTH_SHORT
+                ).apply {
+                    setOnHotelLike()
+                }.show()
                 roomViewModel.deleteLikeRoom()
                 binding.ivRoomFavorite.setImageResource(R.drawable.ic_favorite)
             } else {
+                createSnackBar(
+                    binding.root,
+                    "Custom Snackbar",
+                    Snackbar.LENGTH_SHORT
+                ).apply {
+                    setOffHotelLike()
+                }.show()
                 roomViewModel.postLikeRoom()
                 binding.ivRoomFavorite.setImageResource(R.drawable.ic_favorite_room_on)
             }
@@ -108,5 +125,43 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
                     ?: true
             ) R.drawable.ic_favorite_room_on else R.drawable.ic_favorite
         )
+    }
+
+    private fun createSnackBar(view: View, message: String, duration: Int): Snackbar {
+        return Snackbar.make(view, message, duration)
+    }
+
+    // 호텔찜 on snackbar
+    @SuppressLint("RestrictedApi")
+    private fun Snackbar.setOnHotelLike() {
+        val customLayout =
+            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_on_layout, null)
+
+        val snackBarLayout = this.view as Snackbar.SnackbarLayout
+        snackBarLayout.apply {
+            setPadding(0, 0, 0, 30)
+            removeAllViews()
+            addView(customLayout)
+
+            // 배경색을 투명하게 설정
+            background = null
+        }
+    }
+
+    // off snackbar
+    @SuppressLint("RestrictedApi")
+    private fun Snackbar.setOffHotelLike() {
+        val customLayout =
+            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_off_layout, null)
+
+        val snackBarLayout = this.view as Snackbar.SnackbarLayout
+        snackBarLayout.apply {
+            setPadding(0, 0, 0, 30)
+            removeAllViews()
+            addView(customLayout)
+
+            // 배경색을 투명하게 설정
+            background = null
+        }
     }
 }

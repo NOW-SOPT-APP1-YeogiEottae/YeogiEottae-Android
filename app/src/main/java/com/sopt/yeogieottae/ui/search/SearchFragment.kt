@@ -13,11 +13,13 @@ import com.sopt.yeogieottae.util.BaseFragment
 class SearchFragment : BaseFragment<FragmentSearchBinding>(
     FragmentSearchBinding::inflate
 ) {
-    private val hotelListAdapter by lazy { SearchHotelListAdapter(searchViewModel) }
+    private lateinit var hotelListAdapter: SearchHotelListAdapter
     private val searchViewModel: SearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //hotelListAdapter 연결
+        initAdapter()
 
         // 호텔 리사이클러뷰 연결
         initHotelListView()
@@ -29,6 +31,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         initFilterExceptView()
     }
 
+    private fun initAdapter() {
+        hotelListAdapter = SearchHotelListAdapter(searchViewModel) { hotelId ->
+            navigateToHotel(hotelId)
+        }
+    }
+
     // 호텔 리사이클러뷰
     private fun initHotelListView() {
         binding.rvSearchlistHotellist.adapter = hotelListAdapter
@@ -38,7 +46,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
     private fun initObserver() {
         searchViewModel.hotels.observe(viewLifecycleOwner) { hotels ->
             hotels?.let {
-                hotelListAdapter.setItems(hotels)
+                hotelListAdapter.submitList(hotels)
             }
         }
     }
