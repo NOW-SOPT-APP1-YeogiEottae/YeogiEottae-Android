@@ -24,9 +24,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="15dp"
         android:text="수정완료"
-        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b3"
         android:textColor="@color/secondary_600"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,22 +58,40 @@
         android:layout_marginVertical="12dp"
         android:layout_marginStart="30dp"
         android:text="@string/compare_tv_low_price"
-        app:layout_constraintEnd_toStartOf="@id/tv_high_grade"
         app:layout_constraintBottom_toTopOf="@id/compare_divier2"
+        app:layout_constraintEnd_toStartOf="@id/tv_high_grade"
         app:layout_constraintStart_toEndOf="@id/tv_hotel_room"
         app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_expand_all"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_low_price"
+        app:layout_constraintStart_toEndOf="@id/tv_low_price"
+        app:layout_constraintTop_toTopOf="@id/tv_low_price" />
 
     <TextView
         android:id="@+id/tv_high_grade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:text="@string/compare_tv_high_grade"
         app:layout_constraintBottom_toTopOf="@id/compare_divier2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/compare_divier1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_expand_all"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_high_grade"
+        app:layout_constraintStart_toEndOf="@id/tv_high_grade"
+        app:layout_constraintTop_toTopOf="@id/tv_high_grade" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/compare_divier2"
