@@ -1,11 +1,13 @@
 package com.sopt.yeogieottae.ui.compare
 
 import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.RequiresExtension
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -32,6 +34,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -91,6 +94,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     private fun initAddButton() {
         binding.ivBgAddBtn.setOnClickListener {
             if (selectedRoomIds.isNotEmpty()) {

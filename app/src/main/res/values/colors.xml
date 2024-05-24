@@ -43,4 +43,9 @@
 
     <color name="transparent">#00ff0000</color>
 
+    <!--SnackBar-->
+    <color name="snackbar_go">#3D95FB</color>
+
+    <!--PopUo-->
+    <color name="popup_bg">#4D000000</color>
 </resources>

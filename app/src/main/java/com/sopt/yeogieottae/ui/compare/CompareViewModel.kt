@@ -1,5 +1,8 @@
 package com.sopt.yeogieottae.ui.compare
 
+import android.net.http.HttpException
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,7 +36,7 @@ class CompareViewModel : ViewModel() {
     fun fetchCompareData() {
         viewModelScope.launch {
             try {
-                val response = ServicePool.YeogieottaeService.compare()
+                val response = ServicePool.yeogieottaeService.compare()
                 if (response.isSuccessful) {
                     _compareResponse.value = response.body()
                 } else {
@@ -48,7 +51,7 @@ class CompareViewModel : ViewModel() {
     private fun fetchRoomList() {
         viewModelScope.launch {
             try {
-                val response = ServicePool.YeogieottaeService.getCompare()
+                val response = ServicePool.yeogieottaeService.getCompare()
                 if (response.isSuccessful) {
                     response.body()?.result?.roomList?.let { rooms ->
                         _roomList.value = rooms
@@ -66,7 +69,7 @@ class CompareViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response =
-                    ServicePool.YeogieottaeService.deleteCompare(RequestDeleteRoomId(roomId))
+                    ServicePool.yeogieottaeService.deleteCompare(RequestDeleteRoomId(roomId))
                 if (response.isSuccessful) {
                     fetchCompareData()
                 } else {
@@ -81,7 +84,7 @@ class CompareViewModel : ViewModel() {
     fun postRoomIds(roomIdRequest: RequestRoomId) {
         viewModelScope.launch {
             try {
-                val response = ServicePool.YeogieottaeService.postCompare(roomIdRequest)
+                val response = ServicePool.yeogieottaeService.postCompare(roomIdRequest)
                 if (response.isSuccessful) {
                     fetchCompareData()
                 } else {
