@@ -46,10 +46,11 @@
         <!-- 호텔 이름 -->
         <TextView
             android:id="@+id/tv_favoritehotel_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
+            android:maxWidth="250dp"
             android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h5"
             android:textColor="@color/gray_900"
             app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_img"
@@ -73,10 +74,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="4dp"
             android:src="@drawable/ic_star_rate"
             app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
-            app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_img" />
+            app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_img"
+            app:layout_constraintTop_toBottomOf="@id/tv_favoritehotel_name" />
 
         <!-- 호텔 별점 텍스트 -->
         <TextView
@@ -86,7 +87,7 @@
             android:layout_marginStart="5dp"
             android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L3"
             android:textColor="@color/gray_900"
-            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
+            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_star"
             app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_star"
             tools:text="별점 텍스트" />
 
@@ -110,7 +111,7 @@
             android:text="@string/hotel_location2"
             android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
             android:textColor="@color/gray_850"
-            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_img"
+            app:layout_constraintBottom_toBottomOf="@id/iv_favoritehotel_star"
             app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_circle" />
 
         <!-- 호텔 상세보기 버튼 -->
@@ -278,8 +279,8 @@
         android:id="@+id/lo_favoritehotel_empty_likeroom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginHorizontal="15dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -290,10 +291,9 @@
             android:id="@+id/v_favoritehotel_emptybg"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="12dp"
             android:background="@drawable/bg_favorite_hotel_list"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="322:120"
+            app:layout_constraintDimensionRatio="322:130"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -304,6 +304,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:paddingBottom="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -317,8 +318,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="40:40"
                 android:src="@drawable/img_favorite_hotel"
+                app:layout_constraintDimensionRatio="40:40"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -329,6 +330,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
+                android:maxWidth="200dp"
                 android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h5"
                 android:textColor="@color/gray_900"
                 app:layout_constraintStart_toEndOf="@id/iv_favoritehotel_img_empty"
@@ -408,9 +410,9 @@
                 android:id="@+id/tv_favoritehotel_emptyroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="26dp"
                 android:text="@string/like_empty_room"
-                android:layout_marginHorizontal="15dp"
                 android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L2"
                 android:textColor="@color/gray_850"
                 app:layout_constraintStart_toStartOf="parent"
@@ -426,6 +428,7 @@
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="@id/tv_favoritehotel_emptyroom"
                 app:layout_constraintTop_toBottomOf="@id/tv_favoritehotel_emptyroom" />
+
             <!-- 찜하기 버튼 -->
             <TextView
                 android:id="@+id/tv_favoritehotel_start_likeroom"
