@@ -41,4 +41,9 @@
     <color name="star_dark2">#FFAC09</color>
     <color name="cuation">#CA0101</color>
 
+    <!--SnackBar-->
+    <color name="snackbar_go">#3D95FB</color>
+
+    <!--PopUo-->
+    <color name="popup_bg">#4D000000</color>
 </resources>

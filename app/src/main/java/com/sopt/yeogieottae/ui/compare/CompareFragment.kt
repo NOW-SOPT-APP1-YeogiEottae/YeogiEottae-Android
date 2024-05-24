@@ -1,7 +1,9 @@
 package com.sopt.yeogieottae.ui.compare
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresExtension
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -15,6 +17,7 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>(
 ) {
     private lateinit var compareViewModel: CompareViewModel
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -22,6 +25,7 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>(
         observeCompareViewModel()
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     private fun initCompareViewModel() {
         compareViewModel = ViewModelProvider(requireActivity())[CompareViewModel::class.java]
         compareViewModel.fetchCompareData()

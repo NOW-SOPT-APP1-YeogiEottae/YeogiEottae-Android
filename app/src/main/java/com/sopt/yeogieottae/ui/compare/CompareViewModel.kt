@@ -23,7 +23,7 @@ class CompareViewModel : ViewModel() {
     fun fetchCompareData() {
         viewModelScope.launch {
             runCatching {
-                ServicePool.authService.compare()
+                ServicePool.yeogieottaeService.compare()
             }.onSuccess { response ->
                 _compareResponse.value = response.body()
             }.onFailure { e ->

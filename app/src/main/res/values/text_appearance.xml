@@ -133,5 +133,4 @@
         <item name="android:textFontWeight">600</item>
         <item name="android:fontFamily">@font/pretendard_variable</item>
     </style>
-
 </resources>
