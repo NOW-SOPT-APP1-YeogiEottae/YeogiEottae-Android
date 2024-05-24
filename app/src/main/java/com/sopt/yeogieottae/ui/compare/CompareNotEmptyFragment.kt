@@ -2,9 +2,9 @@ package com.sopt.yeogieottae.ui.compare
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.databinding.FragmentCompareNotEmptyBinding
 import com.sopt.yeogieottae.util.BaseFragment
 import kotlinx.coroutines.launch
@@ -53,7 +53,7 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
         }
 
         compareViewModel.message.observe(viewLifecycleOwner) { message ->
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
         }
     }
 
