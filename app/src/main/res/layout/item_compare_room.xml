@@ -3,39 +3,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_height="wrap_content" >
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_room"
+    <ImageView
+        android:id="@+id/iv_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ic_uncheckbox"
+        app:layout_constraintBottom_toTopOf="@id/iv_room"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <HorizontalScrollView
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/ic_delete"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/iv_room"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_room"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_checkbox"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small" />
+
+    <TextView
+        android:id="@+id/tv_room_name"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="@id/iv_room"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="디럭스 리버 트윈"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b3"
+        android:textColor="@color/gray_900"
+        app:layout_constraintEnd_toEndOf="@id/iv_room"
+        app:layout_constraintStart_toStartOf="@id/iv_room"
+        app:layout_constraintTop_toBottomOf="@id/iv_room" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@id/tv_room_name"
+        app:layout_constraintStart_toEndOf="@id/tv_room_name"
+        app:layout_constraintTop_toTopOf="@id/tv_room_name" />
+
+    <TextView
+        android:id="@+id/tv_hotel_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="스카이 베이 호텔 경포"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_L4"
+        android:textColor="@color/gray_600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/iv_room"
+        app:layout_constraintStart_toStartOf="@id/iv_room"
+        app:layout_constraintTop_toBottomOf="@id/tv_room_name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_compare_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_room"
-        app:layout_constraintTop_toTopOf="@id/iv_room">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_compare_detail" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_compare_detail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="@id/iv_room"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_room"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_compare_detail" />
-    </HorizontalScrollView>
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/compare_divier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_compare_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

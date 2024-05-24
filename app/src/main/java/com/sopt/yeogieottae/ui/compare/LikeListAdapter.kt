@@ -1,4 +1,4 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,7 +23,10 @@ class LikeListAdapter(private val onCheckedChanged: (Int, Boolean) -> Unit) :
     }
 
     class DiffCallback : DiffUtil.ItemCallback<CompareLikesRoom>() {
-        override fun areItemsTheSame(oldItem: CompareLikesRoom, newItem: CompareLikesRoom): Boolean {
+        override fun areItemsTheSame(
+            oldItem: CompareLikesRoom,
+            newItem: CompareLikesRoom,
+        ): Boolean {
             return oldItem.roomId == newItem.roomId
         }
 

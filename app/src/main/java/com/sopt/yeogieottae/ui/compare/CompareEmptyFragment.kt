@@ -1,4 +1,4 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import android.os.Bundle
 import android.view.View

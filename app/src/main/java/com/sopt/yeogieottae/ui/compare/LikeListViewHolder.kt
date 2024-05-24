@@ -1,7 +1,8 @@
-package com.sopt.yeogieottae.ui.compare.empty
+package com.sopt.yeogieottae.ui.compare
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.ItemCompareLikeListBinding
 import com.sopt.yeogieottae.network.response.CompareLikesRoom
@@ -50,7 +51,7 @@ class LikeListViewHolder(
         } else if (selectedItems.size < 5) {
             selectedItems.add(roomId)
         } else {
-            //스낵비
+            Snackbar.make(binding.root, "5개 까지만 선택 가능", Snackbar.LENGTH_LONG).show()
         }
         updateCheckbox(roomId)
         onCheckedChanged(roomId, !isSelected)

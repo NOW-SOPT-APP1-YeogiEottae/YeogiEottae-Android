@@ -11,11 +11,11 @@ material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
 nav = "2.7.7"
-lifecycle = "2.7.0"
+lifecycle = "2.8.0"
 retrofit = "2.9.0"
 kotlinxSerializationJson = "1.6.3"
 serializationConverter = "1.0.0"
-okhttpBom = "4.10.0"
+okhttpBom = "4.11.0"
 glide = "4.13.0"
 materialVersion = "1.13.0-alpha02"
 roomKtx = "2.6.1"
@@ -52,4 +52,4 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-navigate-safearg = {id = 'androidx.navigation.safeargs.kotlin', version = '2.7.0'}
+navigate-safearg = {id = 'androidx.navigation.safeargs.kotlin', version = '2.7.7'}
