@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_room_snackbar_bg"
+        android:layout_width="274dp"
+        android:layout_height="60dp"
+        android:background="@color/gray_1000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:shapeAppearance="@style/HotelSnackBarBg" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_room_snackbar_bg"
+        app:layout_constraintStart_toStartOf="@id/iv_room_snackbar_bg"
+        app:layout_constraintTop_toTopOf="@id/iv_room_snackbar_bg">
+
+        <TextView
+            android:id="@+id/tv_room_favorite_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorite_hotel_on"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b3"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_add_room_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/favorite_room"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b6"
+            android:textColor="@color/gray_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_room_go_directly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:text="@string/go_directly"
+        android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b3"
+        android:textColor="@color/snackbar_go"
+        app:layout_constraintBottom_toBottomOf="@id/iv_room_snackbar_bg"
+        app:layout_constraintEnd_toEndOf="@id/iv_room_snackbar_bg"
+        app:layout_constraintTop_toTopOf="@id/iv_room_snackbar_bg" />
+</androidx.constraintlayout.widget.ConstraintLayout>

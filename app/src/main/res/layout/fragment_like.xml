@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_like_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:47"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_like_title" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lo_like_title_date"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_marginVertical="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_like_title">
+
+        <View
+            android:id="@+id/v_like_title_date"
+            android:layout_width="157dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="19dp"
+            android:background="@drawable/bg_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_like_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@id/v_like_title_date"
+            app:layout_constraintStart_toStartOf="@id/v_like_title_date"
+            app:layout_constraintTop_toTopOf="@id/v_like_title_date" />
+
+        <TextView
+            android:id="@+id/tv_like_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:gravity="top"
+            android:text="@string/like_date"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h6"
+            android:textColor="@color/gray_900"
+            app:layout_constraintBottom_toBottomOf="@id/v_like_title_date"
+            app:layout_constraintStart_toEndOf="@id/iv_like_calendar"
+            app:layout_constraintTop_toTopOf="@id/v_like_title_date" />
+
+        <View
+            android:id="@+id/v_like_title_people"
+            android:layout_width="66dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/v_like_title_date"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_like_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toBottomOf="@id/v_like_title_people"
+            app:layout_constraintStart_toStartOf="@id/v_like_title_people"
+            app:layout_constraintTop_toTopOf="@id/v_like_title_people" />
+
+        <TextView
+            android:id="@+id/tv_like_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:gravity="top"
+            android:text="@string/like_people"
+            android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h6"
+            android:textColor="@color/gray_900"
+            app:layout_constraintBottom_toBottomOf="@id/v_like_title_people"
+            app:layout_constraintStart_toEndOf="@id/iv_like_people"
+            app:layout_constraintTop_toTopOf="@id/v_like_title_people" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_compare_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/v_like_title_people"
+            app:layout_constraintDimensionRatio="73:40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/v_like_title_people"
+            app:srcCompat="@drawable/ic_compare_cta" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_like_hotellist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lo_like_title_date"
+        tools:listitem="@layout/item_favorite_hotel" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lo_like_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible">
+
+        <View
+            android:id="@+id/v_like_popup_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/popup_bg" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lo_like_popup_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:id="@+id/v_like_popup"
+                android:layout_width="match_parent"
+                android:layout_height="168dp"
+                android:background="@drawable/bg_popup_add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_like_popup_rect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/v_like_popup"
+                app:srcCompat="@drawable/ic_popup_rect" />
+
+            <ImageView
+                android:id="@+id/iv_like_popup_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_like_popup_rect"
+                app:srcCompat="@drawable/ic_popup_delete" />
+
+            <TextView
+                android:id="@+id/tv_like_popup_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/favorite_hotel_delete"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+                android:textColor="@color/gray_850"
+                app:layout_constraintBottom_toBottomOf="@id/iv_like_popup_delete"
+                app:layout_constraintStart_toEndOf="@id/iv_like_popup_delete"
+                app:layout_constraintTop_toTopOf="@id/iv_like_popup_delete" />
+
+            <ImageView
+                android:id="@+id/iv_like_popup_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_like_popup_delete"
+                app:srcCompat="@drawable/ic_popup_plus" />
+
+            <TextView
+                android:id="@+id/tv_like_popup_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/favorite_hotel_add"
+                android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_b1"
+                android:textColor="@color/gray_850"
+                app:layout_constraintBottom_toBottomOf="@id/iv_like_popup_add"
+                app:layout_constraintStart_toEndOf="@id/iv_like_popup_add"
+                app:layout_constraintTop_toTopOf="@id/iv_like_popup_add" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
