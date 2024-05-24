@@ -12,6 +12,9 @@ import com.sopt.yeogieottae.databinding.ItemCompareRoomBinding
 class RoomAdapter :
     ListAdapter<Room, RoomAdapter.HotelViewHolder>(RoomDiffCallback()) {
 
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelViewHolder {
         val binding = ItemCompareRoomBinding.inflate(
             LayoutInflater.from(parent.context),
