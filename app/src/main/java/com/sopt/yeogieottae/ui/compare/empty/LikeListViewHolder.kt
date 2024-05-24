@@ -3,38 +3,32 @@ package com.sopt.yeogieottae.ui.compare.empty
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sopt.yeogieottae.R
-import com.sopt.yeogieottae.data.RoomInformation
-import com.sopt.yeogieottae.databinding.ItemLikeListBinding
+import com.sopt.yeogieottae.databinding.ItemCompareLikeListBinding
+import com.sopt.yeogieottae.network.response.CompareLikesRoom
 
 class LikeListViewHolder(
-    private val binding: ItemLikeListBinding,
+    private val binding: ItemCompareLikeListBinding,
     private val selectedItems: MutableSet<Int>,
-    private val onCheckedChanged: (Boolean) -> Unit,
+    private val onCheckedChanged: (Int, Boolean) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: RoomInformation, position: Int) {
-        loadImage(item.roomImage)
-        setRoomName(item.roomName)
-        updateCheckbox(position)
-        initItemClickListener(position)
+    fun bind(item: CompareLikesRoom) {
+        setRoom(item)
+        updateCheckbox(item.roomId)
+        initItemClickListener(item.roomId)
     }
 
-    private fun loadImage(imageUrl: String) {
-        val imageSize = binding.ivRoomImage.width
+    private fun setRoom(item: CompareLikesRoom) {
         Glide.with(binding.ivRoomImage.context)
-            .load(imageUrl)
-            .placeholder(R.drawable.ic_launcher_foreground)
-            .override(imageSize, imageSize)
-            .centerCrop()
+            .load(item.imageUrl)
             .into(binding.ivRoomImage)
+        binding.tvHotelName.text = item.hotelName
+        binding.tvRoomName.text = item.roomName
+        binding.tvRoomLocation.text = item.location
     }
 
-    private fun setRoomName(roomName: String) {
-        binding.tvRoomName.text = roomName
-    }
-
-    private fun updateCheckbox(position: Int) {
-        val isSelected = selectedItems.contains(position)
+    private fun updateCheckbox(roomId: Int) {
+        val isSelected = selectedItems.contains(roomId)
         binding.root.setBackgroundResource(
             if (isSelected) R.drawable.bg_gray400_radius_10dp else android.R.color.transparent
         )
@@ -43,23 +37,22 @@ class LikeListViewHolder(
         )
     }
 
-    private fun initItemClickListener(position: Int) {
+    private fun initItemClickListener(roomId: Int) {
         binding.root.setOnClickListener {
-            toggleSelection(position)
-        }
-        binding.ivCheckbox.setOnClickListener {
-            toggleSelection(position)
+            toggleSelection(roomId)
         }
     }
 
-    private fun toggleSelection(position: Int) {
-        val isSelected = selectedItems.contains(position)
+    private fun toggleSelection(roomId: Int) {
+        val isSelected = selectedItems.contains(roomId)
         if (isSelected) {
-            selectedItems.remove(position)
+            selectedItems.remove(roomId)
         } else if (selectedItems.size < 5) {
-            selectedItems.add(position)
+            selectedItems.add(roomId)
+        } else {
+            //스낵비
         }
-        updateCheckbox(position)
-        onCheckedChanged(!isSelected)
+        updateCheckbox(roomId)
+        onCheckedChanged(roomId, !isSelected)
     }
 }

@@ -12,6 +12,7 @@
         android:id="@+id/iv_room_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
@@ -20,7 +21,7 @@
         app:shapeAppearance="@style/ShapeAppearance.M3.Sys.Shape.Corner.Small" />
 
     <TextView
-        android:id="@+id/tv_room_kind"
+        android:id="@+id/tv_room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_room_name"
+        android:id="@+id/tv_hotel_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,7 +41,7 @@
         android:textAppearance="@style/TextAppearance.Yeogieotte.Pretendard_h3"
         android:textColor="@color/gray_950"
         app:layout_constraintStart_toEndOf="@id/iv_room_image"
-        app:layout_constraintTop_toBottomOf="@id/tv_room_kind" />
+        app:layout_constraintTop_toBottomOf="@id/tv_room_name" />
 
     <TextView
         android:id="@+id/tv_room_location"
@@ -56,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_room_image"
-        app:layout_constraintTop_toBottomOf="@id/tv_room_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_hotel_name" />
 
     <ImageView
         android:id="@+id/iv_checkbox"

@@ -3,66 +3,56 @@ package com.sopt.yeogieottae.ui.compare.empty
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sopt.yeogieottae.data.RoomInformation
+import androidx.lifecycle.viewModelScope
+import com.sopt.yeogieottae.network.ServicePool
+import com.sopt.yeogieottae.network.response.ResponseCompareLikesDto
+import com.sopt.yeogieottae.network.response.CompareLikesRoom
+import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class BottomSheetViewModel : ViewModel() {
-    private val _selectedCount = MutableLiveData(INITIAL)
-    val selectedCount: LiveData<Int> get() = _selectedCount
+    private val _count = MutableLiveData(INITIAL)
+    val count: LiveData<Int> get() = _count
 
-    fun updateSelectedCount(isSelected: Boolean) {
-        val currentCount = _selectedCount.value ?: INITIAL
-        if (isSelected && currentCount < MAX) {
-            _selectedCount.value = currentCount + 1
-        } else if (!isSelected && currentCount > INITIAL) {
-            _selectedCount.value = currentCount - 1
+    private val _roomList = MutableLiveData<List<CompareLikesRoom>>()
+    val roomList: LiveData<List<CompareLikesRoom>> get() = _roomList
+
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String> get() = _message
+
+    init {
+        fetchRoomList()
+    }
+
+    private fun fetchRoomList() {
+        viewModelScope.launch {
+            try {
+                val response: Response<ResponseCompareLikesDto> =
+                    ServicePool.yeogieottaeService.getCompare()
+                if (response.isSuccessful) {
+                    response.body()?.result?.roomList?.let { rooms ->
+                        _roomList.value = rooms
+                    }
+                } else {
+                    _message.value = "BottomSheetViewmodel 응답 실패"
+                }
+            } catch (e: Exception) {
+                _message.value = "BottomSheetViewmodel 오류 발생"
+            }
         }
     }
 
-    fun getExampleItems(): List<RoomInformation> {
-        return listOf(
-            RoomInformation(
-                roomId = 1,
-                roomName = "클래식 킹",
-                roomImage = "https://bit.ly/3QLU662",
-                price = 100
-            ),
-            RoomInformation(
-                roomId = 2,
-                roomName = "주니어 스위트 킹",
-                roomImage = "https://bit.ly/3wBltZv",
-                price = 200
-            ),
-            RoomInformation(
-                roomId = 3,
-                roomName = "디럭스 트윈",
-                roomImage = "https://bit.ly/4bj0Ct4",
-                price = 80
-            ),
-            RoomInformation(
-                roomId = 4,
-                roomName = "디럭스 트윈",
-                roomImage = "https://bit.ly/4bj0Ct4",
-                price = 80
-            ),
-            RoomInformation(
-                roomId = 5,
-                roomName = "디럭스 트윈",
-                roomImage = "https://bit.ly/4bj0Ct4",
-                price = 80
-            ),
-            RoomInformation(
-                roomId = 6,
-                roomName = "디럭스 트윈",
-                roomImage = "https://bit.ly/4bj0Ct4",
-                price = 80
-            ),
-            RoomInformation(
-                roomId = 7,
-                roomName = "디럭스 트윈",
-                roomImage = "https://bit.ly/4bj0Ct4",
-                price = 80
-            )
-        )
+    fun updateSelectedCount(isSelected: Boolean) {
+        val currentCount = _count.value ?: INITIAL
+        if (isSelected) {
+            if (currentCount < MAX) {
+                _count.value = currentCount + 1
+            }
+        } else {
+            if (currentCount > INITIAL) {
+                _count.value = currentCount - 1
+            }
+        }
     }
 
     companion object {

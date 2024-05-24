@@ -1,88 +1,35 @@
 package com.sopt.yeogieottae.ui.compare
 
+import android.net.http.HttpException
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sopt.yeogieottae.data.Room
-/*
+import androidx.lifecycle.viewModelScope
+import com.sopt.yeogieottae.network.ServicePool
+import com.sopt.yeogieottae.network.response.ResponseCompareDto
+import kotlinx.coroutines.launch
+
 class CompareViewModel : ViewModel() {
-    private val _apiResponse = MutableLiveData<ApiResponse>()
-    val apiResponse: LiveData<ApiResponse> get() = _apiResponse
+    private val _compareResponse = MutableLiveData<ResponseCompareDto>()
+    val compareResponse: LiveData<ResponseCompareDto> get() = _compareResponse
 
-    init {
-        setApiResponse(isEmpty = true)
-    }
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String> get() = _message
 
-    fun setApiResponse(isEmpty: Boolean) {
-        _apiResponse.value = if (isEmpty) {
-            ApiResponse(
-                code = 200,
-                success = true,
-                message = "비교하기 목록 불러오기를 성공했습니다.",
-                data = emptyList()
-            )
-        } else {
-            ApiResponse(
-                code = 200,
-                success = true,
-                message = "비교하기 목록 불러오기를 성공했습니다.",
-                data = listOf(
-                    Room(
-                        roomId = 1,
-                        hotelName = "그랜드 인터컨티넨탈 파르나스",
-                        roomType = "클래식 킹",
-                        price = 464640,
-                        reviewRate = 9.4,
-                        reviewCount = 2183,
-                        imageUrl = "image1"
-                    ),
-                    Room(
-                        roomId = 2,
-                        hotelName = "그랜드 인터컨티넨탈 파르나스",
-                        roomType = "주니어 스위트 킹",
-                        price = 608679,
-                        reviewRate = 9.4,
-                        reviewCount = 2183,
-                        imageUrl = "image2"
-                    ),
-                    Room(
-                        roomId = 3,
-                        hotelName = "서울 신라 호텔",
-                        roomType = "디럭스 트윈",
-                        price = 497000,
-                        reviewRate = 9.8,
-                        reviewCount = 1183,
-                        imageUrl = "image3"
-                    ),
-                    Room(
-                        roomId = 4,
-                        hotelName = "서울 신라 호텔",
-                        roomType = "디럭스 트윈",
-                        price = 497000,
-                        reviewRate = 9.8,
-                        reviewCount = 1183,
-                        imageUrl = "image3"
-                    ),
-                    Room(
-                        roomId = 5,
-                        hotelName = "서울 신라 호텔",
-                        roomType = "디럭스 트윈",
-                        price = 497000,
-                        reviewRate = 9.8,
-                        reviewCount = 1183,
-                        imageUrl = "image3"
-                    ),
-                    Room(
-                        roomId = 6,
-                        hotelName = "서울 신라 호텔",
-                        roomType = "디럭스 트윈",
-                        price = 497000,
-                        reviewRate = 9.8,
-                        reviewCount = 1183,
-                        imageUrl = "image3"
-                    )
-                )
-            )
+
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    fun fetchCompareData() {
+        viewModelScope.launch {
+            runCatching {
+                ServicePool.yeogieottaeService.compare()
+            }.onSuccess { response ->
+                _compareResponse.value = response.body()
+            }.onFailure { e ->
+                if(e is HttpException)  _message.value = "CompareViewModel 응답 실패"
+                else _message.value = "CompareViewModel 에러"
+            }
         }
     }
-}*/
+}
