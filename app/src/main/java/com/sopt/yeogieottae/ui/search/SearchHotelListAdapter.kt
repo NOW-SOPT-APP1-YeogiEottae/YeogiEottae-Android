@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.sopt.yeogieottae.network.response.Hotel
 import com.sopt.yeogieottae.databinding.ItemHotelListBinding
+import com.sopt.yeogieottae.network.response.Hotel
 
 class SearchHotelListAdapter(
     private val searchViewModel: SearchViewModel,
@@ -18,8 +18,7 @@ class SearchHotelListAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        val hotel = getItem(position)
-        holder.bind(hotel)
+        holder.bind(getItem(position))
     }
 }
 

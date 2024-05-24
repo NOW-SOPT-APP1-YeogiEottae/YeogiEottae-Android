@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
+import com.sopt.yeogieottae.databinding.ItemHotelListBinding
 import com.sopt.yeogieottae.network.response.Hotel
 
 class SearchViewHolder(
-    private val binding: com.sopt.yeogieottae.databinding.ItemHotelListBinding,
+    private val binding: ItemHotelListBinding,
     private val searchViewModel: SearchViewModel,
-    private val itemClickEvent: (Int) -> Unit,
-) :
-    RecyclerView.ViewHolder(binding.root) {
+    private val itemClickEvent: (Int) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Hotel) {
         loadImage(item.imageUrl)
         setHotelInfo(item)
-        initLikeView(item.isLiked)
-        initClickListner(item)
+        updateLikeView(item.isLiked)
+        initClickListener(item)
     }
 
     private fun loadImage(imageUrl: String) {
@@ -38,87 +38,48 @@ class SearchViewHolder(
             tvHotelName.text = item.hotelName
             tvHotelLocation.text = item.location
             tvHotelStarText.text = item.reviewRate.toString()
-            tvHotelReviewCount.text =
-                itemView.context.getString(R.string.hotel_review_count).format(item.reviewCount)
+            tvHotelReviewCount.text = itemView.context.getString(R.string.hotel_review_count, item.reviewCount)
             tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            tvHotelTotalPrice.text =
-                itemView.context.getString(R.string.all_price).format(item.price)
+            tvHotelTotalPrice.text = itemView.context.getString(R.string.all_price, item.price)
         }
     }
 
-    private fun initClickListner(hotelData: Hotel) {
+    private fun initClickListener(hotel: Hotel) {
         binding.loBtnfavorite.setOnClickListener {
-            // 찜 상태 토글
-            hotelData.isLiked = !hotelData.isLiked
-
-            // 찜 상태에 따라 이미지 변경
-            if (hotelData.isLiked) {
-                binding.ivBtnfavoriteOff.visibility = View.GONE
-                binding.ivBtnfavoriteOn.visibility = View.VISIBLE
-                createSnackBar(it, "Custom Snackbar", Snackbar.LENGTH_SHORT).apply {
-                    setHotelCustomLayout()
-                }.show()
-                searchViewModel.postLikeHotel(hotelData.hotelId)
+            hotel.isLiked = !hotel.isLiked
+            updateLikeView(hotel.isLiked)
+            showSnackBar(it, hotel.isLiked)
+            if (hotel.isLiked) {
+                searchViewModel.postLikeHotel(hotel.hotelId)
             } else {
-                binding.ivBtnfavoriteOff.visibility = View.VISIBLE
-                binding.ivBtnfavoriteOn.visibility = View.GONE
-                createSnackBar(it, "Custom Snackbar", Snackbar.LENGTH_SHORT).apply {
-                    setOffCustomLayout()
-                }.show()
-                searchViewModel.deleteLikeHotel(hotelData.hotelId)
+                searchViewModel.deleteLikeHotel(hotel.hotelId)
             }
         }
 
         binding.root.setOnClickListener {
-            itemClickEvent(hotelData.hotelId)
+            itemClickEvent(hotel.hotelId)
         }
     }
 
-    private fun initLikeView(isLiked: Boolean) {
-        // 찜 상태에 따라 초기 이미지 설정
-        if (isLiked) {
-            binding.ivBtnfavoriteOff.visibility = View.GONE
-            binding.ivBtnfavoriteOn.visibility = View.VISIBLE
-        } else {
-            binding.ivBtnfavoriteOff.visibility = View.VISIBLE
-            binding.ivBtnfavoriteOn.visibility = View.GONE
-        }
+    private fun updateLikeView(isLiked: Boolean) {
+        binding.ivBtnfavoriteOff.visibility = if (isLiked) View.GONE else View.VISIBLE
+        binding.ivBtnfavoriteOn.visibility = if (isLiked) View.VISIBLE else View.GONE
     }
 
-    private fun createSnackBar(view: View, message: String, duration: Int): Snackbar {
-        return Snackbar.make(view, message, duration)
+    private fun showSnackBar(view: View, isLiked: Boolean) {
+        Snackbar.make(view, "Custom Snackbar", Snackbar.LENGTH_SHORT).apply {
+            setCustomLayout(if (isLiked) R.layout.favorite_snackbar_on_layout else R.layout.favorite_snackbar_off_layout)
+        }.show()
     }
 
-    // 호텔찜 on snackbar
     @SuppressLint("RestrictedApi")
-    private fun Snackbar.setHotelCustomLayout() {
-        val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_on_layout, null)
-
+    private fun Snackbar.setCustomLayout(layoutId: Int) {
+        val customLayout = LayoutInflater.from(context).inflate(layoutId, null)
         val snackBarLayout = this.view as Snackbar.SnackbarLayout
         snackBarLayout.apply {
             setPadding(0, 0, 0, 330)
             removeAllViews()
             addView(customLayout)
-
-            // 배경색을 투명하게 설정
-            background = null
-        }
-    }
-
-    // off snackbar
-    @SuppressLint("RestrictedApi")
-    private fun Snackbar.setOffCustomLayout() {
-        val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_off_layout, null)
-
-        val snackBarLayout = this.view as Snackbar.SnackbarLayout
-        snackBarLayout.apply {
-            setPadding(0, 0, 0, 330)
-            removeAllViews()
-            addView(customLayout)
-
-            // 배경색을 투명하게 설정
             background = null
         }
     }
