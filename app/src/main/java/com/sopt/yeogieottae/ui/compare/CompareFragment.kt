@@ -12,17 +12,17 @@ import com.sopt.yeogieottae.util.BaseFragment
 class CompareFragment : BaseFragment<FragmentCompareBinding>(
     FragmentCompareBinding::inflate
 ) {
-    private lateinit var compareViewModel: CompareViewModel
+   // private lateinit var compareViewModel: CompareViewModel
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initCompareViewModel()
-        observeCompareViewModel()
+     //   initCompareViewModel()
+     //   observeCompareViewModel()
     }
 
-    private fun initCompareViewModel() {
+   /* private fun initCompareViewModel() {
         compareViewModel = ViewModelProvider(requireActivity())[CompareViewModel::class.java]
     }
 
@@ -38,5 +38,5 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>(
                 }
             }
         }
-    }
+    }*/
 }

@@ -1,21 +1,7 @@
 package com.sopt.yeogieottae.data
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
-data class ApiResponse(
-    @SerialName("code")
-    val code: Int,
-    @SerialName("success")
-    val success: Boolean,
-    @SerialName("message")
-    val message: String,
-    @SerialName("data")
-    val data: List<Room>,
-)
-
-@Serializable
 data class Room(
     @SerialName("room_id")
     val roomId: Int,

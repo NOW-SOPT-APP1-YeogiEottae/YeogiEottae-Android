@@ -11,7 +11,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sopt.yeogieottae.databinding.FragmentBottomSheetBinding
-import com.sopt.yeogieottae.ui.compare.CompareViewModel
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentBottomSheetBinding? = null
@@ -19,7 +18,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         get() = requireNotNull(_binding) { "FragmentBottomSheetBinding is not initialized" }
 
     private val bottomSheetViewModel: BottomSheetViewModel by viewModels()
-    private lateinit var compareViewModel: CompareViewModel
     private lateinit var adapter: LikeListAdapter
 
     override fun onCreateView(
@@ -33,15 +31,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initCompareViewModel()
         setupAdapter()
         observeViewModel()
         initAddButton()
-    }
-
-    private fun initCompareViewModel() {
-        compareViewModel = ViewModelProvider(requireActivity())[CompareViewModel::class.java]
-
     }
 
     private fun setupAdapter() {
@@ -60,7 +52,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initAddButton() {
         binding.ivBgAddBtn.setOnClickListener {
-            compareViewModel.setApiResponse(isEmpty = false)
             dismiss()
         }
     }

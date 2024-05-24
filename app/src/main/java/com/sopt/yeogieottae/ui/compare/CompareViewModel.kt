@@ -3,9 +3,8 @@ package com.sopt.yeogieottae.ui.compare
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sopt.yeogieottae.data.ApiResponse
 import com.sopt.yeogieottae.data.Room
-
+/*
 class CompareViewModel : ViewModel() {
     private val _apiResponse = MutableLiveData<ApiResponse>()
     val apiResponse: LiveData<ApiResponse> get() = _apiResponse
@@ -86,4 +85,4 @@ class CompareViewModel : ViewModel() {
             )
         }
     }
-}
+}*/

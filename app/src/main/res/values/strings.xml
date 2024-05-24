@@ -55,6 +55,12 @@
     <string name="compare_iv_calender">달력 아이콘</string>
     <string name="compare_iv_person">사람 아이콘</string>
     <string name="compare_tv_person">2명</string>
+    <string name="compare_tv_btn_edit">수정하기</string>
+    <string name="compare_tv_hotel_room">객실 및 호텔</string>
+    <string name="compare_tv_low_price">낮은 가격 순</string>
+    <string name="compare_tv_high_grade">높은 평점 순</string>
+    <string name="compare_tv_high_discount">높은 할인 순</string>
+    <string name="compare_tv_facility">부대 시설</string>
 
     <!--compare emty -->
     <string name="compare_emty1">아직 추가한 숙소가 없어요</string>
