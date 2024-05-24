@@ -11,47 +11,43 @@ import com.sopt.yeogieottae.databinding.ItemFavoriteHotelBinding
 
 class FavoriteHotelViewHolder(
     private val binding: ItemFavoriteHotelBinding,
-) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(likeHotelState: LikeHotelState) {
-        if (likeHotelState.isSuccess) {
-            initHotelViews(likeHotelState)
-            if (likeHotelState.roomInformation == null) {
-                showEmptyRoom()
+    private val onItemLongClick: (LikeHotelState) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(hotel: LikeHotelState) {
+        with(binding) {
+            if (hotel.isSuccess) {
+                tvFavoritehotelName.text = hotel.hotelName
+                tvFavoritehoteStarText.text = hotel.reviewRate.toString()
+                tvFavoritehotelNameEmpty.text = hotel.hotelName
+                tvFavoritehoteStarTextEmpty.text = hotel.reviewRate.toString()
+
+                if (hotel.roomInformation == null) {
+                    showEmptyRoom()
+                } else {
+                    showLikeRoom(hotel)
+                }
+
+                root.setOnLongClickListener {
+                    onItemLongClick(hotel)
+                    true
+                }
             } else {
-                showLikeRoom()
-                initRoomView(likeHotelState)
+                Log.d("FavoriteHotelViewHolder", "Failed to load hotel data")
             }
-        } else {
-            Log.d("likehotel", "실패..")
         }
     }
 
-    private fun initHotelViews(likeHotelState: LikeHotelState) {
-        with(binding) {
-            tvFavoritehotelName.text = likeHotelState.hotelName
-            tvFavoritehoteStarText.text = likeHotelState.reviewRate.toString()
-            tvFavoritehotelNameEmpty.text = likeHotelState.hotelName
-            tvFavoritehoteStarTextEmpty.text = likeHotelState.reviewRate.toString()
-        }
-    }
-
-    private fun initRoomView(likeHotelState: LikeHotelState) {
-        with(binding) {
-            tvFavoritehotelRoomname.text = likeHotelState.roomName
-            Glide.with(ivFavoritehotelRoom.context)
-                .load(likeHotelState.roomImage)
-                .into(ivFavoritehotelRoom)
-            binding.tvHotelTotalPrice.text =
-                itemView.context.getString(R.string.all_price).format(likeHotelState.price)
-            tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        }
-    }
-
-    private fun showLikeRoom() {
+    private fun showLikeRoom(hotel: LikeHotelState) {
         with(binding) {
             loFavoritehotelLikeNotempty.visibility = View.VISIBLE
             loFavoritehotelEmptyLikeroom.visibility = View.GONE
+            tvFavoritehotelRoomname.text = hotel.roomName
+            Glide.with(ivFavoritehotelRoom.context)
+                .load(hotel.roomImage)
+                .into(ivFavoritehotelRoom)
+            tvHotelTotalPrice.text = itemView.context.getString(R.string.all_price, hotel.price)
+            tvHotelDiscountPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         }
     }
 

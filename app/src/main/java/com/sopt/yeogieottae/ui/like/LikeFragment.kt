@@ -12,53 +12,38 @@ import com.sopt.yeogieottae.R
 import com.sopt.yeogieottae.databinding.FragmentLikeBinding
 import com.sopt.yeogieottae.util.BaseFragment
 
-class LikeFragment: BaseFragment<FragmentLikeBinding>(
+class LikeFragment : BaseFragment<FragmentLikeBinding>(
     FragmentLikeBinding::inflate
-){
-    private var _binding: FragmentLikeBinding? = null
+) {
     private val favoriteHotelViewModel by viewModels<FavoriteHotelViewModel>()
-    private val favoriteHotelListAdapter = FavoriteHotelListAdapter { hotel ->
-        showPopup()
-    }
+    private val favoriteHotelListAdapter = FavoriteHotelListAdapter { showPopup() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initRecyclerViews()
-        initTitleView()
+        initRecyclerView()
         initObserver()
-        initClickListner()
+        initClickListener()
     }
 
-    private fun initRecyclerViews() {
-        // 초기 팝업 상태를 invisible로 설정
+    private fun initRecyclerView() {
         hidePopup()
-
-        // RecyclerView 설정
         binding.rvLikeHotellist.apply {
             adapter = favoriteHotelListAdapter
             layoutManager = LinearLayoutManager(context)
-        }
-
-        // ViewModel의 데이터 관찰
-        favoriteHotelViewModel.likehotels.observe(viewLifecycleOwner) { hotels ->
-            favoriteHotelListAdapter.setItems(hotels)
         }
     }
 
     private fun initObserver() {
         favoriteHotelViewModel.getLikeHotelInfo()
-
-        favoriteHotelViewModel.likehotels.observe(viewLifecycleOwner) { hotels ->
+        favoriteHotelViewModel.likeHotels.observe(viewLifecycleOwner) { hotels ->
             favoriteHotelListAdapter.setItems(hotels)
         }
     }
 
-    private fun initClickListner() {
+    private fun initClickListener() {
         binding.vLikePopupBg.setOnClickListener {
             hidePopup()
         }
-
         binding.ivCompareBtn.setOnClickListener {
             findNavController().navigate(R.id.fragment_compare)
         }
@@ -66,11 +51,8 @@ class LikeFragment: BaseFragment<FragmentLikeBinding>(
 
     @SuppressLint("ResourceType")
     private fun showPopup() {
-        // 애니메이션 팝업에 적용
         val animation = AnimationUtils.loadAnimation(requireContext(), R.drawable.bottom_sheet_anim)
         binding.loLikePopupBottom.startAnimation(animation)
-
-        // 팝업을 표시
         binding.loLikePopup.visibility = View.VISIBLE
     }
 
@@ -78,12 +60,6 @@ class LikeFragment: BaseFragment<FragmentLikeBinding>(
         binding.loLikePopup.visibility = View.INVISIBLE
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    // 상단 바
     @SuppressLint("ResourceType")
     private fun initTitleView() {
         binding.rvLikeHotellist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
