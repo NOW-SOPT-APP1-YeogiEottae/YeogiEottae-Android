@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.sopt.yeogieottae.R
+import com.sopt.yeogieottae.data.model.Room
 import com.sopt.yeogieottae.databinding.FragmentHotelBinding
 import com.sopt.yeogieottae.util.BaseFragment
 import com.sopt.yeogieottae.util.bulletSpanText
@@ -31,61 +32,51 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
         observeViewModel()
         viewModel.getHotelInfo(hotelId)
         updateHotelImage()
-        initBtnClickListener()
+        initFavoriteButtonClickListener()
     }
 
     private fun observeViewModel() {
         viewModel.hotel.observe(viewLifecycleOwner) { hotel ->
             hotel?.let {
                 updateHotelView(hotel)
-                hotelRoomListAdapter.submitList(it.room_list)
+                hotelRoomListAdapter.submitList(it.roomList)
             }
         }
-        viewModel.hotel_info.observe(viewLifecycleOwner) { hotelInfo ->
+        viewModel.hotelInfo.observe(viewLifecycleOwner) { hotelInfo ->
             hotelInfo?.let {
-                updateHotelInfoView(hotelInfo)
+                updateHotelInfoView(it)
             }
         }
     }
 
-    private fun initBtnClickListener() {
-        with(binding) {
-            ivRoomFavoriteBtn.setOnClickListener {
-                viewModel.hotel.value?.let {
-                    if (it.is_liked) {
-                        createSnackBar(
-                            binding.root,
-                            "Custom Snackbar",
-                            Snackbar.LENGTH_SHORT
-                        ).apply {
-                            setOffHotelLike()
-                        }.show()
-                        viewModel.deleteLikeHotel(hotelId)
-                    } else {
-                        createSnackBar(
-                            binding.root,
-                            "Custom Snackbar",
-                            Snackbar.LENGTH_SHORT
-                        ).apply {
-                            setOnHotelLike()
-                        }.show()
-                        viewModel.postLikeHotel(hotelId)
-                    }
-                    updateHotelImage()
-                }
+    private fun initFavoriteButtonClickListener() {
+        binding.ivRoomFavoriteBtn.setOnClickListener {
+            viewModel.hotel.value?.let { hotel ->
+                toggleFavoriteStatus(hotel.isLiked)
             }
         }
+    }
+
+    private fun toggleFavoriteStatus(isLiked: Boolean) {
+        if (isLiked) {
+            showSnackbarWithLayout(R.layout.favorite_snackbar_off_layout)
+            viewModel.deleteLikeHotel(hotelId)
+        } else {
+            showSnackbarWithLayout(R.layout.favorite_snackbar_on_layout)
+            viewModel.postLikeHotel(hotelId)
+        }
+        updateHotelImage()
     }
 
     private fun updateHotelView(hotel: HotelViewModel.Hotel) {
         with(binding) {
             tvHotelStar.text = hotel.star
             tvHotelName.text = hotel.name
-            tvStarRate.text = hotel.review_rate.toString()
-            tvTotalReview.text = hotel.review_count.toString()
+            tvStarRate.text = hotel.reviewRate.toString()
+            tvTotalReview.text = hotel.reviewCount.toString()
             tvMap.text = hotel.location
             ivRoomFavorite.setImageResource(
-                if (hotel.is_liked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
+                if (hotel.isLiked) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
             )
         }
     }
@@ -104,7 +95,7 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
             .into(binding.ivHotel)
     }
 
-    private fun updateHotelInfoView(hotelInfo: HotelViewModel.Hotel_info) {
+    private fun updateHotelInfoView(hotelInfo: HotelViewModel.HotelInfo) {
         with(binding) {
             tvHotelEventContents.text = bulletSpanText(requireContext(), hotelInfo.event)
             tvPayTossContents.text = bulletSpanText(requireContext(), hotelInfo.pay)
@@ -114,78 +105,49 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>(
     private fun initAdapter() {
         hotelRoomListAdapter = HotelRoomListAdapter(
             { room ->
-                if (room.is_liked) {
-                    createSnackBar(
-                        binding.root,
-                        "Custom Snackbar",
-                        Snackbar.LENGTH_SHORT
-                    ).apply {
-                        setOffHotelLike()
-                    }.show()
-                    viewModel.deleteLikeRoom(room.room_id)
-                } else {
-                    createSnackBar(
-                        binding.root,
-                        "Custom Snackbar",
-                        Snackbar.LENGTH_SHORT
-                    ).apply {
-                        setOnHotelLike()
-                    }.show()
-                    viewModel.postLikeRoom(room.room_id)
-                }
+                toggleRoomFavoriteStatus(room)
             },
             { room ->
-                val action = HotelFragmentDirections.actionHotelToRoom(
-                    roomId = room.room_id,
-                    roomName = room.room_name,
-                    price = room.price,
-                    startTime = room.start_time,
-                    endTime = room.end_time,
-                    imageUrl = room.image_url,
-                    isLiked = room.is_liked
-                )
-                findNavController().navigate(action)
+                navigateToRoomDetails(room)
             }
         )
         binding.rvRoom.adapter = hotelRoomListAdapter
         binding.rvRoom.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun createSnackBar(view: View, message: String, duration: Int): Snackbar {
-        return Snackbar.make(view, message, duration)
-    }
-
-    // 호텔찜 on snackbar
-    @SuppressLint("RestrictedApi")
-    private fun Snackbar.setOnHotelLike() {
-        val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_on_layout, null)
-
-        val snackBarLayout = this.view as Snackbar.SnackbarLayout
-        snackBarLayout.apply {
-            setPadding(0, 0, 0, 30)
-            removeAllViews()
-            addView(customLayout)
-
-            // 배경색을 투명하게 설정
-            background = null
+    private fun toggleRoomFavoriteStatus(room: Room) {
+        if (room.isLiked) {
+            showSnackbarWithLayout(R.layout.favorite_snackbar_off_layout)
+            viewModel.deleteLikeRoom(room.roomId)
+        } else {
+            showSnackbarWithLayout(R.layout.favorite_snackbar_on_layout)
+            viewModel.postLikeRoom(room.roomId)
         }
     }
 
-    // off snackbar
+    private fun navigateToRoomDetails(room: Room) {
+        val action = HotelFragmentDirections.actionHotelToRoom(
+            roomId = room.roomId,
+            roomName = room.roomName,
+            price = room.price,
+            startTime = room.startTime,
+            endTime = room.endTime,
+            imageUrl = room.imageUrl,
+            isLiked = room.isLiked
+        )
+        findNavController().navigate(action)
+    }
+
     @SuppressLint("RestrictedApi")
-    private fun Snackbar.setOffHotelLike() {
-        val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_off_layout, null)
-
-        val snackBarLayout = this.view as Snackbar.SnackbarLayout
-        snackBarLayout.apply {
-            setPadding(0, 0, 0, 30)
-            removeAllViews()
-            addView(customLayout)
-
-            // 배경색을 투명하게 설정
-            background = null
+    private fun showSnackbarWithLayout(layoutRes: Int) {
+        val customLayout = LayoutInflater.from(context).inflate(layoutRes, null)
+        Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT).apply {
+            val snackBarLayout = this.view as Snackbar.SnackbarLayout
+            snackBarLayout.setPadding(0, 0, 0, 30)
+            snackBarLayout.removeAllViews()
+            snackBarLayout.addView(customLayout)
+            snackBarLayout.background = null
+            show()
         }
     }
 }
