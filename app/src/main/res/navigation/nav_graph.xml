@@ -48,10 +48,12 @@
         tools:layout="@layout/fragment_compare">
         <action
             android:id="@+id/action_compare_to_compareEmpty"
-            app:destination="@id/fragment_compareEmty" />
+            app:destination="@id/fragment_compareEmty"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_compare_to_compareNotEmpty"
-            app:destination="@id/fragment_compareNotEmpty" />
+            app:destination="@id/fragment_compareNotEmpty"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -61,7 +63,8 @@
         tools:layout="@layout/fragment_hotel">
         <action
             android:id="@+id/action_hotel_to_room"
-            app:destination="@id/fragment_room">
+            app:destination="@id/fragment_room"
+            app:popUpToInclusive="true">
             <argument
                 android:name="roomId"
                 app:argType="integer" />
@@ -102,7 +105,8 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_like_to_compare"
-            app:destination="@id/fragment_compare" />
+            app:destination="@id/fragment_compare"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -145,7 +149,8 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_search_to_hotel"
-            app:destination="@id/fragment_hotel">
+            app:destination="@id/fragment_hotel"
+            app:popUpToInclusive="true">
             <argument
                 android:name="hotelId"
                 app:argType="integer"

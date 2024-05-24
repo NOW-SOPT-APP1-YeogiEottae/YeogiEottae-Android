@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.mainBnv.visibility = when (destination.id) {
                 R.id.fragment_compare -> View.GONE
+                R.id.fragment_hotel -> View.GONE
+                R.id.fragment_room -> View.GONE
                 else -> View.VISIBLE
             }
         }
