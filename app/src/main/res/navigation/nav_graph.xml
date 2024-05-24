@@ -27,7 +27,14 @@
         android:id="@+id/fragment_compare"
         android:name="com.sopt.yeogieottae.ui.compare.CompareFragment"
         android:label="CompareFragment"
-        tools:layout="@layout/fragment_compare" />
+        tools:layout="@layout/fragment_compare">
+        <action
+            android:id="@+id/action_compare_to_compareEmpty"
+            app:destination="@id/compareEmtyFragment" />
+        <action
+            android:id="@+id/action_compare_to_compareNotEmpty"
+            app:destination="@id/compareNotEmptyFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_hotel"
@@ -36,7 +43,33 @@
         tools:layout="@layout/fragment_hotel">
         <action
             android:id="@+id/action_hotel_to_room"
-            app:destination="@id/fragment_room" />
+            app:destination="@id/fragment_room" >
+            <argument
+                android:name="roomId"
+                app:argType="integer" />
+            <argument
+                android:name="roomName"
+                app:argType="string" />
+            <argument
+                android:name="price"
+                app:argType="integer" />
+            <argument
+                android:name="startTime"
+                app:argType="string" />
+            <argument
+                android:name="endTime"
+                app:argType="string" />
+            <argument
+                android:name="imageUrl"
+                app:argType="string" />
+            <argument
+                android:name="isLiked"
+                app:argType="boolean" />
+        </action>
+        <argument
+            android:name="hotelId"
+            app:argType="integer"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -53,7 +86,29 @@
         android:id="@+id/fragment_room"
         android:name="com.sopt.yeogieottae.ui.room.RoomFragment"
         android:label="RoomFragment"
-        tools:layout="@layout/fragment_room" />
+        tools:layout="@layout/fragment_room" >
+        <argument
+            android:name="roomId"
+            app:argType="integer" />
+        <argument
+            android:name="roomName"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="integer" />
+        <argument
+            android:name="startTime"
+            app:argType="string" />
+        <argument
+            android:name="endTime"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+        <argument
+            android:name="isLiked"
+            app:argType="boolean" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_search"
@@ -62,7 +117,24 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_search_to_hotel"
-            app:destination="@id/fragment_hotel" />
+            app:destination="@id/fragment_hotel">
+            <argument
+                android:name="hotelId"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </fragment>
+
+    <fragment
+        android:id="@+id/compareEmtyFragment"
+        android:name="com.sopt.yeogieottae.ui.compare.empty.CompareEmptyFragment"
+        android:label="CompareEmtyFragment"
+        tools:layout="@layout/fragment_compare_empty" />
+
+    <fragment
+        android:id="@+id/compareNotEmptyFragment"
+        android:name="com.sopt.yeogieottae.ui.compare.CompareNotEmptyFragment"
+        android:label="CompareNotEmptyFragment"
+        tools:layout="@layout/fragment_compare_not_empty" />
 
 </navigation>

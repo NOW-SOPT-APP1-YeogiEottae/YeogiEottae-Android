@@ -10,11 +10,11 @@ data class Room(
     @SerialName("room_type")
     val roomType: String,
     @SerialName("price")
-    val price: Float,
+    val price: Int,
     @SerialName("review_rate")
-    val reviewRate: Int,
+    val reviewRate: Double,
     @SerialName("review_count")
-    val reviewCount: String,
+    val reviewCount: Int,
     @SerialName("image_url")
     val imageUrl: String,
 )

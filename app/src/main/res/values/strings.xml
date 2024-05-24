@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">YeogiEottae</string>
-
+    <!--공용-->
+    <string name="all_price_all">총</string>
+    <string name="all_price">%,3d원</string>
+    <string name="all_price_Int">%,3d</string>
     <!--menu-->
     <string name="menu_title_home">홈</string>
     <string name="menu_title_search">검색</string>
@@ -13,6 +16,38 @@
     <string name="dummy_profile">내 정보 화면입니다.</string>
     <string name="dummy_map">내 주변 화면입니다.</string>
     <string name="dummy_home">홈 화면입니다.</string>
+    <string name="all_won">원</string>
+    <string name="hotel_room_info">객실정보</string>
+    <string name="hotel_room_person">기준 2인 최대 2인</string>
+    <string name="hotel_more_review">리뷰 보기</string>
+    <string name="hotel_pay_event">결제 혜택</string>
+    <string name="hotel_map_info">지도 보기</string>
+    <string name="hotel_more_info">더보기</string>
+    <string name="hotel_toss_pay">토스페이</string>
+    <string name="hotel_event">숙소이벤트</string>
+
+    <!--room-->
+    <string name="room_cancel_impossible">무료취소 불가</string>
+    <string name="room_discount_price">30000원</string>
+    <string name="room_discount_percent">10%</string>
+    <string name="room_cupon">쿠폰 적용시</string>
+    <string name="room_discounted_price">90,000원</string>
+    <string name="room_sub_text">sub Text</string>
+    <string name="room_select_day">선택날짜</string>
+    <string name="room_check_in">체크인</string>
+    <string name="room_check_in_time">24.05.02(목)\n15:00</string>
+    <string name="room_night">1박</string>
+    <string name="room_check_out">체크아웃</string>
+    <string name="room_check_out_time">24.05.02(목)\n15:00</string>
+    <string name="room_facilities">편의시설</string>
+    <string name="room_cancel">취소 및 환불 규정</string>
+    <string name="room_night_price">1박요금</string>
+    <string name="room_reservation">예약하기</string>
+    <string name="room_type">숙박</string>
+    <string name="room_normal_info">기본정보</string>
+    <string name="room_in_out">입실 %s 퇴실 %s</string>
+
+
 
     <!--compare -->
     <string name="compare_title">객실 비교하기</string>
@@ -26,4 +61,45 @@
     <string name="compare_tv_high_grade">높은 평점 순</string>
     <string name="compare_tv_high_discount">높은 할인 순</string>
     <string name="compare_tv_facility">부대 시설</string>
+
+    <!--compare emty -->
+    <string name="compare_emty1">아직 추가한 숙소가 없어요</string>
+    <string name="compare_emty2">비교하고 싶은 숙소를 추가하면</string>
+    <string name="compare_emty3">간단하게 비교해볼 수 있어요</string>
+    <string name="compare_emty_plus">추가하기</string>
+
+    <!--호텔-->
+    <string name="hotel_rating">4성급</string>
+    <string name="hotel_name">호텔 이름</string>
+    <string name="hotel_location">위치</string>
+    <string name="hotel_location2">삼성역 도보 5분</string>
+    <string name="hotel_review_count">%,3d개 평가</string>
+    <string name="hotel_discount_percent">10%</string>
+    <string name="hotel_coupon">쿠폰적용시</string>
+    <string name="hotel_discount_price">30,000원</string>
+    <string name="hotel_total_price">90,000원</string>
+    <string name="hotel_subtext">subtext</string>
+    <string name="hotel_star_text">9.5</string>
+
+    <!--객실-->
+    <string name="room_info_detail">기준 2인 최대 2인</string>
+    <string name="room_package">패키지</string>
+    <string name="room_package_detail">롯데월드 자유이용권 2매</string>
+
+    <!--찜-->
+    <string name="favorite_hotel_on">찜에 추가했어요</string>
+    <string name="favorite_hotel_off">찜을 해제했어요</string>
+    <string name="favorite_room">방도 찜할 수 있어요</string>
+    <string name="like_date">5.2 목 - 5.3 금</string>
+    <string name="like_people">2명</string>
+
+    <string name="undo">실행 취소</string>
+    <string name="go_directly">찜으로 이동</string>
+
+    <!--팝업-->
+    <string name="favorite_hotel_delete">찜에서 삭제하기</string>
+    <string name="favorite_hotel_add">비교에 추가하기</string>
+    <string name="like_empty_room">찜한 방이 없어요</string>
+    <string name="like_start_compare_explain">방을 찜하면 비교하기 기능을 사용할 수 있어요</string>
+    <string name="like_room_start">찜하러 가기</string>
 </resources>

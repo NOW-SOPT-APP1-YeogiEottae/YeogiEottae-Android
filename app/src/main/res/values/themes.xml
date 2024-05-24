@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.YeogiEottae" parent="Base.Theme.YeogiEottae" />
+
+    <style name="Round_10dp">
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+
+    <style name="Circle">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.3.2"
+fragmentKtx = "1.7.1"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -9,15 +10,19 @@ appcompat = "1.6.1"
 material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
-nav="2.7.7"
-lifecycle="2.7.0"
-retrofit="2.9.0"
-kotlinxSerializationJson="1.6.3"
-serializationConverter="1.0.0"
-okhttpBom="4.10.0"
+nav = "2.7.7"
+lifecycle = "2.7.0"
+retrofit = "2.9.0"
+kotlinxSerializationJson = "1.6.3"
+serializationConverter = "1.0.0"
+okhttpBom = "4.10.0"
+glide = "4.13.0"
+materialVersion = "1.13.0-alpha02"
+roomKtx = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -35,11 +40,16 @@ androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-
 com-squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 org-jetbrains-kotlinx = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 com-jakewharton-retrofit = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "serializationConverter" }
-com-squareup-okhttp3 = {  group ="com.squareup.okhttp3", name = "okhttp" }
+com-squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp" }
 squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "logging-interceptor" }
 okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttpBom" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+navigate-safearg = {id = 'androidx.navigation.safeargs.kotlin', version = '2.7.0'}
