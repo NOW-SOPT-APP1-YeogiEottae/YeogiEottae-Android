@@ -77,7 +77,6 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
         }
     }
 
-
     private fun toggleEditMode() {
         isEditMode = !isEditMode
         binding.tvBtnEdit.visibility = if (isEditMode) View.INVISIBLE else View.VISIBLE
