@@ -1,8 +1,5 @@
 package com.sopt.yeogieottae.ui.compare
 
-import android.net.http.HttpException
-import android.os.Build
-import androidx.annotation.RequiresExtension
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +11,7 @@ import com.sopt.yeogieottae.network.response.CompareLikesRoom
 import com.sopt.yeogieottae.network.response.ResponseCompareDto
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import retrofit2.HttpException
 
 class CompareViewModel : ViewModel() {
     private val _compareResponse = MutableLiveData<ResponseCompareDto>()
@@ -35,23 +33,22 @@ class CompareViewModel : ViewModel() {
 
     fun fetchCompareData() {
         viewModelScope.launch {
-            try {
-                val response = ServicePool.yeogieottaeService.compare()
-                if (response.isSuccessful) {
-                    _compareResponse.value = response.body()
-                } else {
-                    _message.value = "CompareViewModel 패치 실패"
-                }
-            } catch (e: Exception) {
-                _message.value = "CompareViewModel 패치 에러"
+            runCatching {
+                ServicePool.yeogieottaeService.compare()
+            }.onSuccess { response ->
+                _compareResponse.value = response.body()
+            }.onFailure { e ->
+                if (e is HttpException) _message.value = "CompareViewModel 패치 실패"
+                else _message.value = "CompareViewModel 패치 에러"
             }
         }
     }
 
     private fun fetchRoomList() {
         viewModelScope.launch {
-            try {
-                val response = ServicePool.yeogieottaeService.getCompare()
+            runCatching {
+                ServicePool.yeogieottaeService.getCompare()
+            }.onSuccess { response ->
                 if (response.isSuccessful) {
                     response.body()?.result?.roomList?.let { rooms ->
                         _roomList.value = rooms
@@ -59,7 +56,7 @@ class CompareViewModel : ViewModel() {
                 } else {
                     _message.value = "RoomList 패치 실패"
                 }
-            } catch (e: Exception) {
+            }.onFailure {
                 _message.value = "RoomList 패치 에러"
             }
         }
@@ -67,15 +64,15 @@ class CompareViewModel : ViewModel() {
 
     fun deleteRoom(roomId: Int) {
         viewModelScope.launch {
-            try {
-                val response =
-                    ServicePool.yeogieottaeService.deleteCompare(RequestDeleteRoomId(roomId))
+            runCatching {
+                ServicePool.yeogieottaeService.deleteCompare(RequestDeleteRoomId(roomId))
+            }.onSuccess { response ->
                 if (response.isSuccessful) {
                     fetchCompareData()
                 } else {
                     _message.value = "CompareViewModel 삭제 실패"
                 }
-            } catch (e: Exception) {
+            }.onFailure {
                 _message.value = "CompareViewModel 삭제 에러"
             }
         }
@@ -83,8 +80,9 @@ class CompareViewModel : ViewModel() {
 
     fun postRoomIds(roomIdRequest: RequestRoomId) {
         viewModelScope.launch {
-            try {
-                val response = ServicePool.yeogieottaeService.postCompare(roomIdRequest)
+            runCatching {
+                ServicePool.yeogieottaeService.postCompare(roomIdRequest)
+            }.onSuccess { response ->
                 if (response.isSuccessful) {
                     fetchCompareData()
                 } else {
@@ -92,7 +90,7 @@ class CompareViewModel : ViewModel() {
                     val error = JSONObject(rawJson).optString("message", "error message")
                     _message.value = error
                 }
-            } catch (e: Exception) {
+            }.onFailure {
                 _message.value = "CompareViewModel 전송 오류 발생."
             }
         }
