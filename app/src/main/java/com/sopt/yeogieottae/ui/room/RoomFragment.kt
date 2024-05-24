@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -31,136 +32,74 @@ class RoomFragment : BaseFragment<FragmentRoomBinding>(
     private fun initArgs() {
         roomViewModel.setRoomData(
             Room(
-                room_id = args.roomId,
-                room_name = args.roomName,
+                roomId = args.roomId,
+                roomName = args.roomName,
                 price = args.price,
-                start_time = args.startTime,
-                end_time = args.endTime,
-                image_url = args.imageUrl,
-                is_liked = args.isLiked
+                startTime = args.startTime,
+                endTime = args.endTime,
+                imageUrl = args.imageUrl,
+                isLiked = args.isLiked
             )
         )
     }
 
     private fun setupView() {
-        setupRoomName()
-        setupRoomPrice()
-        setupRoomTimes()
-        setupRoomInformation()
-        setupRoomFacilities()
-        setupRoomCancelPolicy()
-        setupRoomImage()
-        setupImage()
+        roomViewModel.room.observe(viewLifecycleOwner) { room ->
+            binding.apply {
+                tvRoomDetailRoomName.text = room.roomName
+                tvRoomSummaryDiscountPrice.text = getString(R.string.all_price).format(room.price)
+                tvRoomDetailBottomPrice.text = getString(R.string.all_price).format(room.price)
+                tvRoomSummaryTime.text = getString(R.string.room_in_out).format(room.startTime, room.endTime)
+                ivRoomDetail.loadImage(room.imageUrl)
+                ivRoomFavorite.setImageResource(if (room.isLiked) R.drawable.ic_favorite_room_on else R.drawable.ic_favorite)
+            }
+        }
+
+        roomViewModel.detail.observe(viewLifecycleOwner) { detail ->
+            binding.apply {
+                tvRoomDetailNormalInfoDescription.text = bulletSpanText(requireContext(), detail.information)
+                tvRoomDetailFacilitiesDescription.text = bulletSpanText(requireContext(), detail.facilities)
+                tvRoomDetailCancelDescription.text = bulletSpanTextCancel(requireContext(), detail.cancel)
+            }
+        }
     }
 
-    private fun setupRoomName() {
-        binding.tvRoomDetailRoomName.text = roomViewModel.room.value?.room_name
-    }
-
-    private fun setupRoomPrice() {
-        val price = roomViewModel.room.value?.price ?: 0
-        binding.tvRoomSummaryDiscountPrice.text = getString(R.string.all_price).format(price)
-        binding.tvRoomDetailBottomPrice.text = getString(R.string.all_price).format(price)
-    }
-
-    private fun setupRoomTimes() {
-        val startTime = roomViewModel.room.value?.start_time.orEmpty()
-        val endTime = roomViewModel.room.value?.end_time.orEmpty()
-        binding.tvRoomSummaryTime.text = getString(R.string.room_in_out).format(startTime, endTime)
-    }
-
-    private fun setupRoomInformation() {
-        val information = roomViewModel.detail.value?.information ?: emptyList()
-        binding.tvRoomDetailNormalInfoDescription.text =
-            bulletSpanText(requireContext(), information)
-    }
-
-    private fun setupRoomFacilities() {
-        val facilities = roomViewModel.detail.value?.facilities ?: emptyList()
-        binding.tvRoomDetailFacilitiesDescription.text =
-            bulletSpanText(requireContext(), facilities)
-    }
-
-    private fun setupRoomCancelPolicy() {
-        val cancel = roomViewModel.detail.value?.cancel ?: emptyList()
-        binding.tvRoomDetailCancelDescription.text = bulletSpanTextCancel(requireContext(), cancel)
-    }
-
-    private fun setupRoomImage() {
-        Glide.with(this)
-            .load(roomViewModel.room.value?.image_url.orEmpty())
-            .placeholder(R.drawable.ic_launcher_foreground) // Placeholder 이미지 설정
-            .into(binding.ivRoomDetail)
+    private fun View.loadImage(url: String) {
+        Glide.with(this@RoomFragment)
+            .load(url)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .into(this as ImageView)
     }
 
     private fun initBtnEvent() {
         binding.btnRoomDetailBtn.setOnClickListener {
-            if (roomViewModel.room.value?.is_liked ?: true) {
-                createSnackBar(
-                    binding.root,
-                    "Custom Snackbar",
-                    Snackbar.LENGTH_SHORT
-                ).apply {
-                    setOnHotelLike()
-                }.show()
+            val isLiked = roomViewModel.room.value?.isLiked ?: false
+            if (isLiked) {
+                showSnackBar("Custom Snackbar", R.layout.favorite_snackbar_off_layout)
                 roomViewModel.deleteLikeRoom()
                 binding.ivRoomFavorite.setImageResource(R.drawable.ic_favorite)
             } else {
-                createSnackBar(
-                    binding.root,
-                    "Custom Snackbar",
-                    Snackbar.LENGTH_SHORT
-                ).apply {
-                    setOffHotelLike()
-                }.show()
+                showSnackBar("Custom Snackbar", R.layout.favorite_snackbar_on_layout)
                 roomViewModel.postLikeRoom()
                 binding.ivRoomFavorite.setImageResource(R.drawable.ic_favorite_room_on)
             }
         }
     }
 
-    private fun setupImage() {
-        binding.ivRoomFavorite.setImageResource(
-            if (roomViewModel.room.value?.is_liked
-                    ?: true
-            ) R.drawable.ic_favorite_room_on else R.drawable.ic_favorite
-        )
+    private fun showSnackBar(message: String, layoutId: Int) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).apply {
+            setCustomLayout(layoutId)
+        }.show()
     }
 
-    private fun createSnackBar(view: View, message: String, duration: Int): Snackbar {
-        return Snackbar.make(view, message, duration)
-    }
-
-    // 호텔찜 on snackbar
     @SuppressLint("RestrictedApi")
-    private fun Snackbar.setOnHotelLike() {
-        val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_on_layout, null)
-
+    private fun Snackbar.setCustomLayout(layoutId: Int) {
+        val customLayout = LayoutInflater.from(context).inflate(layoutId, null)
         val snackBarLayout = this.view as Snackbar.SnackbarLayout
         snackBarLayout.apply {
             setPadding(0, 0, 0, 30)
             removeAllViews()
             addView(customLayout)
-
-            // 배경색을 투명하게 설정
-            background = null
-        }
-    }
-
-    // off snackbar
-    @SuppressLint("RestrictedApi")
-    private fun Snackbar.setOffHotelLike() {
-        val customLayout =
-            LayoutInflater.from(context).inflate(R.layout.favorite_snackbar_off_layout, null)
-
-        val snackBarLayout = this.view as Snackbar.SnackbarLayout
-        snackBarLayout.apply {
-            setPadding(0, 0, 0, 30)
-            removeAllViews()
-            addView(customLayout)
-
-            // 배경색을 투명하게 설정
             background = null
         }
     }
