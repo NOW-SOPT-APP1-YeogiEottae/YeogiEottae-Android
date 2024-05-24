@@ -9,19 +9,37 @@
         android:id="@+id/fragment_home"
         android:name="com.sopt.yeogieottae.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_to_home"
+            app:destination="@id/fragment_home"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_map"
         android:name="com.sopt.yeogieottae.ui.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_to_map"
+            app:destination="@id/fragment_map"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_profile"
         android:name="com.sopt.yeogieottae.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_to_profile"
+            app:destination="@id/fragment_profile"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_compare"
@@ -43,7 +61,7 @@
         tools:layout="@layout/fragment_hotel">
         <action
             android:id="@+id/action_hotel_to_room"
-            app:destination="@id/fragment_room" >
+            app:destination="@id/fragment_room">
             <argument
                 android:name="roomId"
                 app:argType="integer" />
@@ -76,7 +94,12 @@
         android:id="@+id/fragment_like"
         android:name="com.sopt.yeogieottae.ui.like.LikeFragment"
         android:label="LikeFragment"
-        tools:layout="@layout/fragment_like" >
+        tools:layout="@layout/fragment_like">
+        <action
+            android:id="@+id/action_to_like"
+            app:destination="@id/fragment_like"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_like_to_compare"
             app:destination="@id/fragment_compare" />
@@ -86,7 +109,7 @@
         android:id="@+id/fragment_room"
         android:name="com.sopt.yeogieottae.ui.room.RoomFragment"
         android:label="RoomFragment"
-        tools:layout="@layout/fragment_room" >
+        tools:layout="@layout/fragment_room">
         <argument
             android:name="roomId"
             app:argType="integer" />
@@ -115,6 +138,11 @@
         android:name="com.sopt.yeogieottae.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_to_search"
+            app:destination="@id/fragment_search"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_search_to_hotel"
             app:destination="@id/fragment_hotel">
