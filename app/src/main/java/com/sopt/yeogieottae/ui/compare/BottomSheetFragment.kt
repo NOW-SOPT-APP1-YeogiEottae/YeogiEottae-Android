@@ -1,5 +1,6 @@
 package com.sopt.yeogieottae.ui.compare
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -101,6 +102,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 Snackbar.make(binding.root, "선택된 방이 없습니다.", Snackbar.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        compareViewModel.resetCount()
     }
 
     override fun onDestroyView() {
