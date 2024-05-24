@@ -32,7 +32,7 @@ class CompareNotEmptyFragment : BaseFragment<FragmentCompareNotEmptyBinding>(
 
     private fun setupRecyclerView() {
         outerAdapter = OuterAdapter(
-            onRoomSelected = { room ->
+            onRoomSelected = {
                 // TODO 호텔 이동 로직
             },
             deleteCompareRoom = { roomId ->
